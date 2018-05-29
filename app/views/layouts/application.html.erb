@@ -1,15 +1,30 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <title>Intranet</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all','data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application','data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+  <row>
+    <nav>
+      <div class="nav-wrapper bgcolortest goldbadge">
+        <a href="#!" class="brand-logo"><%= image_tag  "http://sicoobcredicope.com.br/images/logo.png" , class:'responsive-img' %></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#"><i class="material-icons left whatisthebrother">search</i></a></li>       
+        </ul>
+      </div>
+    </nav> 
+  </row>
+    <div class='content'>
+      <%= yield %>
+    </div>
   </body>
+
+  
 </html>
