@@ -11,20 +11,14 @@
   </head>
 
   <body>
-  <row>
-    <nav>
-      <div class="nav-wrapper bgcolortest goldbadge">
-        <a href="#!" class="brand-logo"><%= image_tag  "http://sicoobcredicope.com.br/images/logo.png" , class:'responsive-img' %></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#"><i class="material-icons left whatisthebrother">search</i></a></li>       
-        </ul>
-      </div>
-    </nav> 
-  </row>
+    
+    <%= render 'layouts/shared/nav' %>
+      <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+  
     <div class='content'>
       <%= yield %>
     </div>
   </body>
 
-  
 </html>
