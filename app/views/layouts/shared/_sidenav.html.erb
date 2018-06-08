@@ -1,0 +1,55 @@
+<ul id="slide-out" class="sidenav">
+	<li>
+	<div class="user-view">
+		<div class="background">
+			<img src="https://i0.wp.com/pedromiguellaw.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg">
+		</div>          
+		<a href="#user"><img class="circle" src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg"></a>
+		<a href="#name"><span class="white-text name">teste</span></a>
+		<a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
+	</div>
+	</li>	
+	<li>
+		<ul class="collapsible">
+			<li>
+				<div class="collapsible-header"><i class="material-icons">event</i>Agenda</div>
+				<div class="collapsible-body">
+					<ul>
+						<li><a>Pessoal</a></li>
+						<li><a>Calendario</a></li>
+						<li><a>Eventos</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header"><i class="material-icons">cloud_download</i>Downloads</div>
+				<div class="collapsible-body">
+					<ul>
+						<li><a>Formulários</a></li>
+						<li><a>Manuais</a></li>
+						<li><a>Outros</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Comunicados</div>
+				<div class="collapsible-body">
+					<ul>
+						<li><a>Comunicados</a></li>
+						<li><a>Normativos</a></li>						
+					</ul>
+				</div>
+			</li>			
+			<li>
+				<div class="collapsible-header">
+					<%= link_to root_path do%>
+						<i class="material-icons">insert_chart</i>Dashboard
+					<% end %>
+				</div>				
+			</li>
+		</ul>	
+	</li>
+	<li><div class="divider"></div></li>
+	<li><a class="subheader">Subheader</a></li>
+	<li><%= link_to 'Logout',  destroy_user_session_path, method: 'delete', class:'waves-effect' %></li>
+</ul>  

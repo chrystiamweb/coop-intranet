@@ -13,9 +13,9 @@
   <body>
     
     <%= render 'layouts/shared/nav' %>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-  
+      <% flash.each do |message_type, message| %>       
+        <%= javascript_tag "M.toast({html:'#{message}'})" %>
+      <% end %>  
     <div class='content'>
       <%= yield %>
     </div>

@@ -1,29 +1,13 @@
 <div class="navbar-fixed">
 	<nav>
-		<div class="nav-wrapper bgcolortest ">  
-			<a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
-			<%= link_to 'Intranet', root_path, class:'brand-logo' %>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">				
-				<li><%= link_to 'Login', user_session_path %></li>
-				<li><%= link_to 'Logout',  destroy_user_session_path, method: 'delete' %></li>
-			</ul>
+		<div class="nav-wrapper bgcolortest ">			 
+			<%if user_signed_in?%>
+				<%= render 'layouts/shared/useron' %>	
+			<%else%>	
+				<%= render 'layouts/shared/useroff' %>
+			<% end %>
 		</div>
 	</nav>
 </div>
-<ul id="slide-out" class="sidenav">
-	<li>
-	<div class="user-view">
-		<div class="background">
-			<img src="https://i0.wp.com/pedromiguellaw.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg">
-		</div>          
-		<a href="#user"><img class="circle" src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg"></a>
-		<a href="#name"><span class="white-text name">teste</span></a>
-		<a href="#email"><span class="white-text email">teste@gmail.com</span></a>
-	</div>
-	</li>
-	<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-	<li><a href="#!">Second Link</a></li>
-	<li><div class="divider"></div></li>
-	<li><a class="subheader">Subheader</a></li>
-	<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-</ul>  
+
+<%=  render 'layouts/shared/sidenav' if user_signed_in? %>
