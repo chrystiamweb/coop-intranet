@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-image">
+          <%= image_tag  @post.image.url %>
+          <span class="card-title"><%= @post.title %></span>
+        </div>
+        <div class="card-content">
+          <%= raw @post.body %>
+        </div>
+        <div class="card-action">
+          <%= link_to 'Edit', edit_post_path(@post) %> |
+          <%= link_to 'Back', posts_path %>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
