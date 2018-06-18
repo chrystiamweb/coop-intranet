@@ -10,7 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_162605) do
+ActiveRecord::Schema.define(version: 2018_06_14_205922) do
+
+  create_table "client_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credit_line_params", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "max_term"
+    t.integer "min_term"
+    t.integer "tax_max"
+    t.integer "tax_min"
+    t.string "tax_obs"
+    t.integer "client_type_id"
+    t.integer "credit_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_type_id"], name: "index_credit_line_params_on_client_type_id"
+    t.index ["credit_type_id"], name: "index_credit_line_params_on_credit_type_id"
+  end
+
+  create_table "credit_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "client_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_type_id"], name: "index_credit_types_on_client_type_id"
+  end
+
+  create_table "criteria", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "criteria_definitions", force: :cascade do |t|
+    t.integer "criteria_name_id"
+    t.string "name"
+    t.string "description"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["criteria_name_id"], name: "index_criteria_definitions_on_criteria_name_id"
+  end
+
+  create_table "impact_params", force: :cascade do |t|
+    t.string "name"
+    t.integer "impact"
+    t.integer "criteria_name_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["criteria_name_id"], name: "index_impact_params_on_criteria_name_id"
+  end
+
+  create_table "linha_creditos", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "client_type_id"
+    t.integer "credit_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_type_id"], name: "index_linha_creditos_on_client_type_id"
+    t.index ["credit_type_id"], name: "index_linha_creditos_on_credit_type_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

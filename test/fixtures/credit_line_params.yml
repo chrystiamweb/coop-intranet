@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  max_term: 1
+  min_term: 1
+  tax_max: 1
+  tax_min: 1
+  tax_obs: MyString
+  client_type: one
+  credit_type: one
+
+two:
+  name: MyString
+  description: MyString
+  max_term: 1
+  min_term: 1
+  tax_max: 1
+  tax_min: 1
+  tax_obs: MyString
+  client_type: two
+  credit_type: two
