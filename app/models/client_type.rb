@@ -1,2 +1,0 @@
-class ClientType < ApplicationRecord
-end
