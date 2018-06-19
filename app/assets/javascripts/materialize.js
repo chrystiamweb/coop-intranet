@@ -1,6 +1,8 @@
-  
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   $('.sidenav').sidenav();
   closeOnClick: true
-  $('.collapsible').collapsible();  
+});
+
+document.addEventListener("turbolinks:before-cache", function() {
+  $('.sidenav').sidenav('destroy');
 });
