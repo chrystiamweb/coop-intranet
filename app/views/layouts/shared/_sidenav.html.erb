@@ -39,14 +39,22 @@
 						<li><a>Normativos</a></li>						
 					</ul>
 				</div>
-			</li>			
-			<li>
-				<div class="collapsible-header">
-					<%= link_to root_path do%>
-						<i class="material-icons">insert_chart</i>Dashboard
-					<% end %>
-				</div>				
-			</li>
+			</li>	
+      <%= link_to root_path do%>		
+        <li>
+          <div class="collapsible-header">            
+            <i class="material-icons">insert_chart</i>Dashboard          
+          </div>				
+        </li>
+      <% end %>
+			<%= link_to posts_path do%>
+				<li>				
+					<div class="collapsible-header">						
+						<i class="material-icons">developer_board</i>Posts						
+					</div>
+				</li>
+			<% end %>				
+			
 		</ul>	
 	</li>
 	<li><div class="divider"></div></li>
