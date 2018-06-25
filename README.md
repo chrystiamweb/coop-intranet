@@ -1,24 +1,40 @@
-# README
+# # Intranet 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple intranet created with rails and materialize 
 
-Things you may want to cover:
+### Prerequisites
 
-* Ruby version
+* ImageMagick (https://www.imagemagick.org)
 
-* System dependencies
+```
+sudo apt-get update
+sudo apt-get install imagemagick libmagickwand-dev
+```
 
-* Configuration
+### Installing
 
-* Database creation
+This project use postgres as database, first you need to change the database config on file config/database.yml.example
 
-* Database initialization
+```
+vim config/database.yml.example (make the changes and save the file)
 
-* How to run the test suite
+cp config/database.yml.example config/database.yml (create the database.yml config file)
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Create database and migrations
 
-* Deployment instructions
+```
+rails db:create
+rails db:migrate
+```
+### Usage
 
-* ...
+* After start you app, you nedd to create an user to get acess to the posts area, then log on and the menu will be available.
+
+
+## Built With
+* [Devise](https://github.com/plataformatec/devise)
+* [Ckeditor](https://ckeditor.com/)
+* [MaterializeCss](https://materializecss.com/)
+* [paperclip](https://github.com/thoughtbot/paperclip)
+
