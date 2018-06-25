@@ -16,10 +16,10 @@
       <%= form.label 'Titulo' %>
       <%= form.text_field :title %>
     </div>
-
+    
     <div class="field">
-      <%= raw form.text_area :body, class: "ckeditor" %>
-    </div>
+        <%= raw form.text_area :body, class: "ckeditor" %>
+    </div>   
 
     <div class="field">    
       <%= form.file_field :image, accept: 'image/*' %>

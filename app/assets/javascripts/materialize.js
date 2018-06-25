@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $('.sidenav').sidenav();
   $('.slider').slider({
-    height: 600,
+    height: $('.slider').height(),
     closeOnClick: true
   });  
   $('.collapsible').collapsible();
@@ -14,4 +14,10 @@ document.addEventListener("turbolinks:before-cache", function() {
   $('.slider').slider('destroy');
   $('.collapsible').collapsible('destroy');
  
+});
+
+$(window).resize(function(){
+  $('.slider').slider({
+    height: $('.slider').height(),    
+  });  
 });
