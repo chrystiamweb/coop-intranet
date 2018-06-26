@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <p>
+    <strong>Title:</strong>
+    <%= @normative.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @normative.description %>
+  </p>
+
+  <p>
+    <strong>Arquivo</strong>
+    <%= link_to @normative.title, url_for(@normative.file), download:''  %>
+  </p>
+
+  <%= link_to 'Edit', edit_normative_path(@normative) %> |
+  <%= link_to 'Back', normatives_path %>
+
+</div>

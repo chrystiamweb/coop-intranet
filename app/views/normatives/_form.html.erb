@@ -1,0 +1,36 @@
+<div class="container">
+  
+    <%= form_with(model: normative, local: true, multipart: true) do |form| %>
+      <% if normative.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(normative.errors.count, "error") %> prohibited this normative from being saved:</h2>
+
+          <ul>
+          <% normative.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </div>
+
+      <div class="field">
+        <%= form.label :file %>
+        <%= form.file_field :file %>
+      </div>
+      </br>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  
+</div>
