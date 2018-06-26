@@ -30,16 +30,16 @@
 						<li><a>Outros</a></li>
 					</ul>
 				</div>
-			</li>
-			<li>
-				<div class="collapsible-header"><i class="material-icons">insert_drive_file</i>Comunicados</div>
-				<div class="collapsible-body">
-					<ul>
-						<li><a>Comunicados</a></li>
-						<li><a>Normativos</a></li>						
-					</ul>
-				</div>
-			</li>	
+			</li>			
+			<%= link_to normatives_path do%>		
+        <li>
+          <div class="collapsible-header">            
+           <i class="material-icons">insert_drive_file</i>Comunicados         
+          </div>
+						<div class="collapsible-body">
+						</div>				
+        </li>
+      <% end %>
       <%= link_to root_path do%>		
         <li>
           <div class="collapsible-header">            

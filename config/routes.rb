@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :normatives
   resources :posts
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users

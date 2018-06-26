@@ -1,9 +1,19 @@
 <div class="card">
   <ul class="collection with-header">
     <li class="collection-header"><h4>Normativos</h4></li>
-    <li class="collection-item"><div>Normativo 01<a href="#!" class="secondary-content"><i class="material-icons">cloud_download</i></a></div></li>
-    <li class="collection-item"><div>Normativo 02<a href="#!" class="secondary-content"><i class="material-icons">cloud_download</i></a></div></li>
-    <li class="collection-item"><div>Normativo 03<a href="#!" class="secondary-content"><i class="material-icons">cloud_download</i></a></div></li>
-    <li class="collection-item"><div>Normativo 04<a href="#!" class="secondary-content"><i class="material-icons">cloud_download</i></a></div></li>
+    <% @lastnormatives.each do |norm| %>
+      <li class="collection-item">
+        <div>
+          <%= norm.title %>
+          <%= link_to url_for(norm.file), download:'', class:"secondary-content" do%>
+            <i class="material-icons">cloud_download</i>
+          <% end %>	
+          
+        </div>
+      </li>
+    
+    <% end %>
   </ul>
 </div>
+
+      
