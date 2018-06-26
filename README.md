@@ -1,4 +1,4 @@
-# # Intranet 
+## Intranet 
 
 This is a simple intranet created with rails and materialize 
 
@@ -29,7 +29,7 @@ rails db:migrate
 ```
 ### Usage
 
-* After start you app, you nedd to create an user to get acess to the posts area, then log on and the menu will be available.
+* After start you app, you need to create an user to get access to the posts area, then log on and the menu will be available.
 
 
 ## Built With
