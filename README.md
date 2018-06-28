@@ -26,6 +26,7 @@ Create database and migrations
 ```
 rails db:create
 rails db:migrate
+rails db:seed (this will create some example posts)
 ```
 ### Usage
 
