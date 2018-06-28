@@ -5,7 +5,7 @@
 					<% @lastposts.each do |post| %>
 						<li>				 
 						<%=link_to(post) do%>
-							<%= image_tag  post.image.url %> <!-- random image -->
+							<%= image_tag  post.image %> <!-- random image -->
 								<div class="caption center-align">
 									<h3><%= post.title %></h3>
 									<h5 class="light grey-text text-lighten-3"><%= sanitize post.body[0..255] %></h5>

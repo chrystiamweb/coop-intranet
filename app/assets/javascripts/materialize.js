@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function() {
     closeOnClick: true
   });  
   $('.collapsible').collapsible();
+  $('select').formSelect();
   
  
 });

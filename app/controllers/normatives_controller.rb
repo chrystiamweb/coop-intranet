@@ -1,5 +1,5 @@
 class NormativesController < ApplicationController
-  before_action :set_normative, only: [:show, :edit, :update, :destroy]
+  before_action :set_normative, only: [ :edit, :update, :destroy]
 
   # GET /normatives
   # GET /normatives.json
@@ -28,8 +28,8 @@ class NormativesController < ApplicationController
 
     respond_to do |format|
       if @normative.save
-        format.html { redirect_to @normative, notice: 'Normative was successfully created.' }
-        format.json { render :show, status: :created, location: @normative }
+        format.html { redirect_to normatives_url, notice: 'Normative was successfully created.' }
+        format.json { render :index, status: :created, location: @normative }
       else
         format.html { render :new }
         format.json { render json: @normative.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class NormativesController < ApplicationController
   def update
     respond_to do |format|
       if @normative.update(normative_params)
-        format.html { redirect_to @normative, notice: 'Normative was successfully updated.' }
-        format.json { render :show, status: :ok, location: @normative }
+        format.html { redirect_to normatives_url, notice: 'Normative was successfully updated.' }
+        format.json { render :index, status: :ok, location: @normative }
       else
         format.html { render :edit }
         format.json { render json: @normative.errors, status: :unprocessable_entity }
@@ -54,6 +54,7 @@ class NormativesController < ApplicationController
   # DELETE /normatives/1
   # DELETE /normatives/1.json
   def destroy
+    @normative.file.purge
     @normative.destroy
     respond_to do |format|
       format.html { redirect_to normatives_url, notice: 'Normative was successfully destroyed.' }

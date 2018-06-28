@@ -1,0 +1,40 @@
+<div class="container">
+  <%= form_with(model: docfile, local: true) do |form| %>
+    <% if docfile.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(docfile.errors.count, "error") %> prohibited this docfile from being saved:</h2>
+
+        <ul>
+        <% docfile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_field :description %>
+    </div>
+
+    <div class="input-field">      
+      <%= collection_select(:docfile, :file_type_id, FileType.all, :id, :name)=%>
+      <%= form.label :file_type_id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :doc_file %></br>
+      <%= form.file_field :doc_file %></br>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+    
+  <% end %>
+</div>
