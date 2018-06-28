@@ -3,7 +3,7 @@
 			<div class="slider">
 				<ul class="slides">
 					<% @lastposts.each do |post| %>
-						<li>				 
+						<li class="text-shadow-posts">				 
 						<%=link_to(post) do%>
 							<%= image_tag  post.image %> <!-- random image -->
 								<div class="caption center-align">
