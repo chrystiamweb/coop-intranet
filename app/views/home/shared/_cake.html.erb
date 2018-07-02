@@ -4,30 +4,29 @@
     <div class="collapsible-header">
       <i class="material-icons">cake</i>
       Aniversários
-      <span class="new badge grey darken-1" data-badge-caption="Mes">6</span>
-      <span class="new badge" data-badge-caption="Hoje">2</span>      
+      <span class="new badge grey darken-1" data-badge-caption="Mes"><%= @birth_days_by_month.count %></span>
+      <% if @birth_days_by_day.any? %>
+        <span class="new badge" data-badge-caption="Hoje"><%= @birth_days_by_day.count %></span>
+      <% end%>      
     </div>
     <div class="collapsible-body colapsible-remove-margin">
      <ul class="collection">
-      <li class="collection-item">
-        <div class="chip">
-          <img src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg" alt="Contact Person">
-          Chrystiam Andrade          
-        </div>         
-      </li>      
-      <li class="collection-item">
-        <div class="chip">
-          <img src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg" alt="Contact Person">
-          Chrystiam Andrade          
-        </div>         
-      </li>      
-      <li class="collection-item">
-        <div class="chip">
-          <img src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg" alt="Contact Person">
-          Chrystiam Andrade          
-        </div>         
-      </li>      
+      <% @birth_days_by_month.each do |a| %>
+        <li class="collection-item">
+          <div class="chip">
+            <img src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg" alt="Contact Person">
+            <%= a.first_name %>   <%= a.last_name %>      
+                   
+          </div>          
+          <% if a.birthday.strftime("%d/%m") == Time.now.strftime("%d/%m") %>
+            <%= content_tag(:div,"Hoje",  class: "right") %>
+          <% else %>
+            <%= content_tag(:div, a.birthday.strftime("%d/%m"),  class: "right") %>
+          <% end %>
+        </li>   
+      <% end %>                 
     </ul>
     </div>
   </li>  
 </ul>
+

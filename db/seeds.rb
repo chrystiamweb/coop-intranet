@@ -26,3 +26,34 @@ fotoname.each do |i|
     )   
     temp.image.attach(io: File.open("public/img/#{i}"), filename: i, content_type:'image/jpg')
 end
+
+puts "Criando usuário padrão"
+User.create(  
+        first_name: 'Usuário',
+        last_name: 'Teste',
+        login: 'teste3047-00',
+        birthday: Faker::Date.birthday(18, 65),
+        role:"0",
+        site_location:"PA00",
+        email:'teste@teste.com', 
+        password: "123456",
+        password_confirmation: "123456"
+    )
+puts "usuário padrão Criado "
+
+puts "Cirando usuários aleatórios"
+
+
+250.times do 
+    User.create(  
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        login: Faker::Internet.user_name,
+        birthday: Faker::Date.birthday(18, 65),
+        role:"0",
+        site_location:"PA00",
+        email:Faker::Internet.email, 
+        password: "123456",
+        password_confirmation: "123456"        
+    )
+end
