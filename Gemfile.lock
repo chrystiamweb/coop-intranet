@@ -88,6 +88,8 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.6.2)
+      devise (>= 4.4)
     erubi (1.7.1)
     execjs (2.7.0)
     faker (1.8.7)
@@ -167,6 +169,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-i18n (5.1.1)
+      i18n (>= 0.7, < 2)
+      railties (>= 5.0, < 6)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -246,6 +251,7 @@ DEPENDENCIES
   ckeditor
   coffee-rails (~> 4.2)
   devise
+  devise-i18n
   faker
   image_processing (~> 1.2)
   jbuilder (~> 2.5)
@@ -256,6 +262,7 @@ DEPENDENCIES
   pg
   puma (~> 3.11)
   rails (~> 5.2.0)
+  rails-i18n
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

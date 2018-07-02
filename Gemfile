@@ -5,6 +5,7 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
+gem 'rails-i18n'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -19,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 # Devise for user
 gem 'devise'
+gem 'devise-i18n'
 gem 'faker'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
