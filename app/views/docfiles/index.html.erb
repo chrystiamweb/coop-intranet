@@ -1,4 +1,10 @@
-<h1>Docfiles</h1>
+<div class="row">
+  <h1>Docfiles
+    <%= link_to  new_docfile_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
+     <i class="material-icons">add</i>
+    <%end%>
+  </h1>  
+</div>
 
 <table>
   <thead>
@@ -16,9 +22,21 @@
         <td><%= docfile.name %></td>
         <td><%= docfile.description %></td>
         <td><%= docfile.file_type.name %></td>
-        <td><%= link_to 'Download', url_for(docfile.doc_file), download:''  %></td>
-        <td><%= link_to 'Edit', edit_docfile_path(docfile) %></td>
-        <td><%= link_to 'Destroy', docfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to url_for(docfile.doc_file), download:'',class:"btn-floating waves-effect waves-light blue" do %>
+            <i class="material-icons">file_download</i>
+          <%end%>
+        </td>
+        <td>          
+          <%= link_to edit_docfile_path(docfile),class:"btn-floating waves-effect waves-light yellow" do %>
+            <i class="material-icons">edit</i>
+          <%end%>
+        </td>
+        <td>
+          <%= link_to  docfile, method: :delete, data: { confirm: 'Are you sure?' },class:"btn-floating waves-effect waves-light red" do %>
+            <i class="material-icons">delete</i>
+          <%end%>         
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +44,4 @@
 
 <br>
 
-<%= link_to 'New Docfile', new_docfile_path %>
+
