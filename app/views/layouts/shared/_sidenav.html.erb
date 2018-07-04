@@ -5,7 +5,7 @@
 			<img src="https://i0.wp.com/pedromiguellaw.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg">
 		</div>          
 		<a href="#user"><img class="circle" src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg"></a>
-		<a href="#name"><span class="white-text name">teste</span></a>
+		<a href="#name"><span class="white-text name"><%= current_user.first_name %> <%= current_user.last_name %></span></a>		
 		<a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
 	</div>
 	</li>	
@@ -25,37 +25,45 @@
 				<div class="collapsible-header"><i class="material-icons">cloud_download</i>Downloads</div>
 				<div class="collapsible-body">
 					<ul>					
-							<li>
-								<%= link_to  'Documentos', docfiles_path  %>
-							</li>			
-						
+						<li>
+							<%= link_to  'Documentos', docfiles_path %>
+																								
+						</li>			
+						<li>								
+							<%= link_to  'Normativos', normatives_path  %>								
+						</li>			
 					</ul>
 				</div>
-			</li>			
-			<%= link_to normatives_path do%>		
-        <li>
-          <div class="collapsible-header">            
-           <i class="material-icons">insert_drive_file</i>Comunicados         
-          </div>
-						<div class="collapsible-body">
-						</div>				
-        </li>
-      <% end %>
-      <%= link_to root_path do%>		
-        <li>
-          <div class="collapsible-header">            
-            <i class="material-icons">insert_chart</i>Dashboard          
-          </div>				
-        </li>
-      <% end %>
-			<%= link_to posts_path do%>
-				<li>				
-					<div class="collapsible-header">						
-						<i class="material-icons">developer_board</i>Posts						
-					</div>
-				</li>
-			<% end %>				
+			</li>		     
+		
+			<li>				
+				<div class="collapsible-header">						
+					<i class="material-icons">developer_board</i>Posts						
+				</div>
+				<div class="collapsible-body">
+					<ul>					
+							<li>
+								<%= link_to  'Todos', posts_path  %>
+							</li>							
+							<li>
+								<% if can? :create, @posts %>
+									<%= link_to  'Novo', new_post_path  %>
+								<% end %>
+							</li>							
+					</ul>
+				</div>
+			</li>						
 			
+			<li>				
+				<div class="collapsible-header"><i class="material-icons">settings</i>Configurações</div>
+				<div class="collapsible-body">
+					<ul>					
+							<li>
+								<%= link_to  'Usuários', docfiles_path  %>
+							</li>							
+					</ul>
+				</div>
+			</li>
 		</ul>	
 	</li>
 	<li><div class="divider"></div></li>
