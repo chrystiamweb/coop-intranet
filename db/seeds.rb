@@ -32,14 +32,15 @@ User.create(
     site_location:"PA00",
     email:'teste@teste.com', 
     password: "123456",
-    password_confirmation: "123456"
+    password_confirmation: "123456",
+    kind: 0
   )
 puts "usuário padrão Criado "
 
 puts "Cirando usuários aleatórios"
 
 
-50.times do 
+50.times do  
   User.create(  
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -49,6 +50,7 @@ puts "Cirando usuários aleatórios"
     site_location:"PA00",
     email:Faker::Internet.email, 
     password: "123456",
-    password_confirmation: "123456"        
+    password_confirmation: "123456",
+    kind: [0,1,2].sample  
   )
 end

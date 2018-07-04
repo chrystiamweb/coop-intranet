@@ -25,12 +25,13 @@
 				<div class="collapsible-header"><i class="material-icons">cloud_download</i>Downloads</div>
 				<div class="collapsible-body">
 					<ul>					
-							<li>
-								<%= link_to  'Documentos', docfiles_path  %>
-							</li>			
-							<li>
-								<%= link_to  'Normativos', normatives_path  %>
-							</li>			
+						<li>
+							<%= link_to  'Documentos', docfiles_path %>
+																								
+						</li>			
+						<li>								
+							<%= link_to  'Normativos', normatives_path  %>								
+						</li>			
 					</ul>
 				</div>
 			</li>		     
@@ -45,7 +46,9 @@
 								<%= link_to  'Todos', posts_path  %>
 							</li>							
 							<li>
-								<%= link_to  'Novo', new_post_path  %>
+								<% if can? :create, @posts %>
+									<%= link_to  'Novo', new_post_path  %>
+								<% end %>
 							</li>							
 					</ul>
 				</div>

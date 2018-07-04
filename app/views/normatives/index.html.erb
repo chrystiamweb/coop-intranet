@@ -1,8 +1,10 @@
 
   <h1>Normatives
-    <%= link_to  new_normative_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
-     <i class="material-icons">add</i>
-    <%end%>
+    <% if can? :create, @docfiles %>
+      <%= link_to  new_normative_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
+        <i class="material-icons">add</i>
+      <%end%>
+    <% end %>
   </h1>  
 
 <table>
@@ -18,22 +20,26 @@
     <% @normatives.each do |normative| %>
       <tr>
         <td><%= normative.title %></td>
-        <td><%= normative.description %></td>        
+        <td><%= normative.description %></td>  
         <td>
           <%= link_to url_for(normative.file), download:'',class:"btn-floating waves-effect waves-light blue" do %>
             <i class="material-icons">file_download</i>
           <%end%>
         </td>
-        <td>          
-          <%= link_to edit_normative_path(normative),class:"btn-floating waves-effect waves-light yellow" do %>
-            <i class="material-icons">edit</i>
+        <td>
+          <% if can? :update, @normative %>          
+            <%= link_to edit_normative_path(normative),class:"btn-floating waves-effect waves-light yellow" do %>
+              <i class="material-icons">edit</i>
+            <%end%>
           <%end%>
         </td>
         <td>
-          <%= link_to  normative, method: :delete, data: { confirm: 'Are you sure?' },class:"btn-floating waves-effect waves-light red" do %>
-            <i class="material-icons">delete</i>
+          <% if can? :delete, @normative %>
+            <%= link_to  normative, method: :delete, data: { confirm: 'Are you sure?' },class:"btn-floating waves-effect waves-light red" do %>
+              <i class="material-icons">delete</i>
+            <%end%>
           <%end%>         
-        </td>
+        </td>  
       </tr>
     <% end %>
   </tbody>
