@@ -1,5 +1,7 @@
 class DocfilesController < ApplicationController
   before_action :set_docfile, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  load_and_authorize_resource only:[:new :edit, :update, :destroy]
 
   # GET /docfiles
   # GET /docfiles.json
