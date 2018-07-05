@@ -1,7 +1,7 @@
 class NormativesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_normative, only: [ :edit, :update, :destroy]
-  load_and_authorize_resource only:[:new :edit, :update, :destroy]
+  load_and_authorize_resource only:[:new, :edit, :update, :destroy]
 
   # GET /normatives
   # GET /normatives.json
