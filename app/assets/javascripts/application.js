@@ -25,7 +25,15 @@ initialize_calendar = function() {
   $('.calendar').each(function(){
     var calendar = $(this);
     calendar.fullCalendar({
-        defaultView: 'listWeek'
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+          },
+        selectable: true,
+        selectHelper: true,
+        editable: true,
+        eventLimit: true,
     });
   })
 };
