@@ -6,7 +6,6 @@ $(document).on('turbolinks:load', function() {
   });  
   $('.collapsible').collapsible();
   $('select').formSelect();
-  
  
 });
 

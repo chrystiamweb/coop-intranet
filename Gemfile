@@ -37,7 +37,8 @@ gem 'materialize-sass', '>=1.0.0-rc.1'
 gem 'jquery-rails'
 gem 'ckeditor'
 gem 'paperclip'
-
+gem 'rails-assets-fullcalendar', source: 'https://rails-assets.org'
+gem 'rails-assets-momentjs', source: 'https://rails-assets.org'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
