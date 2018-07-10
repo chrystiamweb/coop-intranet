@@ -3,9 +3,16 @@ $(document).on('turbolinks:load', function() {
   $('.slider').slider({
     height: $('.slider').height(),
     closeOnClick: true
-  });  
+  });
+  
+  $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd' 
+  });
   $('.collapsible').collapsible();
   $('select').formSelect();
+  
+
+
  
 });
 
@@ -21,3 +28,4 @@ $(window).resize(function(){
     height: $('.slider').height(),    
   });  
 });
+

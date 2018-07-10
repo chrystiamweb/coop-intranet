@@ -59,7 +59,17 @@
     text-shadow: 1px 1px #5a5a5a;
 }
 
+//calendar 
 .fc-unthemed .fc-popover .fc-header .fc-close {
     font-size: .2em;
     margin-top: 2px;
   }
+
+tr {
+    border-bottom: 0px solid rgba(0, 0, 0, 0.12);
+}
+
+.fc-toolbar h2 {
+    margin: 0;
+    font-size: 2rem;
+}
