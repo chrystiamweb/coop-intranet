@@ -10,7 +10,6 @@ $(document).on('turbolinks:load', function() {
   });
   $('.collapsible').collapsible();
   $('select').formSelect();
-  
 
 
  
@@ -20,6 +19,7 @@ document.addEventListener("turbolinks:before-cache", function() {
   $('.sidenav').sidenav('destroy');
   $('.slider').slider('destroy');
   $('.collapsible').collapsible('destroy');
+  $('select').formSelect();
  
 });
 

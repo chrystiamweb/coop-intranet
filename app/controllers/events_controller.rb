@@ -17,12 +17,29 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.save
+    @event = Event.new(event_params)   
+    respond_to do |format|
+      if @event.save 
+        format.html {render :index, notice: 'Docfile was successfully updated.'}       
+        format.json {render :index, notice: 'Docfile was successfully updated.' }
+      else        
+        format.html { render :index }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
     @event.update(event_params)
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html {render :index, notice: 'Docfile was successfully updated.'}       
+        format.json {render :index, notice: 'Docfile was successfully updated.' }
+      else        
+        format.html { render :index }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

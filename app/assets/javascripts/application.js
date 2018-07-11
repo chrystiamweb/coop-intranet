@@ -9,12 +9,13 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+//= require momentjs
 //= require jquery
 //= require ckeditor/init
 //= require rails-ujs
-//= require momentjs
 //= require fullcalendar
 //= require fullcalendar/locale-all
+//= require daterangepicker
 //= require activestorage
 //= require turbolinks
 //= require materialize-sprockets
