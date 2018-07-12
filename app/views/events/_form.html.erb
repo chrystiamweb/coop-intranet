@@ -12,17 +12,13 @@
     </div>
   <% end %>
   <%= form.text_field :title %>
-  <%= form.hidden_field :start,value: Date.today, class:'start_hidden' %>
-  <%= form.hidden_field :end,value: Date.today, class:'end_hidden' %>
-  <%= form.text_field :date_range, class: "date-range-picker" %>
+  <%= form.text_field :start, class:'start_hidden datepicker' %>
+  <%= form.text_field :end, class:'end_hidden datepicker' %>  
+  <%= form.text_field :start_time, class:'start_time_hidden timepicker' %>  
+  <%= form.text_field :end_time, class:'end_time_hidden timepicker' %>  
   <%= form.color_field :color %>
   
-   <select>
-      <option value="" disabled selected>Choose your option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
+  
 
   <div class="actions">
     <%= form.submit %>
