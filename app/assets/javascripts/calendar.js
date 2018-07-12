@@ -15,7 +15,10 @@ initialize_calendar = function() {
       events: '/events.json',
 
       select: function(start, end) {
-        $.getScript('/events/new', function() {         
+        $.getScript('/events/new', function() { 
+          $('#event_date_range').val(moment(start).format("%Y-%m-%dT%H:%M:%S") + ' - ' + moment(end).format("%Y-%m-%dT%H:%M:%S"))          
+          $('.start_hidden').val(moment(start).format('%Y-%m-%dT%H:%M:%S'));
+          $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));          
         });
 
         calendar.fullCalendar('unselect');
@@ -38,11 +41,9 @@ initialize_calendar = function() {
       
       eventClick: function(event, jsEvent, view) {
         $.getScript(event.edit_url, function() {
-          $('#event_date_range').val(moment(event.start).format("YYYY-MM-DD") + ' - ' + moment(event.end).format("YYYY-MM-DD"))          
-          $('.start_hidden').val(moment(event.start).format('YYYY-MM-DD'));
-          $('.end_hidden').val(moment(event.end).format('YYYY-MM-DD'));
-          $('.start_time').val(moment(event.end).format('HH:mm'));
-          $('.end_time').val(moment(event.end).format('HH:mm'));
+          $('#event_date_range').val(moment(event.start).format("%Y-%m-%dT%H:%M") + ' - ' + moment(event.end).format("%Y-%m-%dT%H:%M"))          
+          $('.start_hidden').val(moment(event.start).format('%Y-%m-%dT%H:%M'));
+          $('.end_hidden').val(moment(event.end).format('%Y-%m-%dT%H:%M'));          
         });
       }
     });
@@ -50,10 +51,6 @@ initialize_calendar = function() {
 };
 $(document).on('turbolinks:load', function() {
   initialize_calendar();
-  $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd' 
-  });  
-  $('.timepicker').timepicker({});  
 });
 
 

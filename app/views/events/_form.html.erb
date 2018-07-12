@@ -1,4 +1,5 @@
 
+<div class="row">
 <%= form_with(model: event, local: true) do |form| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
@@ -11,14 +12,29 @@
       </ul>
     </div>
   <% end %>
-  <%= form.text_field :title %>
-  <%= form.text_field :fstart, class:'start_hidden datepicker' %>
-  <%= form.text_field :fend, class:'end_hidden datepicker' %>  
-  <%= form.text_field :start_time, class:'start_time timepicker' %>  
-  <%= form.text_field :end_time, class:'end_time timepicker' %>  
-  <%= form.color_field :color %>
-
-  <div class="actions start_build">
-    <%= form.submit %>
+  <div class="input-field">
+    <%= form.text_field :title, placeholder:'Digite o nome do evento' %>
+  </div>
+  <div class="input-field">
+    <%= form.label "Data Inicial" %>  
+    </br>
+    <%= form.datetime_field :start, class:'start_hidden' %>
+  </div>
+  <div class="input-field">
+    <%= form.label "Data Final" %>  
+    </br>
+    <%= form.datetime_field :end, class:'end_hidden' %>
+  </div>
+  <div class="input-field">
+    <%= form.color_field :color %>
+  </div>
+  <div class="row"
+    <div class="actions">
+      </br>
+      <%= form.submit 'Criar Evento', class:'btn' %>    
+    </div>
+    </br>
+      <%= link_to 'Excluir evento', event, method: :delete, class: 'btn red', data: { confirm: 'Confirma exclusão?' }, remote: true unless @event.new_record? %>
   </div>
 <% end %>
+</div>
