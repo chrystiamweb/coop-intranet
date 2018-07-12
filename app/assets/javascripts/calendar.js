@@ -15,10 +15,7 @@ initialize_calendar = function() {
       events: '/events.json',
 
       select: function(start, end) {
-        $.getScript('/events/new', function() {
-          $('#event_date_range').val(moment(start).format("MM/DD/YYYY  hh:mm") + ' - ' + moment(end).format("MM/DD/YYYY  hh:mm"))          
-          $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
-          $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
+        $.getScript('/events/new', function() {         
         });
 
         calendar.fullCalendar('unselect');
@@ -41,11 +38,11 @@ initialize_calendar = function() {
       
       eventClick: function(event, jsEvent, view) {
         $.getScript(event.edit_url, function() {
-          $('#event_date_range').val(moment(event.start).format("MM/DD/YYYY  hh:mm") + ' - ' + moment(event.end).format("MM/DD/YYYY  hh:mm"))          
+          $('#event_date_range').val(moment(event.start).format("YYYY-MM-DD") + ' - ' + moment(event.end).format("YYYY-MM-DD"))          
           $('.start_hidden').val(moment(event.start).format('YYYY-MM-DD'));
           $('.end_hidden').val(moment(event.end).format('YYYY-MM-DD'));
           $('.start_time').val(moment(event.end).format('HH:mm'));
-          $('.end_hidden').val(moment(event.end).format('HH:mm'));
+          $('.end_time').val(moment(event.end).format('HH:mm'));
         });
       }
     });

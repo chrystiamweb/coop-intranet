@@ -12,15 +12,13 @@
     </div>
   <% end %>
   <%= form.text_field :title %>
-  <%= form.text_field :start, class:'start_hidden datepicker' %>
-  <%= form.text_field :end, class:'end_hidden datepicker' %>  
-  <%= form.text_field :start_time, class:'start_time_hidden timepicker' %>  
-  <%= form.text_field :end_time, class:'end_time_hidden timepicker' %>  
+  <%= form.text_field :fstart, class:'start_hidden datepicker' %>
+  <%= form.text_field :fend, class:'end_hidden datepicker' %>  
+  <%= form.text_field :start_time, class:'start_time timepicker' %>  
+  <%= form.text_field :end_time, class:'end_time timepicker' %>  
   <%= form.color_field :color %>
-  
-  
 
-  <div class="actions">
+  <div class="actions start_build">
     <%= form.submit %>
   </div>
 <% end %>
