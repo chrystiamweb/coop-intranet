@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   resources :docfiles
   resources :normatives
   resources :posts

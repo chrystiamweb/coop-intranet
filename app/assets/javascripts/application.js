@@ -9,32 +9,15 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+//= require momentjs
 //= require jquery
 //= require ckeditor/init
 //= require rails-ujs
-//= require momentjs
 //= require fullcalendar
+//= require fullcalendar/locale-all
 //= require activestorage
 //= require turbolinks
 //= require materialize-sprockets
 //= require_tree .
 //= require_self
 
-var initialize_calendar;
-initialize_calendar = function() {
-  $('.calendar').each(function(){
-    var calendar = $(this);
-    calendar.fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-          },
-        selectable: true,
-        selectHelper: true,
-        editable: true,
-        eventLimit: true,
-    });
-  })
-};
-$(document).on('turbolinks:load', initialize_calendar);

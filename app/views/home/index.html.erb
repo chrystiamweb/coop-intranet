@@ -1,33 +1,44 @@
 <div class="row">
-		<div class="col s12 m9">
-			<div class="slider">
-				<ul class="slides">
-					<% @lastposts.each do |post| %>
-						<li class="text-shadow-posts">				 
-						<%=link_to(post) do%>
-							<%= image_tag  post.image %> <!-- random image -->
-								<div class="caption center-align">
-									<h3><%= post.title %></h3>
-									<h5 class="light grey-text text-lighten-3"><%= sanitize post.body[0..255] %></h5>
-								</div>
-							<%end%>				
-						</li>				
-					<%end%>
-				</ul>
-			</div>
-		</div>
-  <div class="col s12 m3 l3">    
+<div class="col s12 m9">
+	<div class="slider">
+		<ul class="slides">
+			<% @lastposts.each do |post| %>
+				<li class="text-shadow-posts">				 
+				<%=link_to(post) do%>
+					<%= image_tag  post.image %> <!-- random image -->
+						<div class="caption center-align">
+							<h3><%= post.title %></h3>
+							<h5 class="light grey-text text-lighten-3"><%= sanitize post.body[0..255] %></h5>
+						</div>
+					<%end%>				
+				</li>				
+			<%end%>
+		</ul>
+	</div>
+	<%= render 'home/shared/calendar' %>
+</div>
+		
+
+  <div class="col s12 m3 l3"> 
+  
+	<%= render 'home/shared/fast' %>   
     <%= render 'home/shared/normative' %>  
     <%= render 'home/shared/cake' %> 
+    <%= render 'home/shared/calendar_list' %> 
 	
-	<%= render 'home/shared/fast' %>
   </div>  
 </div>
 
 <div class="container">
+
+   <select class="select-test">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
 	
 </div>
 
 
-<%= render 'home/shared/calendar' %>
     
