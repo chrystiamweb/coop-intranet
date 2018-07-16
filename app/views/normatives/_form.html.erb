@@ -14,22 +14,22 @@
       <% end %>
 
       <div class="field">
-        <%= form.label :title %>
+        <%= form.label 'Título' %>
         <%= form.text_field :title %>
       </div>
 
       <div class="field">
-        <%= form.label :description %>
+        <%= form.label 'Descrição' %>
         <%= form.text_field :description %>
       </div>
 
       <div class="field">
-        <%= form.label :file %>
+        <%= form.label 'Arquivo' %>
         <%= form.file_field :file %>
       </div>
       </br>
       <div class="actions">
-        <%= form.submit %>
+        <%= form.submit  'Enviar Arquivo', class:'btn' %>
       </div>
     <% end %>
   

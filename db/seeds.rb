@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "iniciando SEED SEED SEED"
 
-FileType.create!(name: 'Default', description:'Defalt Description')
+FileType.create!(name: 'Padrão', description:'Defalt Description')
 FileType.create!(name: 'Formulários', description:'Defalt Description')
 FileType.create!(name: 'Manuais', description:'Defalt Description')
 FileType.create!(name: 'Outros', description:'Defalt Description') 
@@ -37,7 +37,7 @@ User.create(
   )
 puts "usuário padrão Criado "
 
-puts "Cirando usuários aleatórios"
+puts "Cirando usuários de teste"
 
 
 50.times do  

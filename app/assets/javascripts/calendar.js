@@ -3,6 +3,7 @@ initialize_calendar = function() {
   $('.calendar').each(function(){
     var calendar = $(this);
     calendar.fullCalendar({
+      locale: 'pt-br',
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -16,9 +17,10 @@ initialize_calendar = function() {
 
       select: function(start, end) {
         $.getScript('/events/new', function() { 
-          $('#event_date_range').val(moment(start).format("%Y-%m-%dT%H:%M:%S") + ' - ' + moment(end).format("%Y-%m-%dT%H:%M:%S"))          
-          $('.start_hidden').val(moment(start).format('%Y-%m-%dT%H:%M:%S'));
-          $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));          
+          $('#event_date_range').val(moment(start).format('DD/MM/Y HH:mm') + ' - ' + moment(end).format('DD/MM/Y h:mm'))          
+          $('.start_hidden').val(moment(start).format('DD/MM/Y H:mm'));
+          $('.end_hidden').val(moment(end).format('DD/MM/Y H:mm')); 
+          alert(start + ' ' + end);
         });
 
         calendar.fullCalendar('unselect');
@@ -41,16 +43,41 @@ initialize_calendar = function() {
       
       eventClick: function(event, jsEvent, view) {
         $.getScript(event.edit_url, function() {
-          $('#event_date_range').val(moment(event.start).format("%Y-%m-%dT%H:%M") + ' - ' + moment(event.end).format("%Y-%m-%dT%H:%M"))          
-          $('.start_hidden').val(moment(event.start).format('%Y-%m-%dT%H:%M'));
-          $('.end_hidden').val(moment(event.end).format('%Y-%m-%dT%H:%M'));          
+         $('#event_date_range').val(moment(event.start).format("Y-m-d TH:M") + ' - ' + moment(event.end).format('Y/m/d T H:M'))          
+         $('.start_hidden').val(moment(event.start));
+         $('.end_hidden').val(moment(event.end));          
         });
       }
     });
   })
+
+  
+
+  $(document).ready(function() {
+
+    $('.calendar-list').fullCalendar({
+        locale: 'pt-br',
+        header: {        
+          left: 'prev,next',
+          center: 'title',
+          right: 'listDay,listWeek'
+      },
+
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'Dia' },
+        listWeek: { buttonText: 'Semana' }
+      },
+
+      defaultView: 'listWeek',     
+      navLinks: true, // can click day/week names to navigate views     
+      eventLimit: true, // allow "more" link when too many events
+      events: '/events.json',
+    });
+  });
 };
+
 $(document).on('turbolinks:load', function() {
   initialize_calendar();
 });
-
-

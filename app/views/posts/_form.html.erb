@@ -20,13 +20,20 @@
     <div class="field">
         <%= raw form.text_area :body, class: "ckeditor" %>
     </div>   
+</br>
+    <label class="btn">
+    
+    
+      Selecionar Capa
+      <span style="display:none;">
+        <%= form.file_field :image, accept: 'image/*', class:'btn' %>
+      </span>
+    </label>
 
-    <div class="field">    
-      <%= form.file_field :image, accept: 'image/*' %>
-    </div>
 
     <div class="actions">
-      <%= form.submit %>
+    </br>
+      <%= form.submit 'Criar post', class:'btn' %>
     </div>
   <% end %>
 </div>

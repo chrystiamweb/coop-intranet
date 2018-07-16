@@ -5,12 +5,14 @@ $(document).on('turbolinks:load', function() {
     closeOnClick: true
   });
   $('.collapsible').collapsible();
+  $('select').formSelect();
 });
 
 document.addEventListener("turbolinks:before-cache", function() {
   $('.sidenav').sidenav('destroy');
   $('.slider').slider('destroy');
   $('.collapsible').collapsible('destroy');
+  $('select').formSelect('destroy');
 });
 
 $(window).resize(function(){

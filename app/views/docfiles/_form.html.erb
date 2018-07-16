@@ -13,27 +13,27 @@
     <% end %>
 
     <div class="field">
-      <%= form.label :name %>
+      <%= form.label 'Nome Arquivo' %>
       <%= form.text_field :name %>
     </div>
 
     <div class="field">
-      <%= form.label :description %>
+      <%= form.label 'Descrição' %>
       <%= form.text_field :description %>
     </div>
 
     <div class="input-field">      
-      <%= collection_select(:docfile, :file_type_id, FileType.all, :id, :name)=%>
-      <%= form.label :file_type_id %>
+      <%= collection_select(:docfile, :file_type_id, FileType.all, :id, :name) %>
+      
     </div>
 
     <div class="field">
-      <%= form.label :doc_file %></br>
+      <%= form.label 'Selecionar arquivo' %></br>
       <%= form.file_field :doc_file %></br>
     </div>
-
+    </br>
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit 'Criar Documento', class:'btn' %>
     </div>
     
   <% end %>

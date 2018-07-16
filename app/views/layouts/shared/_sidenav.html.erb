@@ -14,10 +14,12 @@
 			<li>
 				<div class="collapsible-header"><i class="material-icons">event</i>Agenda</div>
 				<div class="collapsible-body">
-					<ul>
-						<li><a>Pessoal</a></li>
-						<li>	<%= link_to  'Eventos', events_path  %></li>
-						<li><a>Eventos</a></li>
+					<ul>						
+						<li>
+							<% if can? :create, @events %>
+								<%= link_to  'Eventos', events_path  %>
+							<% end %>
+						</li>						
 					</ul>
 				</div>
 			</li>
