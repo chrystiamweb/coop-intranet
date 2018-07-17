@@ -21,6 +21,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class='field'>
+    <%= f.label :kind %><br />  
+    <%= f.select :kind, User.kinds.keys.map { |w| [w.humanize, w] } %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
