@@ -16,7 +16,7 @@ fotoname = ['hero.jpg', 'loop.jpg', 'nat-1.jpg', 'nat-2.jpg', 'nat-3.jpg', 'nat-
 
 fotoname.each do |i|
   temp = Post.create(
-    title: Faker::VForVendetta.quote,
+    title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraph(5),
   )   
   temp.image.attach(io: File.open("public/img/#{i}"), filename: i, content_type:'image/jpg')

@@ -6,6 +6,7 @@ $(document).on('turbolinks:load', function() {
   });
   $('.collapsible').collapsible();
   $('select').formSelect();
+  $('.fixed-action-btn').floatingActionButton();
 });
 
 document.addEventListener("turbolinks:before-cache", function() {

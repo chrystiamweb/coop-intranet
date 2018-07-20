@@ -1,26 +1,36 @@
-<div class="container">
 
-<% @posts.each do |post| %>
-  
-    <div class="col s6 m5">
-      <div class="card">
-        <div class="card-image">
-          <%= image_tag post.image, class:'img-responsive' %>
-          <span class="card-title"><%= post.title %></span>
-        </div>
-        <div class="card-content">
-          <p><%= sanitize post.body[0..255] %></p>          
-        </div>
-        <div class="card-action">             
-          <%= link_to 'Show', post %> 
-          <% if can? :update, @posts %>     
-            <%= link_to 'Edit', edit_post_path(post) %>
-            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%end%>
+<div class='fixed-action-btn'>
+  <%= link_to new_post_path, class:'btn-floating btn-large waves-effect waves-light bgcolortest' do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>
+
+
+<div class='container'>
+  <div class='row'>
+    <% @posts.each do |post| %>      
+      <div class='col s12'>
+        <div class='card'>
+          <div class='card-image'>
+            <%= image_tag post.image, class:'img-responsive' %>
+            <span class='card-title'><%= post.title %></span>
+          </div>
+          <div class='card-content'>
+            <p><%= sanitize post.body[0..150] %></p>          
+          </div>
+          <div class='card-action'>             
+            <%= link_to 'Show', post %> 
+            <% if can? :update, @posts %>     
+              <%= link_to 'Edit', edit_post_path(post) %>
+              <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+          </div>
         </div>
       </div>
-    </div>
-  </br>
-<% end %>
-
+      </br>
+    <% end %>
+  </div>
 </div>
+
+
+      

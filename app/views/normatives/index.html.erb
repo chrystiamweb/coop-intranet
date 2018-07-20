@@ -1,9 +1,11 @@
 
   <h1>Normativos
     <% if can? :create, @docfiles %>
-      <%= link_to  new_normative_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
-        <i class="material-icons">add</i>
-      <%end%>
+      <div class='fixed-action-btn'>
+        <%= link_to  new_normative_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
+          <i class="material-icons">add</i>
+        <%end%>
+      </div>
     <% end %>
   </h1>  
 
