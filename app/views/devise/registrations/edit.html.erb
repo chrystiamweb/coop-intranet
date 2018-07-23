@@ -31,7 +31,7 @@
     <%= f.password_field :current_password, autocomplete: 'off' %>
   </div>
 
-    <div class='field'>
+  <div class='field'>
     <%= f.label :kind %><br />  
     <%= f.select :kind, User.kinds.keys.map { |w| [w.humanize, w] }%>
   </div>

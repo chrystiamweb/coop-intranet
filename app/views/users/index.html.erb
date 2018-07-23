@@ -1,0 +1,42 @@
+ <div class='container'>
+  <table class='highlight'>
+    <thead>
+      <tr>
+          <th>Name</th>
+          <th>Login</th>
+          <th>Email</th>
+          <th>Data de nascimento</th>
+          <th>PA</th>
+          <th>Acesso</th>
+          <th>Cargo</th>
+          <th></th>
+          <th></th>
+          
+      </tr>
+    </thead>        
+    <% @users.each do |user|%>
+      <tbody>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.login %></td>
+          <td><%= user.email %></td>
+          <td><%= user.birthday %></td>
+          <td><%= user.site_location %></td>
+          <td><%= user.kind %></td>
+          <td><%= user.role %></td>
+          <% if can? :update, @user %>     
+            <td><%= link_to 'Editar', edit_user_path(user) %></td>
+            <td><%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+
+
+<div class='fixed-action-btn'>
+  <%= link_to new_user_path, class:'btn-floating btn-large waves-effect waves-light bgcolortest' do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>

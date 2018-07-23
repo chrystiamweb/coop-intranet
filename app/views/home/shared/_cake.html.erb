@@ -15,7 +15,7 @@
         <li class="collection-item">
           <div class="chip">
             <img src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg" alt="Contact Person">
-            <%= a.first_name %>   <%= a.last_name %>      
+            <%= a.full_name %>      
                    
           </div>          
           <% if a.birthday.strftime("%d/%m") == Time.now.strftime("%d/%m") %>
