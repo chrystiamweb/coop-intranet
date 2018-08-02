@@ -19,10 +19,10 @@
             <p><%= sanitize post.body[0..150] %></p>          
           </div>
           <div class='card-action'>             
-            <%= link_to 'Show', post %> 
+            <%= link_to 'Ver', post %> 
             <% if can? :update, @posts %>     
-              <%= link_to 'Edit', edit_post_path(post) %>
-              <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Editar', edit_post_path(post) %>
+              <%= link_to 'Apagar', post, method: :delete, data: { confirm: 'Are you sure?' } %>
             <%end%>
           </div>
         </div>
