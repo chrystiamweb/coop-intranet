@@ -1,0 +1,2 @@
+module CriteriaImpactDefinitionsHelper
+end

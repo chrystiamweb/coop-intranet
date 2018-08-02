@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  credit_line: one
+  deadline_max: 1
+  deadline_min: 1
+  tax_description: MyString
+  tax_max: 1.5
+  tax_min: 1.5
+  client_type: 1
+  deadline_setup: 1
+
+two:
+  name: MyString
+  description: MyString
+  credit_line: two
+  deadline_max: 1
+  deadline_min: 1
+  tax_description: MyString
+  tax_max: 1.5
+  tax_min: 1.5
+  client_type: 1
+  deadline_setup: 1

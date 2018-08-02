@@ -1,0 +1,27 @@
+<%= form_with(model: criteria_impact_definition, local: true) do |form| %>
+  <% if criteria_impact_definition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(criteria_impact_definition.errors.count, "error") %> prohibited this criteria_impact_definition from being saved:</h2>
+
+      <ul>
+      <% criteria_impact_definition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :criteria_id %>
+    <%= form.text_field :criteria_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :impact %>
+    <%= form.text_field :impact %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

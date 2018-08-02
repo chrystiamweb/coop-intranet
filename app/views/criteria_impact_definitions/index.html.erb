@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Criteria Impact Definitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Criteria</th>
+      <th>Impact</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @criteria_impact_definitions.each do |criteria_impact_definition| %>
+      <tr>
+        <td><%= criteria_impact_definition.criteria %></td>
+        <td><%= criteria_impact_definition.impact %></td>
+        <td><%= link_to 'Show', criteria_impact_definition %></td>
+        <td><%= link_to 'Edit', edit_criteria_impact_definition_path(criteria_impact_definition) %></td>
+        <td><%= link_to 'Destroy', criteria_impact_definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Criteria Impact Definition', new_criteria_impact_definition_path %>

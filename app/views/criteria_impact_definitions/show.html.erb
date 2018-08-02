@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Criteria:</strong>
+  <%= @criteria_impact_definition.criteria %>
+</p>
+
+<p>
+  <strong>Impact:</strong>
+  <%= @criteria_impact_definition.impact %>
+</p>
+
+<%= link_to 'Edit', edit_criteria_impact_definition_path(@criteria_impact_definition) %> |
+<%= link_to 'Back', criteria_impact_definitions_path %>

@@ -1,0 +1,1 @@
+json.partial! "criteria_impact_definitions/criteria_impact_definition", criteria_impact_definition: @criteria_impact_definition

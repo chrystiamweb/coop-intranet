@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_20_154001) do
+ActiveRecord::Schema.define(version: 2018_08_02_160528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,66 @@ ActiveRecord::Schema.define(version: 2018_07_20_154001) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "credit_line_settings", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "credit_line_id"
+    t.integer "deadline_max"
+    t.integer "deadline_min"
+    t.string "tax_description"
+    t.float "tax_max"
+    t.float "tax_min"
+    t.integer "client_type"
+    t.integer "deadline_setup"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["credit_line_id"], name: "index_credit_line_settings_on_credit_line_id"
+  end
+
+  create_table "credit_lines", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "client_type"
+    t.bigint "credit_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["credit_type_id"], name: "index_credit_lines_on_credit_type_id"
+  end
+
+  create_table "credit_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "client_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "criteria", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "criteria_impact_definitions", force: :cascade do |t|
+    t.bigint "criterium_id"
+    t.float "impact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["criterium_id"], name: "index_criteria_impact_definitions_on_criterium_id"
+  end
+
+  create_table "criteria_setups", force: :cascade do |t|
+    t.bigint "criterium_id"
+    t.string "criteria_name"
+    t.string "description"
+    t.float "value"
+    t.float "real_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["criterium_id"], name: "index_criteria_setups_on_criterium_id"
   end
 
   create_table "docfiles", force: :cascade do |t|
@@ -118,5 +178,9 @@ ActiveRecord::Schema.define(version: 2018_07_20_154001) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "credit_line_settings", "credit_lines"
+  add_foreign_key "credit_lines", "credit_types"
+  add_foreign_key "criteria_impact_definitions", "criteria"
+  add_foreign_key "criteria_setups", "criteria"
   add_foreign_key "docfiles", "file_types"
 end
