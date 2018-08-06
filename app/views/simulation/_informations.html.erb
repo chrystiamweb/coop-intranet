@@ -1,86 +1,86 @@
 <h5>Informações do Assosiado</h5></br>
 
-<div class="row">
-    <label class="col s2 ">Nome:</label>
-    <div class="col s8">            
-        <input class="form-control" type="text" placeholder="informe o nome">   
+<div class='row'>
+    <label class='col s2 '>Nome:</label>
+    <div class='col s8'>            
+        <input class='form-control' type='text' placeholder='informe o nome'>   
     </div>         
 </div>
 
-<div class="row">
-    <label class="col s2 ">CNPJ:</label>
-    <div class="col s8">            
-        <input class="form-control" type="text" placeholder="informe o CNPJ">   
+<div class='row'>
+    <label class='col s2 '>CNPJ:</label>
+    <div class='col s8'>            
+        <input class='form-control' type='text' placeholder='informe o CNPJ'>   
     </div>          
 </div>
 
-<div class="row">
-    <label class="col s2 ">SCORE SERASA:</label>
-    <div class="col s3">            
-        <%= select_tag 'score', options_for_select(@score.collect{ |u| [u.criteria_name, u.id] }), class:"custom-select", id:'score-info' %>    
+<div class='row'>
+    <label class='col s2 '>SCORE SERASA:</label>
+    <div class='col s3'>            
+        <%= select_tag 'score', options_for_select(@score.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'score-info' %>    
     </div>
-    <div class="col s2 offset-s2">           
+    <div class='col s2 offset-s2'>           
          Desconto:         
     </div>
-    <div class="col s2 left" id="discount-score">  
+    <div class='col s2 left' id='discount-score'>  
     </div>
 </div>
 
-<div class="row">
-    <label class="col s2 ">Nota de Risco CRL:</label>
-    <div class="col s3">            
-        <%= select_tag 'crl', options_for_select(@crl.collect{ |u| [u.criteria_name, u.id] }), class:"custom-select", id:'clr-info' %>    
+<div class='row'>
+    <label class='col s2 '>Nota de Risco CRL:</label>
+    <div class='col s3'>            
+        <%= select_tag 'crl', options_for_select(@crl.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'clr-info' %>    
     </div>
-    <div class="col s2 offset-s2">           
+    <div class='col s2 offset-s2'>           
          Desconto:         
     </div>
-    <div class="col s2 left" id="discount-crl">  
+    <div class='col s2 left' id='discount-crl'>  
     </div>
 </div>
 
-<div class="row">
-    <label class="col s2 ">Reciprocidade:</label>
-    <div class="col s3">            
-        <%= select_tag 'reciproc', options_for_select(@reciproc.collect{ |u| [u.criteria_name, u.id] }), class:"custom-select", id:'reciproc-info' %>    
+<div class='row'>
+    <label class='col s2 '>Reciprocidade:</label>
+    <div class='col s3'>            
+        <%= select_tag 'reciproc', options_for_select(@reciproc.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'reciproc-info' %>    
     </div>
-    <div class="col s2 offset-s2">           
+    <div class='col s2 offset-s2'>           
          Desconto:         
     </div>
-    <div class="col s2 left" id="discount-reciproc">  
+    <div class='col s2 left' id='discount-reciproc'>  
     </div>
 </div>
 
-<div class="row">
-    <label class="col s2 ">Garantia 1:</label>
-    <div class="col s3">            
-        <%= select_tag 'garantia', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:"custom-select", id:'garantia-info' %>    
+<div class='row'>
+    <label class='col s2 '>Garantia 1:</label>
+    <div class='col s3'>            
+        <%= select_tag 'garantia', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'garantia-info' %>    
     </div>
-    <div class="col s2 offset-s2">           
+    <div class='col s2 offset-s2'>           
          Desconto:         
     </div>
-    <div class="col s2 left" id="discount-garantia">  
+    <div class='col s2 left' id='discount-garantia'>  
     </div>
 </div>
 
-<div class="row">
-    <label class="col s2 ">Garantia 2:</label>
-    <div class="col s3">            
-        <%= select_tag 'garantia2', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:"custom-select", id:'garantia2-info' %>    
+<div class='row'>
+    <label class='col s2 '>Garantia 2:</label>
+    <div class='col s3'>            
+        <%= select_tag 'garantia2', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'garantia2-info' %>    
     </div>
-    <div class="col s2 offset-s2">           
+    <div class='col s2 offset-s2'>           
          Desconto:         
     </div>
-    <div class="col s2 left" id="discount-garantia2">  
+    <div class='col s2 left' id='discount-garantia2'>  
     </div>
 </div>
-<div class="row">
-    <label class="col s2 ">Garantia 3:</label>
-    <div class="col s3">            
-        <%= select_tag 'garantia3', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:"custom-select", id:'garantia3-info' %>    
+<div class='row'>
+    <label class='col s2 '>Garantia 3:</label>
+    <div class='col s3'>            
+        <%= select_tag 'garantia3', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'garantia3-info' %>    
     </div>
-    <div class="col s2 offset-s2">           
+    <div class='col s2 offset-s2'>           
          Desconto:         
     </div>
-    <div class="col s2 left" id="discount-garantia3">  
+    <div class='col s2 left' id='discount-garantia3'>  
     </div>
 </div>
