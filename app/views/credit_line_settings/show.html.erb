@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @credit_line_setting.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @credit_line_setting.description %>
+</p>
+
+<p>
+  <strong>Credit line:</strong>
+  <%= @credit_line_setting.credit_line %>
+</p>
+
+<p>
+  <strong>Deadline max:</strong>
+  <%= @credit_line_setting.deadline_max %>
+</p>
+
+<p>
+  <strong>Deadline min:</strong>
+  <%= @credit_line_setting.deadline_min %>
+</p>
+
+<p>
+  <strong>Tax description:</strong>
+  <%= @credit_line_setting.tax_description %>
+</p>
+
+<p>
+  <strong>Tax max:</strong>
+  <%= @credit_line_setting.tax_max %>
+</p>
+
+<p>
+  <strong>Tax min:</strong>
+  <%= @credit_line_setting.tax_min %>
+</p>
+
+<p>
+  <strong>Client type:</strong>
+  <%= @credit_line_setting.client_type %>
+</p>
+
+<p>
+  <strong>Deadline setup:</strong>
+  <%= @credit_line_setting.deadline_setup %>
+</p>
+
+<%= link_to 'Edit', edit_credit_line_setting_path(@credit_line_setting) %> |
+<%= link_to 'Back', credit_line_settings_path %>

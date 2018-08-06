@@ -1,0 +1,91 @@
+$('#simulation-form').remove();
+$('#simulation').parent().append('<%= j render 'form' %>');
+$('select').formSelect();
+var scoreArrayCollection = $('#simulation').data('score-options');
+var reciprocArrayCollection = $('#simulation').data('reciproc-options');
+var crlArrayCollection = $('#simulation').data('crl-options');
+var garantiaArrayCollection = $('#simulation').data('garantia-options');
+setDiscoutValues();
+
+
+$('select').change(function () {
+     setDiscoutValues();
+  });
+
+function setDiscoutValues(){
+    setScore(scoreArrayCollection);
+    setCrl(crlArrayCollection);
+    setReciproc(reciprocArrayCollection);
+    setGarantia(garantiaArrayCollection);
+    setGarantia2(garantiaArrayCollection);
+    setGarantia3(garantiaArrayCollection);
+    getTaxValue();
+    setTotalDiscount();
+};
+
+function setScore(arrayCollections){
+    var selectIndex = $('#score-info :selected').index();       
+    $('#discount-score').text('');
+    $('#discount-score').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+    
+};
+
+function setCrl(arrayCollections){
+    var selectIndex = $('#clr-info :selected').index();       
+    $('#discount-crl').text('');
+    $('#discount-crl').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+};
+
+function setReciproc(arrayCollections){
+    var selectIndex = $('#reciproc-info :selected').index();       
+    $('#discount-reciproc').text('');
+    $('#discount-reciproc').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+};
+function setGarantia(arrayCollections){
+    var selectIndex = $('#garantia-info :selected').index();       
+    $('#discount-garantia').text('');
+    $('#discount-garantia').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+};
+function setGarantia2(arrayCollections){
+    var selectIndex = $('#garantia2-info :selected').index();       
+    $('#discount-garantia2').text('');
+    $('#discount-garantia2').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+};
+function setGarantia3(arrayCollections){
+    var selectIndex = $('#garantia3-info :selected').index();       
+    $('#discount-garantia3').text('');
+    $('#discount-garantia3').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+};
+
+function updtadeTax(taxValue){
+ $('#discount-tax').text('');
+  $('#discount-tax').text(taxValue + '%');
+
+};
+
+function getTaxValue(){    
+    var setScore =  parseFloat($('#discount-score').text());
+    var setCrl = parseFloat($('#discount-crl').text());
+    var setReciproc =  parseFloat($('#discount-reciproc').text());
+    var setGarantia = parseFloat($('#discount-garantia').text());
+    var setGarantia2 =  parseFloat($('#discount-garantia2').text());
+    var setGarantia3 =  parseFloat($('#discount-garantia3').text());
+    var maxPercent = parseFloat($('.max-percent').text());
+    var taxValue = setScore + setCrl + setReciproc +  setGarantia + setGarantia2 + setGarantia3;
+    updtadeTax((taxValue));
+};
+
+function setCurrentTax(tax){
+    var minimunPercent = parseFloat($('.minimun-percent').text());
+    var maxPercent = parseFloat($('.max-percent').text());
+    var result = ((((maxPercent - minimunPercent) / 100 ) * tax ));
+
+    return result.toFixed(2);
+};
+
+function setTotalDiscount(){
+     var maxPercent = parseFloat($('.max-percent').text());
+     var discountTax = parseFloat($('#discount-tax').text());
+    
+     $('#total-discount-tax h4').text(maxPercent - discountTax + '%');
+};

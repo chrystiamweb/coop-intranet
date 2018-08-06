@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Criterium:</strong>
+  <%= @criteria_setup.criterium %>
+</p>
+
+<p>
+  <strong>Criteria name:</strong>
+  <%= @criteria_setup.criteria_name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @criteria_setup.description %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @criteria_setup.value %>
+</p>
+
+<p>
+  <strong>Real value:</strong>
+  <%= @criteria_setup.real_value %>
+</p>
+
+<%= link_to 'Edit', edit_criteria_setup_path(@criteria_setup) %> |
+<%= link_to 'Back', criteria_setups_path %>

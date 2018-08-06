@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @credit_line.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @credit_line.description %>
+</p>
+
+<p>
+  <strong>Client type:</strong>
+  <%= @credit_line.client_type %>
+</p>
+
+<p>
+  <strong>Credit type:</strong>
+  <%= @credit_line.credit_type %>
+</p>
+
+<%= link_to 'Edit', edit_credit_line_path(@credit_line) %> |
+<%= link_to 'Back', credit_lines_path %>

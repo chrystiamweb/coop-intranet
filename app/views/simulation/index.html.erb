@@ -1,0 +1,13 @@
+<div class='container'>
+
+  <h5>SIMULADOR DE TAXAS - <%= @line_by_client.last.client_type %></h5>
+  Selecione a liha de crédito:
+
+  <%= form_tag(sim_path,  method: 'get',remote: true, id:'sim_select') do %>
+    <%= select_tag 'credit_line', options_for_select(@line_by_client.collect{ |u| [u.name, u.id] }), class:'custom-select' %>
+    <%= submit_tag 'Nova Simulação' %>
+  <% end %>
+
+  <%= content_tag 'div', id:'simulation', data: { score_options: @score, reciproc_options: @reciproc,crl_options: @crl, garantia_options: @garantia } do %>
+  <%end%>
+</div>

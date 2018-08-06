@@ -1,0 +1,42 @@
+<%= form_with(model: criteria_setup, local: true) do |form| %>
+  <% if criteria_setup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(criteria_setup.errors.count, "error") %> prohibited this criteria_setup from being saved:</h2>
+
+      <ul>
+      <% criteria_setup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :criterium_id %>
+    <%= form.text_field :criterium_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :criteria_name %>
+    <%= form.text_field :criteria_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :real_value %>
+    <%= form.text_field :real_value %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

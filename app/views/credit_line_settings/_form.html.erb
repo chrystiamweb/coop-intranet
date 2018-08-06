@@ -1,0 +1,67 @@
+<%= form_with(model: credit_line_setting, local: true) do |form| %>
+  <% if credit_line_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(credit_line_setting.errors.count, "error") %> prohibited this credit_line_setting from being saved:</h2>
+
+      <ul>
+      <% credit_line_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :credit_line_id %>
+    <%= form.text_field :credit_line_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline_max %>
+    <%= form.number_field :deadline_max %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline_min %>
+    <%= form.number_field :deadline_min %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_description %>
+    <%= form.text_field :tax_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_max %>
+    <%= form.text_field :tax_max %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_min %>
+    <%= form.text_field :tax_min %>
+  </div>
+
+  <div class="field">
+    <%= form.label :client_type %>
+    <%= form.number_field :client_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline_setup %>
+    <%= form.number_field :deadline_setup %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

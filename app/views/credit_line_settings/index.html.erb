@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Credit Line Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Credit line</th>
+      <th>Deadline max</th>
+      <th>Deadline min</th>
+      <th>Tax description</th>
+      <th>Tax max</th>
+      <th>Tax min</th>
+      <th>Client type</th>
+      <th>Deadline setup</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @credit_line_settings.each do |credit_line_setting| %>
+      <tr>
+        <td><%= credit_line_setting.name %></td>
+        <td><%= credit_line_setting.description %></td>
+        <td><%= credit_line_setting.credit_line %></td>
+        <td><%= credit_line_setting.deadline_max %></td>
+        <td><%= credit_line_setting.deadline_min %></td>
+        <td><%= credit_line_setting.tax_description %></td>
+        <td><%= credit_line_setting.tax_max %></td>
+        <td><%= credit_line_setting.tax_min %></td>
+        <td><%= credit_line_setting.client_type %></td>
+        <td><%= credit_line_setting.deadline_setup %></td>
+        <td><%= link_to 'Show', credit_line_setting %></td>
+        <td><%= link_to 'Edit', edit_credit_line_setting_path(credit_line_setting) %></td>
+        <td><%= link_to 'Destroy', credit_line_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Credit Line Setting', new_credit_line_setting_path %>

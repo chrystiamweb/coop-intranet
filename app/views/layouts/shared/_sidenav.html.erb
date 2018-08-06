@@ -26,6 +26,21 @@
 				</div>
 			</li>
 			<li>
+				<div class="collapsible-header"><i class="material-icons">computer</i>Sistemas</div>
+				<div class="collapsible-body">
+					<ul>						
+						<li>
+							<% if can? :create, @events %>
+								<%= link_to  'Simulador de taxas - PF', simulation_index_url(client_type: 0)  %>
+							<% end %>
+							<% if can? :create, @events %>
+								<%= link_to  'Simulador de taxas - PJ', simulation_index_url(client_type: 1) %>
+							<% end %>
+						</li>						
+					</ul>
+				</div>
+			</li>
+			<li>
 				<div class="collapsible-header"><i class="material-icons">cloud_download</i>Downloads</div>
 				<div class="collapsible-body">
 					<ul>					
