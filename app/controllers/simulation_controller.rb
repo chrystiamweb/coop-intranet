@@ -1,8 +1,9 @@
 class SimulationController < ApplicationController
-  before_action :get_credit_lines, only: [:index,:sim]
+  before_action :get_credit_lines, only: [:sim]
 
   def index 
     set_criterias_based_on_ids  
+    set_line_by_client(params[:client_type])
   end
 
   def sim      
@@ -24,6 +25,10 @@ class SimulationController < ApplicationController
 
   def set_credit_data(params)
     @credit_data = CreditLineSetting.where(id: params)
+  end
+
+  def set_line_by_client(params)
+    @line_by_client = CreditLineSetting.where(client_type: params)
   end
 
   def set_criterias_based_on_ids

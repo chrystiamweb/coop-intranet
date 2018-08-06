@@ -1,6 +1,6 @@
 $('#simulation-form').remove();
-$('#simulation').parent().append("<%= j render 'form' %>");
-si$('select').formSelect();
+$('#simulation').parent().append('<%= j render 'form' %>');
+$('select').formSelect();
 var scoreArrayCollection = $('#simulation').data('score-options');
 var reciprocArrayCollection = $('#simulation').data('reciproc-options');
 var crlArrayCollection = $('#simulation').data('crl-options');
@@ -8,7 +8,7 @@ var garantiaArrayCollection = $('#simulation').data('garantia-options');
 setDiscoutValues();
 
 
-$( "select" ).change(function () {
+$('select').change(function () {
      setDiscoutValues();
   });
 
