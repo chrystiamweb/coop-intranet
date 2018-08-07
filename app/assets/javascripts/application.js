@@ -1,15 +1,7 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
-// vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require momentjs
+//= require html2canvas
 //= require jquery
 //= require ckeditor/init
 //= require rails-ujs
@@ -21,3 +13,24 @@
 //= require_tree .
 //= require_self
 
+function printDiv(id) {
+    
+    html2canvas(document.getElementById(id)).then(function(canvas){
+        var WinPrint = window.open('', '','')
+        WinPrint.document.write('<html mozNoMarginBoxes ><head> <style type="text/css" media="print">@page{size: auto;margin: 0mm;}body{margin: 0px;}</style></head><body></body></html>');
+        WinPrint.document.body.appendChild(canvas);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+        
+    });
+
+    //html2canvas(document.getElementById(id)).then(function(canvas) {
+    //    $('.testes').attr('href',canvas.toDataURL('image/png'));
+    //    $('.testes').attr('download, TEST file.png');
+    //    console.log( $('.testes'));
+    //    //$('.testes')[0].click();
+    //});
+    
+}

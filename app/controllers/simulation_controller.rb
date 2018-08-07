@@ -2,8 +2,17 @@ class SimulationController < ApplicationController
   before_action :get_credit_lines, only: [:sim]
 
   def index 
-    set_criterias_based_on_ids  
+    set_criterias_based_on_ids
     set_line_by_client(params[:client_type])
+    respond_to do |format|
+      format.html
+
+      format.pdf { 
+        render pdf: "Report",
+        header: {center: 'Simulador'},
+        footer: {center: "[page] of [topage]" }
+      }
+    end
   end
 
   def sim      
