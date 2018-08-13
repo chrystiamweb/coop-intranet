@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'simulation/index'
   get '/sim', to: 'simulation#new_sim'
+  get '/taxes', to: 'simulation#sim'
   resources :criteria_setups
   resources :criteria_impact_definitions
   resources :criteria

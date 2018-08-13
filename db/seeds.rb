@@ -23,7 +23,7 @@ end
 puts 'Criando usuário padrão'
 User.create(  
     full_name: 'Administrador Padrão',
-    login: 'teste3047-00',
+    login: 'teste',
     birthday: Faker::Date.birthday(18, 65),
     role: 0,
     site_location: 0,
