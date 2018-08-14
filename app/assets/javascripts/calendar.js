@@ -20,7 +20,6 @@ initialize_calendar = function() {
           $('#event_date_range').val(moment(start).format('DD/MM/Y HH:mm') + ' - ' + moment(end).format('DD/MM/Y h:mm'))          
           $('.start_hidden').val(moment(start).format('DD/MM/Y H:mm'));
           $('.end_hidden').val(moment(end).format('DD/MM/Y H:mm')); 
-          alert(start + ' ' + end);
         });
 
         calendar.fullCalendar('unselect');
