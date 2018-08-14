@@ -3,7 +3,6 @@
     <% if post.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
         <ul>
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -22,8 +21,6 @@
     </div>   
 </br>
     <label class="btn">
-    
-    
       Selecionar Capa
       <span style="display:none;">
         <%= form.file_field :image, accept: 'image/*', class:'btn' %>
@@ -33,7 +30,7 @@
 
     <div class="actions">
     </br>
-      <%= form.submit 'Criar post', class:'btn' %>
+      <%= form.submit 'Salvar', class:'btn' %>
     </div>
   <% end %>
 </div>

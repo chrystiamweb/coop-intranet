@@ -9,10 +9,18 @@
         <div class="card-content">
           <%= raw @post.body %>
         </div>
-        <div class="card-action">
-          <%= link_to 'Editar', edit_post_path(@post) %> |
-          <%= link_to 'Excluir', posts_path %>
-        </div>
+        <% if can? :update, @posts %>
+          <div class="card-action">          
+            <% if can? :update, @posts %>     
+              <%= link_to edit_post_path(@post) do %>
+                <i class="material-icons">edit</i>
+              <% end %>
+              <%= link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="material-icons">delete_forever</i>
+              <% end %>
+            <%end%>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>  
