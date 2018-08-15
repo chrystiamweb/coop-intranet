@@ -1,3 +1,26 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.card .card-image .card-title {
+    text-shadow: 1px 1px #5a5a5a;
+    background-image: linear-gradient(to bottom right,rgba(0,0,0,0.7), rgba(0,54,65,0.7));    
+    width: 100%;
+}
+
+
+.text-shadow-posts::before{
+    display: block;
+    
+    background-image: linear-gradient(to bottom right,rgba(0,0,0,0.7), rgba(0,54,65,0.7));    
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    content: '';
+    
+}
+
+.slider .slides li .caption{
+    z-index: 48;
+}
