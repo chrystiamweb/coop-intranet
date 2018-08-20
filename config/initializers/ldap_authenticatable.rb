@@ -7,10 +7,10 @@ module Devise
       def authenticate!
         if params[:user]
           ldap = Net::LDAP.new
-          ldap.host = 'ldapServer'
+          ldap.host = '172.19.27.2'
           ldap.port = 389 
-          ldap.base = 'dc=mydomain,dc=com'
-          ldap.auth login + '@mydomain.com', password
+          ldap.base = 'dc=credicope,dc=local'
+          ldap.auth login + '@credicope.local', password
           if ldap.bind      
             puts "bind realizado com sucesso"      
             user = User.find_or_create_by(login: login) do |user|
