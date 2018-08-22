@@ -12,17 +12,17 @@
     <div class="collapsible-body colapsible-remove-margin">
      <ul class="collection">
       <% @birth_days_by_month.each do |a| %>
-        <li class="collection-item">
-          <div class="chip">
+        <li class="collection-item birthday-items">
+          <div class="">
             <img src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg" alt="Contact Person">
-            <%= a.full_name %>      
-                   
+            <span class='span-text'><%= a.full_name %></span> 
+              <% if a.birthday.strftime("%d/%m") == Time.now.strftime("%d/%m") %>
+                <%= content_tag(:div,"Hoje",  class: "left") %>
+              <% else %>
+                <%= content_tag(:div, a.birthday.strftime("%d/%m"),  class: "left") %>
+              <% end %>                              
           </div>          
-          <% if a.birthday.strftime("%d/%m") == Time.now.strftime("%d/%m") %>
-            <%= content_tag(:div,"Hoje",  class: "right") %>
-          <% else %>
-            <%= content_tag(:div, a.birthday.strftime("%d/%m"),  class: "right") %>
-          <% end %>
+         
         </li>   
       <% end %>                 
     </ul>

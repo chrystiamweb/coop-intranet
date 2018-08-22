@@ -60,6 +60,10 @@
 .text-shadow-posts{
     text-shadow: 1px 1px #5a5a5a;
 }
+.text-shadow{
+    text-shadow: 0.5px 0 0 #5a5a5a, -0.5px 0 0 #5a5a5a, 0 0.5px 0 #5a5a5a, 0 -0.5px 0 #5a5a5a, 0.5px 0.5px #5a5a5a, -0.5px -0.5px 0 #5a5a5a, 0.5px -0.5px 0 #5a5a5a, -0.5px 0.5px 0 #5a5a5a;;
+    
+}
 
 //calendar 
 .fc-unthemed .fc-popover .fc-header .fc-close {
@@ -69,4 +73,18 @@
 .fc-toolbar h2 {
     margin: 0;
     font-size: 2.5rem;
+}
+
+.birthday-items{
+        
+   display: flex;
+}
+.birthday-items img{
+    
+    height: 35px;
+    border-radius: 16px;   
+    
+}
+.span-text{
+    display: block;
 }

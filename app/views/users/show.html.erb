@@ -6,14 +6,12 @@
           <img src='https://i0.wp.com/pedromiguellaw.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg' class='responsive-img background-user'>         
             <span class='card-title'>
               <img src='https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg' alt='' class='user-avatar'>
-              <%= @user.full_name %> </br>
-              <%= @user.email %>
+               <span class='text-shadow'><%= @user.full_name %> </span></br>
+               <span class='text-shadow'><%= @user.email %></span>
             </span>
         </div>
         <div class='card-content'>
-            
             <h4><%= @user.full_name %></h4>
-            
             <div class='field'>
               <h6>Login: <%= @user.login %></h6>
             </div>                  
@@ -27,3 +25,4 @@
       </div>
     </div>
   </div>
+</div>

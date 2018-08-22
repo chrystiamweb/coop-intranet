@@ -5,7 +5,7 @@
         <div class='card'>
           <div class='card-image'>
             <%= image_tag post.image, class:'img-responsive' %>
-            <span class='card-title'><%= post.title %></span>
+            <span class='card-title post-title'><%= post.title %></span>
           </div>
           <div class='card-content'>
             <p><%= sanitize post.body[0..150] %></p>          

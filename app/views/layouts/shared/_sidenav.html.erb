@@ -1,21 +1,21 @@
-<ul id="slide-out" class="sidenav">
+<ul id='slide-out' class='sidenav'>
 	<li>
-	<div class="user-view">
-		<div class="background">
-			<img src="https://i0.wp.com/pedromiguellaw.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg" class='responsive-img'>
+	<div class='user-view'>
+		<div class='background'>
+			<img src='https://i0.wp.com/pedromiguellaw.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg' class='responsive-img'>
 		</div>
 		<%= link_to   user_path(current_user) do%>       
-			<img class="circle" src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg">
+			<img class='circle' src='https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg'>
 		<% end %>
-		<a href="#name"><span class="white-text name"><%= current_user.full_name %></span></a>		
-		<a href="#email"><span class="white-text email"><%= current_user.email %></span></a>
+		<a href='#name'><span class='white-text name text-shadow'><%= current_user.full_name %></span></a>		
+		<a href='#email'><span class='white-text email text-shadow'><%= current_user.role %></span></a>
 	</div>
 	</li>	
 	<li>
-		<ul class="collapsible">
+		<ul class='collapsible'>
 			<li>
-				<div class="collapsible-header"><i class="material-icons">event</i>Agenda</div>
-				<div class="collapsible-body">
+				<div class='collapsible-header'><i class='material-icons'>event</i>Agenda</div>
+				<div class='collapsible-body'>
 					<ul>						
 						<li>
 							<% if can? :create, @events %>
@@ -26,8 +26,8 @@
 				</div>
 			</li>
 			<li>
-				<div class="collapsible-header"><i class="material-icons">computer</i>Sistemas</div>
-				<div class="collapsible-body">
+				<div class='collapsible-header'><i class='material-icons'>computer</i>Sistemas</div>
+				<div class='collapsible-body'>
 					<ul>						
 						<li>
 							<% if can? :read, @events %>
@@ -42,8 +42,8 @@
 				</div>
 			</li>
 			<li>
-				<div class="collapsible-header"><i class="material-icons">cloud_download</i>Downloads</div>
-				<div class="collapsible-body">
+				<div class='collapsible-header'><i class='material-icons'>cloud_download</i>Downloads</div>
+				<div class='collapsible-body'>
 					<ul>					
 						<li>
 							<%= link_to  'Documentos', docfiles_path %>
@@ -57,10 +57,10 @@
 			</li>		     
 		
 			<li>				
-				<div class="collapsible-header">						
-					<i class="material-icons">developer_board</i>Posts						
+				<div class='collapsible-header'>						
+					<i class='material-icons'>developer_board</i>Posts						
 				</div>
-				<div class="collapsible-body">
+				<div class='collapsible-body'>
 					<ul>					
 							<li>
 								<%= link_to  'Todos', posts_path  %>
@@ -75,8 +75,8 @@
 			</li>						
 			
 			<li>				
-				<div class="collapsible-header"><i class="material-icons">settings</i>Configurações</div>
-				<div class="collapsible-body">
+				<div class='collapsible-header'><i class='material-icons'>settings</i>Configurações</div>
+				<div class='collapsible-body'>
 					<ul>					
 							<li>
 								<%= link_to  'Usuários', users_index_path  %>
@@ -86,7 +86,7 @@
 			</li>
 		</ul>	
 	</li>
-	<li><div class="divider"></div></li>
-	<li><a class="subheader">Subheader</a></li>
+	<li><div class='divider'></div></li>
+	<li><a class='subheader'>Subheader</a></li>
 	<li><%= link_to 'Logout',  destroy_user_session_path, method: 'delete', class:'waves-effect' %></li>
 </ul>  
