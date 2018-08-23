@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :requisitions
   get 'simulation/index'
   get '/sim', to: 'simulation#new_sim'
   get '/taxes', to: 'simulation#sim'

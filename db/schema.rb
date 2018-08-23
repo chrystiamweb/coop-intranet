@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_02_160528) do
+ActiveRecord::Schema.define(version: 2018_08_23_161043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,53 @@ ActiveRecord::Schema.define(version: 2018_08_02_160528) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requisition_categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requisition_notes", force: :cascade do |t|
+    t.bigint "requisition_id"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requisition_id"], name: "index_requisition_notes_on_requisition_id"
+  end
+
+  create_table "requisition_statuses", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requisitions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "requisition_status_id"
+    t.bigint "requisition_category_id"
+    t.string "requisition_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requisition_category_id"], name: "index_requisitions_on_requisition_category_id"
+    t.index ["requisition_status_id"], name: "index_requisitions_on_requisition_status_id"
+  end
+
+  create_table "status_actions", force: :cascade do |t|
+    t.bigint "requisition_id"
+    t.datetime "start"
+    t.datetime "finish"
+    t.text "description"
+    t.bigint "requisition_status_id"
+    t.string "action_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requisition_id"], name: "index_status_actions_on_requisition_id"
+    t.index ["requisition_status_id"], name: "index_status_actions_on_requisition_status_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -183,4 +230,9 @@ ActiveRecord::Schema.define(version: 2018_08_02_160528) do
   add_foreign_key "criteria_impact_definitions", "criteria"
   add_foreign_key "criteria_setups", "criteria"
   add_foreign_key "docfiles", "file_types"
+  add_foreign_key "requisition_notes", "requisitions"
+  add_foreign_key "requisitions", "requisition_categories"
+  add_foreign_key "requisitions", "requisition_statuses"
+  add_foreign_key "status_actions", "requisition_statuses"
+  add_foreign_key "status_actions", "requisitions"
 end

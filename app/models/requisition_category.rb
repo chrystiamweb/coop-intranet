@@ -1,0 +1,2 @@
+class RequisitionCategory < ApplicationRecord
+end
