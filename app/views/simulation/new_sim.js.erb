@@ -2,9 +2,9 @@ $('#simulation-form').remove();
 $('#simulation').parent().append('<%= j render 'form' %>');
 $('select').formSelect();
 var scoreArrayCollection = $('#simulation').data('score-options');
-var reciprocArrayCollection = $('#simulation').data('reciproc-options');
 var crlArrayCollection = $('#simulation').data('crl-options');
 var garantiaArrayCollection = $('#simulation').data('garantia-options');
+var iapArrayCollection = $('#simulation').data('iap-options');
 setDiscoutValues();
 
 
@@ -15,10 +15,9 @@ $('select').change(function () {
 function setDiscoutValues(){
     setScore(scoreArrayCollection);
     setCrl(crlArrayCollection);
-    setReciproc(reciprocArrayCollection);
+    setIap(iapArrayCollection);
     setGarantia(garantiaArrayCollection);
     setGarantia2(garantiaArrayCollection);
-    setGarantia3(garantiaArrayCollection);
     getTaxValue();
     setTotalDiscount();
 };
@@ -36,10 +35,10 @@ function setCrl(arrayCollections){
     $('#discount-crl').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
 };
 
-function setReciproc(arrayCollections){
-    var selectIndex = $('#reciproc-info :selected').index();       
-    $('#discount-reciproc').text('');
-    $('#discount-reciproc').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+function setIap(arrayCollections){
+    var selectIndex = $('#iap-info :selected').index();       
+    $('#discount-iap').text('');
+    $('#discount-iap').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
 };
 function setGarantia(arrayCollections){
     var selectIndex = $('#garantia-info :selected').index();       
@@ -66,12 +65,12 @@ function updtadeTax(taxValue){
 function getTaxValue(){    
     var setScore =  parseFloat($('#discount-score').text());
     var setCrl = parseFloat($('#discount-crl').text());
-    var setReciproc =  parseFloat($('#discount-reciproc').text());
+    var setIap =  parseFloat($('#discount-iap').text());
     var setGarantia = parseFloat($('#discount-garantia').text());
     var setGarantia2 =  parseFloat($('#discount-garantia2').text());
     var setGarantia3 =  parseFloat($('#discount-garantia3').text());
     var maxPercent = parseFloat($('.max-percent').text());
-    var taxValue = setScore + setCrl + setReciproc +  setGarantia + setGarantia2 + setGarantia3;
+    var taxValue = setScore + setCrl + setIap +  setGarantia + setGarantia2 ;
     updtadeTax((taxValue));
 };
 
@@ -79,7 +78,7 @@ function setCurrentTax(tax){
     var minimunPercent = parseFloat($('.minimun-percent').text());
     var maxPercent = parseFloat($('.max-percent').text());
     var result = ((((maxPercent - minimunPercent) / 100 ) * tax ));
-
+   
     return result.toFixed(2);
 };
 

@@ -41,7 +41,7 @@ class SimulationController < ApplicationController
   end
 
   def set_criterias_based_on_ids
-    @reciproc   = CriteriaSetup.all.where(criterium_id: 1)
+    @iap   = CriteriaSetup.all.where(criterium_id: 5)
     @crl   = CriteriaSetup.all.where(criterium_id: 2)
     @score   = CriteriaSetup.all.where(criterium_id: 3)
     @garantia   = CriteriaSetup.all.where(criterium_id: 4)   
