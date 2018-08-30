@@ -1,20 +1,20 @@
 <div class='row'>
-<div class='col s12 m9'>
-	<div class='slider'>
-		<ul class='slides'>
-			<% @lastposts.each do |post| %>
-				<li class='text-shadow-posts'>				 
-					<%= link_to(post) do %>	
-						<%= image_tag  post.image %> <!-- random image -->
-						<div class='caption center-align'>
-							<h3 class'title-slide'><%= post.title %></h3>
-						</div>
-					<%end%>				
-				</li>				
-			<%end%>
-		</ul>
-	</div>	
-</div>
+	<div class='col s12 m9'>
+		<div class='slider'>
+			<ul class='slides'>
+				<% @lastposts.each do |post| %>
+					<li class='text-shadow-posts'>				 
+						<%= link_to(post) do %>	
+							<%= image_tag  post.image %> <!-- random image -->
+							<div class='caption center-align'>
+								<h3 class'title-slide'><%= post.title %></h3>
+							</div>
+						<%end%>				
+					</li>				
+				<%end%>
+			</ul>
+		</div>	
+	</div>
 		
 
   <div class='col s12 m3 l3'>   

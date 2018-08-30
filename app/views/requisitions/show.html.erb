@@ -1,29 +1,70 @@
-<p id="notice"><%= notice %></p>
+<div class='row'>
 
-<p>
-  <strong>Title:</strong>
-  <%= @requisition.title %>
-</p>
+  <div class="col s12 m6 offset-m1">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title"><%= @requisition.title %></span>
+          <strong>Descrição:</strong>
+        <p><%= @requisition.description %></p>
+      </div>
+      <div class="card-action">
+        <strong>Categoria:</strong>
+        <%= @requisition.requisition_category.name %> </br>
+        <strong>Status:</strong>
+        <%= @requisition.requisition_status.name %> </br>
+        </hr>
+        <a id='asdfasf' class="waves-effect waves-light btn">Atender</a>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @requisition.description %>
-</p>
+  <div class='col s12 m4'>
+    <ul class="collection with-header">
+      <li class="collection-header"><h4>Documentos</h4></li>
+      <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+      <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+      <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+      <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+    </ul>
+  </div>
 
-<p>
-  <strong>Requisition status:</strong>
-  <%= @requisition.requisition_status %>
-</p>
+</div>
 
-<p>
-  <strong>Requisition category:</strong>
-  <%= @requisition.requisition_category %>
-</p>
-
-<p>
-  <strong>Requisition type:</strong>
-  <%= @requisition.requisition_type %>
-</p>
+<div class='row'>
+  <div class="col s12 m6 offset-m1" >
+    <div class='card'>
+     <div class="row">
+      <% @status.each do |status|%>
+        <div class="col s12 m9 offset-m2">
+          <div class="card-panel">
+            <span class=""><%= status.requisition_status.name %></span>
+            <span class=""><%= status.start %></span>
+            <% if status.finish %>
+              <span class=""><%= status.finish%></span>
+            <% end %>   
+            <span class=""><%= status.description %></span>
+            <span class=""><%= status.action_by %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>  
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_requisition_path(@requisition) %> |
 <%= link_to 'Back', requisitions_path %>
+
+<div id='remote_container'></div>
+
+<script>
+function startModal(){
+    $('#remote_container').html('<%= j render "change_status" %>');
+    $('#edit_status').modal();
+    $('#edit_status').modal('open');
+    console.log('message101');
+};
+</script>
+
+
+

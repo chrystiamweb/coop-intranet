@@ -1,35 +1,36 @@
 class RequisitionsController < ApplicationController
-  before_action :set_requisition, only: [:show, :edit, :update, :destroy]
+  before_action :set_requisition, only: [:show, :edit, :update, :destroy, :change_status]
+  before_action :load_status, only: [:show, :edit ]
 
-  # GET /requisitions
-  # GET /requisitions.json
   def index
     @requisitions = Requisition.all
   end
 
-  # GET /requisitions/1
-  # GET /requisitions/1.json
   def show
   end
 
-  # GET /requisitions/new
   def new
     @requisition = Requisition.new
   end
 
-  # GET /requisitions/1/edit
-  def edit
+  def edit    
   end
 
-  # POST /requisitions
-  # POST /requisitions.json
+  def change_status 
+  end
+
+  def update_requisition_status
+  end
+  
   def create
     @requisition = Requisition.new(requisition_params)
-
+    @requisition.requester = current_user
+    @requisition.requisition_status_id = 1
     respond_to do |format|
       if @requisition.save
-        format.html { redirect_to @requisition, notice: 'Requisition was successfully created.' }
-        format.json { render :show, status: :created, location: @requisition }
+        create_new_status(@requisition)
+        format.html { redirect_to requisitions_path, notice: 'Requisition was successfully created.' }
+        format.json { render :index, status: :created, location: @requisition }
       else
         format.html { render :new }
         format.json { render json: @requisition.errors, status: :unprocessable_entity }
@@ -37,22 +38,19 @@ class RequisitionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /requisitions/1
-  # PATCH/PUT /requisitions/1.json
-  def update
+  def update    
     respond_to do |format|
-      if @requisition.update(requisition_params)
+      if @requisition.update(requisition_params.except(:status_description))
+        check_if_status_has_changed(@requisition)
         format.html { redirect_to @requisition, notice: 'Requisition was successfully updated.' }
         format.json { render :show, status: :ok, location: @requisition }
       else
         format.html { render :edit }
         format.json { render json: @requisition.errors, status: :unprocessable_entity }
       end
-    end
+    end    
   end
 
-  # DELETE /requisitions/1
-  # DELETE /requisitions/1.json
   def destroy
     @requisition.destroy
     respond_to do |format|
@@ -62,13 +60,44 @@ class RequisitionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_requisition
       @requisition = Requisition.find(params[:id])
+      @all_stats = RequisitionStatus.all
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def requisition_params
-      params.require(:requisition).permit(:title, :description, :requisition_status_id, :requisition_category_id, :requisition_type)
+      params.require(:requisition).permit(:title, :description, :requisition_status_id, :requisition_category_id, :requisition_type, :status, :status_description, :note)
     end
+
+    def load_status()     
+      @status = StatusAction.where(requisition_id: params[:id])      
+    end  
+  
+    def create_new_status(requisition)
+      @status = StatusAction.new
+      @status.requisition_id = requisition.id
+      @status.start = Time.now
+      @status.requisition_status_id = requisition.requisition_status_id
+      @status.action_by = current_user.full_name
+      @status.description = params[:requisition][:status_description]     
+      @status.save
+    end
+    
+    def check_if_status_has_changed(requisition)
+      unless requisition.requisition_status_id == StatusAction.where(requisition_id: requisition.id).last.requisition_status_id
+        finish_status_from_requisition(requisition.id)
+        create_new_status(requisition)
+      end
+    end
+  
+    def finish_status_from_requisition(requisition_id)
+      finished_status = StatusAction.where(requisition_id: requisition_id).last
+      finished_status.finish = Time.now
+      finished_status.save
+    end
+  
 end
+
+
+ 
