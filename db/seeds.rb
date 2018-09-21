@@ -1,4 +1,3 @@
-
 puts 'iniciando SEED SEED SEED'
 
 FileType.create!(name: 'Padrão', description: 'Defalt Description')
@@ -36,6 +35,22 @@ User.create(
 puts 'usuário padrão Criado '
 
 puts 'Cirando usuários de teste'
+50.times do
+  User.create(
+    full_name: Faker::Name.name,
+    login: Faker::Internet.user_name,
+    birthday: Faker::Date.birthday(18, 65),
+    role: [0,1,2,4,5,6,7,8,9,10].sample,
+    site_location: [0,1,2,4].sample,
+    email:Faker::Internet.email, 
+    role: [0, 1, 2, 4, 5, 6, 7, 8, 9, 10].sample,
+    site_location: [0, 1, 2, 4].sample,
+    email: Faker::Internet.email,
+    password: '123456',
+    password_confirmation: '123456', 
+    kind: [0, 1, 2].sample
+  )
+end
 
 
 
@@ -1019,4 +1034,25 @@ categories.each do |category|
     new_category = RequisitionCategory.new
     new_category.name = category
     new_category.save
+end
+
+30.times do 
+  Requisition.create(
+    title: Faker::Lorem.sentence,    
+    description: Faker::Lorem.paragraph(5),
+    requisition_status_id: 1,
+    requisition_category_id: 1,
+    requester_id: User.all.sample.id,
+    site_location: User.all.sample.site_location,
+    flag: 0
+  )
+end
+
+Requisition.all.each do |req|
+ StatusAction.create(
+  requisition_id: req.id,
+  start: Time.now,
+  requisition_status_id: req.requisition_status_id,                             
+  action_by:  User.all.sample.login
+ )
 end

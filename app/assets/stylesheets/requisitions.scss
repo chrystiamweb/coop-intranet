@@ -4,3 +4,7 @@
 .field textarea{
     min-height: 20em;
 }
+
+table.striped > tbody > tr:nth-child(even) {
+    background-color: rgba(0, 54, 65, 0.5);
+}

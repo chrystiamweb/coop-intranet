@@ -1,12 +1,21 @@
 class RequisitionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_requisition, only: [:show, :edit, :update, :destroy, :change_status]
-  before_action :load_status, only: [:show, :edit ]
+  before_action :load_status_actions, only: [:show, :edit ]
 
   def index
-    @requisitions = Requisition.all
+    
+    if current_user.admin? || current_user.supervisor?
+      @requisitions = Requisition.all
+    else
+      @requisitions = Requisition.where(site_location: current_user.site_location)
+    end
+
+
   end
 
   def show
+    set_status_options(@requisition.requisition_status_id)
   end
 
   def new
@@ -14,6 +23,7 @@ class RequisitionsController < ApplicationController
   end
 
   def edit    
+    set_status_options(@requisition.requisition_status_id)
   end
 
   def change_status 
@@ -26,6 +36,7 @@ class RequisitionsController < ApplicationController
     @requisition = Requisition.new(requisition_params)
     @requisition.requester = current_user
     @requisition.requisition_status_id = 1
+    @requisition.site_location = current_user.site_location
     respond_to do |format|
       if @requisition.save
         create_new_status(@requisition)
@@ -70,8 +81,8 @@ class RequisitionsController < ApplicationController
       params.require(:requisition).permit(:title, :description, :requisition_status_id, :requisition_category_id, :requisition_type, :status, :status_description, :note)
     end
 
-    def load_status()     
-      @status = StatusAction.where(requisition_id: params[:id])      
+    def load_status_actions()     
+      @status_actions = StatusAction.where(requisition_id: params[:id])      
     end  
   
     def create_new_status(requisition)
@@ -95,6 +106,24 @@ class RequisitionsController < ApplicationController
       finished_status = StatusAction.where(requisition_id: requisition_id).last
       finished_status.finish = Time.now
       finished_status.save
+    end
+
+    def set_status_options(current_status)
+      #if status = new the only option available will be start attendance 
+      if current_status == 1 
+        @status_options =  RequisitionStatus.where({ id: [1, 2]})
+        #if status = in-progress the options available will be: send to approval, pending
+      elsif current_status == 2
+        @status_options =  RequisitionStatus.where({ id: [3, 5]})
+        #if status = pending the only option will be send do analist
+      elsif current_status == 4
+        @status_options =  RequisitionStatus.where({ id: [4, 2]})
+        #if status = pending the only option will be send do analist
+      elsif current_status == 3
+        @status_options =  RequisitionStatus.where({ id: [3, 4]})
+      elsif current_status == 5
+        @status_options =  RequisitionStatus.where({ id: [5, 6]})
+      end      
     end
   
 end

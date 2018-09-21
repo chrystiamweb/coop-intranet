@@ -17,11 +17,11 @@
       <%= form.text_area :status_description %>
     </div>
        
+    
     <div class='field'>
-    <%= form.label 'lol' %>   
-     <%= collection_select(:requisition, :requisition_status_id, RequisitionStatus.all[1..20], :id, :name) %></br>
+      <%= form.label 'Ação:' %>   
+      <%= form.select(:requisition_status_id, @status_options.collect{ |u| [u.name, u.id] }) %>
     </div>
-
     <div class='actions'>
       <%= form.submit %>
     </div>

@@ -13,7 +13,10 @@
         <strong>Status:</strong>
         <%= @requisition.requisition_status.name %> </br>
         </hr>
-        <a id='asdfasf' class="waves-effect waves-light btn">Atender</a>
+       
+          <a id='asdfasf' class="waves-effect waves-light btn <%= "#{user_can_edit_requisition(current_user,@requisition.site_location, @requisition.requisition_status.id)}" %>"> Atender</a>
+        
+       
       </div>
     </div>
   </div>
@@ -34,7 +37,7 @@
   <div class="col s12 m6 offset-m1" >
     <div class='card'>
      <div class="row">
-      <% @status.each do |status|%>
+      <% @status_actions.each do |status|%>
         <div class="col s12 m9 offset-m2">
           <div class="card-panel">
             <span class=""><%= status.requisition_status.name %></span>
@@ -58,12 +61,12 @@
 <div id='remote_container'></div>
 
 <script>
-function startModal(){
+  function startModal(){
     $('#remote_container').html('<%= j render "change_status" %>');
     $('#edit_status').modal();
     $('#edit_status').modal('open');
     console.log('message101');
-};
+  };
 </script>
 
 

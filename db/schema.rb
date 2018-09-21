@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_23_190245) do
+ActiveRecord::Schema.define(version: 2018_09_05_151154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,8 @@ ActiveRecord::Schema.define(version: 2018_08_23_190245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "requester_id"
+    t.integer "flag"
+    t.string "site_location"
     t.index ["requisition_category_id"], name: "index_requisitions_on_requisition_category_id"
     t.index ["requisition_status_id"], name: "index_requisitions_on_requisition_status_id"
   end
