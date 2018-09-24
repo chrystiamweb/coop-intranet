@@ -1,42 +1,47 @@
 
-<div class='container'>
+<div class='container-requisitions'>
 
-<h1>Requisitions</h1>
-  <table class="striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Requisition status</th>
-        <th>Requisition category</th>
-        <th>Requisition type</th>
-        <th>Requester</th>
-        <th>Flag</th>
-        <th>User Location</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% @requisitions.each do |requisition| %>
-        <tr>
-          <td><%= link_to requisition.title, requisition %></td>
-          <td><%= requisition.description[0..120] %></td>
-          <td><%= requisition.requisition_status.name %></td>
-          <td><%= requisition.requisition_category.name %></td>        
-          <td><%= requisition.requisition_type %></td>
-          <td><%= requisition.requester.login %></td>
-          <td><%= requisition.flag %></td>
-          <td><%= requisition.site_location %></td>
-          <td><%= link_to 'Show', requisition %></td>
-          <td><%= link_to 'Edit', edit_requisition_path(requisition) %></td>
-          <td><%= link_to 'Destroy', requisition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  </br>
-<div>
-
-<%= link_to 'New Requisition', new_requisition_path %>
 <div id='remote_container'><div>
+  <div class="">
+    <div class="col">
+      <div class="card">
+        <div class="card-content requisitions-index">
+         <table class="">
+              <thead>
+                <tr>
+                  <th><%= sortable "id" %></th>
+                  <th><%= sortable "title" %></th>
+                  <th><%= sortable "requisition_status_id" %></th>
+                  <th><%= sortable "requisition_category_id" %></th>                  
+                  <th><%= sortable "requester_id" %></th>
+                  <th><%= sortable "flag" %></th>
+                  <th><%= sortable "site_location" %></th>
+                  <th>Options</th>
+                </tr>
+              </thead>
+            <tbody>
+              <% @requisitions.each do |requisition| %>
+                <tr>
+                  <td><%= requisition.id %></td>
+                  <td><%= link_to requisition.title, requisition %></td>
+                  <td><%= requisition.requisition_status.name %></td>
+                  <td><%= requisition.requisition_category.name %></td>        
+                  <td><%= requisition.requester.login %></td>
+                  <td><%= requisition.flag %></td>
+                  <td><%= requisition.site_location %></td>
+                  <td><%= link_to 'Show', requisition %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>   
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+<div class='fixed-action-btn'>
+  <%= link_to  new_requisition_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
+    <i class="material-icons">add</i>
+  <%end%>
+</div>

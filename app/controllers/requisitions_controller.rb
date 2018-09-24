@@ -1,4 +1,5 @@
 class RequisitionsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :authenticate_user!
   before_action :set_requisition, only: [:show, :edit, :update, :destroy, :change_status]
   before_action :load_status_actions, only: [:show, :edit ]
@@ -6,9 +7,9 @@ class RequisitionsController < ApplicationController
   def index
     
     if current_user.admin? || current_user.supervisor?
-      @requisitions = Requisition.all
+      @requisitions = Requisition.order(sort_column + " " + sort_direction)
     else
-      @requisitions = Requisition.where(site_location: current_user.site_location)
+      @requisitions = Requisition.where(site_location: current_user.site_location).order(sort_column + " " + sort_direction)
     end
 
 
@@ -91,7 +92,11 @@ class RequisitionsController < ApplicationController
       @status.start = Time.now
       @status.requisition_status_id = requisition.requisition_status_id
       @status.action_by = current_user.full_name
-      @status.description = params[:requisition][:status_description]     
+      if params[:requisition][:status_description].blank?
+        @status.description = "Solicitação criada"
+      else
+        @status.description = params[:requisition][:status_description]
+      end
       @status.save
     end
     
@@ -123,7 +128,14 @@ class RequisitionsController < ApplicationController
         @status_options =  RequisitionStatus.where({ id: [3, 4]})
       elsif current_status == 5
         @status_options =  RequisitionStatus.where({ id: [5, 6]})
-      end      
+      end          
+    end
+    def sort_column
+      Requisition.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
   
 end

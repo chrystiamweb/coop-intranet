@@ -3,7 +3,7 @@
   <div class="col s12 m6 offset-m1">
     <div class="card">
       <div class="card-content">
-        <span class="card-title"><%= @requisition.title %></span>
+        <span class="card-title"><h4><%= @requisition.title %></h4></span>
           <strong>Descrição:</strong>
         <p><%= @requisition.description %></p>
       </div>
@@ -12,7 +12,13 @@
         <%= @requisition.requisition_category.name %> </br>
         <strong>Status:</strong>
         <%= @requisition.requisition_status.name %> </br>
-        </hr>
+        <strong>Local:</strong>
+        <%= @requisition.site_location %> </br>
+        <strong>Solicitante:</strong>
+        <%= @requisition.requester.full_name %> </br>
+        <strong>Última Atualização realizada por:</strong>
+        <%=@status_actions.last.action_by %> </br>
+        
        
           <a id='asdfasf' class="waves-effect waves-light btn <%= "#{user_can_edit_requisition(current_user,@requisition.site_location, @requisition.requisition_status.id)}" %>"> Atender</a>
         
@@ -40,23 +46,28 @@
       <% @status_actions.each do |status|%>
         <div class="col s12 m9 offset-m2">
           <div class="card-panel">
-            <span class=""><%= status.requisition_status.name %></span>
-            <span class=""><%= status.start %></span>
-            <% if status.finish %>
-              <span class=""><%= status.finish%></span>
-            <% end %>   
-            <span class=""><%= status.description %></span>
-            <span class=""><%= status.action_by %></span>
+            <span class=""><%= status.description %></span></br>
+            <div class='message-details'>
+              <span class="">Status: <%= status.requisition_status.name %></span>
+              <span class=""><%= status.start.strftime("Postado %m/%d/%Y às %I:%M%p") %></span>
+              <% if status.finish %>
+                <span class=""><%= status.finish.strftime("Finalizado %m/%d/%Y às %I:%M%p")%></span>
+              <% end %>   
+              <span class=""><%= status.action_by %></span>
+            </div>
           </div>
+          
         </div>
       <% end %>
     </div>
     </div>  
   </div>
 </div>
-
-<%= link_to 'Edit', edit_requisition_path(@requisition) %> |
-<%= link_to 'Back', requisitions_path %>
+<div class='row'>
+  <div class="col s12 m6 offset-m1" >
+    <%= link_to 'Voltar', requisitions_path, class:'waves-effect waves-light btn' %>
+  </div>
+</div>
 
 <div id='remote_container'></div>
 

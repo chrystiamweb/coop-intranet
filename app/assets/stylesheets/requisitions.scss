@@ -8,3 +8,32 @@
 table.striped > tbody > tr:nth-child(even) {
     background-color: rgba(0, 54, 65, 0.5);
 }
+
+table > tbody > tr > td > a {
+    color: #006573;
+    font-weight: bold;
+}
+
+.requisitions-index{
+    padding: 0 !important; 
+}
+
+.container-requisitions{
+    margin-left: 5em;
+    margin-right:5em;
+}
+
+.message-details{
+    font-size: 0.8em;
+}
+
+th .asc::after {
+    content: "\25b4 ";
+    color: "#b3b3b3";
+}
+  
+th .desc::after {
+   
+    content: "\25be ";
+    color: "#b3b3b3" !important;
+}
