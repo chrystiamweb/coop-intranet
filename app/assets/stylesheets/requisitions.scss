@@ -46,3 +46,8 @@ th .desc::after {
 .requisitions-index a{
     color: #006573;
 }
+
+
+.pagination li.active{
+    background-color: #006573 !important;
+}

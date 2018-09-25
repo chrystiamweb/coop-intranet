@@ -57,5 +57,7 @@
 <div class='fixed-action-btn'>
   <%= link_to  new_requisition_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
     <i class="material-icons">add</i>
-  <%end%>
+  <% end %>
 </div>
+
+<%= will_paginate @requisitions, renderer: @custom_paginate_renderer %>
