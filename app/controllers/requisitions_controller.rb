@@ -7,9 +7,9 @@ class RequisitionsController < ApplicationController
   def index
     
     if current_user.admin? || current_user.supervisor?
-      @requisitions = Requisition.order(sort_column + " " + sort_direction)
+      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).open_or_closed(params[:filter])
     else
-      @requisitions = Requisition.where(site_location: current_user.site_location).order(sort_column + " " + sort_direction)
+      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).where(site_location: current_user.site_location).order(sort_column + " " + sort_direction).open_or_closed(params[:filter])
     end
 
 
@@ -127,7 +127,11 @@ class RequisitionsController < ApplicationController
       elsif current_status == 3
         @status_options =  RequisitionStatus.where({ id: [3, 4]})
       elsif current_status == 5
-        @status_options =  RequisitionStatus.where({ id: [5, 6]})
+        @status_options =  RequisitionStatus.where({ id: [5, 6]})                
+      elsif current_status == 6
+        @status_options =  RequisitionStatus.where({ id: [6, 7]})
+      elsif current_status == 7
+        @status_options =  RequisitionStatus.where(id: 7)
       end          
     end
     def sort_column
@@ -136,6 +140,10 @@ class RequisitionsController < ApplicationController
     
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    def sort_closed_items
+      %w[closed].include?(params[:filter]) ? params[:filter] : "closed"
     end
   
 end

@@ -3,5 +3,9 @@ $(document).on('turbolinks:load', function() {
         startModal();
         $('select').formSelect();
      });
+
+     $('.dropdown-trigger').dropdown({
+        constrainWidth: false
+     });
   });
   

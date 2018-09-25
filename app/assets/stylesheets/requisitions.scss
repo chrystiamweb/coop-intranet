@@ -37,3 +37,12 @@ th .desc::after {
     content: "\25be ";
     color: "#b3b3b3" !important;
 }
+.dropdown-content li > a, .dropdown-content li > span{
+    font-size: 0.9em !important;
+    color: #006573 !important;;
+    font-weight: 90;
+}
+
+.requisitions-index a{
+    color: #006573;
+}
