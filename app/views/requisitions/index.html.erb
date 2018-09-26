@@ -1,0 +1,67 @@
+<%= form_tag requisitions_path, :method => 'get', :id => "requisitions_search" do %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <%= hidden_field_tag :filter, params[:filter] %>
+  <!--
+    <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Pesquisar", name: nil, class:"btn"  %>
+    </p> 
+  --> 
+<% end %>
+
+<h4>Análise de crédito</h4>
+
+<div class='container-requisitions'>
+<div id='remote_container'><div>
+  <div class="">
+    <div class="col">
+      <div class="card">
+        <div class="card-content requisitions-index">
+         <table class="">
+              <thead>
+                <tr>
+                  <th><%= sortable "id" %></th>
+                  <th><%= sortable "title", "Nome do associado" %></th>
+                  <th><%= sortable "requisition_status_id", "Status" %></th>
+                  <th><%= sortable "requisition_category_id", "Categoria" %></th>                  
+                  <th><%= sortable "requester_id", "Solicitante" %></th>                  
+                  <th><%= sortable "created_at", "Solicitado em " %></th>                  
+                  <th><%= sortable "site_location", "Local" %></th>
+                  <th>
+                    <ul id="dropdown2" class="dropdown-content">
+                      <div class='dropdown-sort-options'>                        
+                        <li><%= show_all_items "Abertas" %></li>
+                        <li><%= show_all_items "closed", "Fechadas" %></li>
+                      </div>
+                    </ul>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown2">&#8230</a>
+                  </th>
+                </tr>
+              </thead>
+            <tbody>
+              <% @requisitions.each do |requisition| %>
+                <tr>
+                  <td><%= requisition.id %></td>
+                  <td><%= link_to requisition.title, requisition %></td>
+                  <td><%= requisition.requisition_status.name %></td>
+                  <td><%= requisition.requisition_category.name %></td>        
+                  <td><%= requisition.requester.login %></td>                 
+                  <td><%= requisition.created_at.strftime("%d/%m/%Y") %></td>                 
+                  <td><%= requisition.site_location %></td>                  
+                </tr>
+              <% end %>
+            </tbody>
+          </table>   
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+<div class='fixed-action-btn'>
+  <%= link_to  new_requisition_path, class:"btn-floating btn-large waves-effect waves-light bgcolortest" do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>
+
+<%= will_paginate @requisitions, renderer: @custom_paginate_renderer %>

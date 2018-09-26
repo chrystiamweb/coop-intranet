@@ -27,6 +27,11 @@
           <% if can? :update, @user %>     
             <td><%= link_to 'Editar', edit_user_path(user) %></td>
             <td><%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <div class='fixed-action-btn'>
+              <%= link_to new_user_path, class:'btn-floating btn-large waves-effect waves-light bgcolortest' do %>
+                <i class="material-icons">add</i>
+              <% end %>
+            </div>
           <%end%>
         </tr>
       </tbody>
@@ -35,8 +40,4 @@
 </div>
 
 
-<div class='fixed-action-btn'>
-  <%= link_to new_user_path, class:'btn-floating btn-large waves-effect waves-light bgcolortest' do %>
-    <i class="material-icons">add</i>
-  <% end %>
-</div>
+

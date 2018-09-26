@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :requisitions
   get 'simulation/index'
   get '/sim', to: 'simulation#new_sim'
   get '/taxes', to: 'simulation#sim'
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
   resources :credit_types
   get 'users/show'
   get 'users/index'
+  get 'requisitions/:id/change_status', to: 'requisitions#change_status'
+  get 'requisitions/:id/update_requisition_status', to: 'requisitions#update_requisition_status'
   resources :events
   resources :docfiles
   resources :normatives

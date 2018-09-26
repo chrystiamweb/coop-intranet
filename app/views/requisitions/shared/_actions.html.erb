@@ -1,0 +1,23 @@
+<div class='row'>
+  <div class="col s12 m6 offset-m1" >
+    <div class='card'>
+     <div class="row">
+      <% @status_actions.each do |status|%>
+        <div class="col s10 m10 offset-m1">
+          <div class="card-panel">
+            <span class=""><%= status.description %></span></br>
+            <div class='message-details'>
+              <span class="">Status: <%= status.requisition_status.name %></span>
+              <!--<span class=""><%= status.start.strftime("Postado %m/%d/%Y às %I:%M%p") %></span>
+              <% if status.finish %>
+                <span class=""><%= status.finish.strftime("Finalizado %m/%d/%Y às %I:%M%p")%></span>
+              <% end %>   -->
+              <span class=""> por <%= status.action_by %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>  
+  </div>
+</div>

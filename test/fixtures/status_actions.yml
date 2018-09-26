@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requisition: one
+  start: 2018-08-23 16:09:34
+  finish: 2018-08-23 16:09:34
+  description: MyText
+  requisition_status: one
+  action_by: MyString
+
+two:
+  requisition: two
+  start: 2018-08-23 16:09:34
+  finish: 2018-08-23 16:09:34
+  description: MyText
+  requisition_status: two
+  action_by: MyString
