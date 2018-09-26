@@ -50,7 +50,8 @@ class RequisitionsController < ApplicationController
     end
   end
 
-  def update    
+  def update   
+     
     respond_to do |format|
       if @requisition.update(requisition_params.except(:status_description))
         check_if_status_has_changed(@requisition)
@@ -63,23 +64,20 @@ class RequisitionsController < ApplicationController
     end    
   end
 
-  def destroy
-    @requisition.destroy
-    respond_to do |format|
-      format.html { redirect_to requisitions_url, notice: 'Requisition was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def destroy   
+    @requisition.files.find(params[:format]).purge    
+    redirect_to requisition_path(@requisition)
   end
 
   private
 
-    def set_requisition
+    def set_requisition     
       @requisition = Requisition.find(params[:id])
       @all_stats = RequisitionStatus.all
     end
 
     def requisition_params
-      params.require(:requisition).permit(:title, :description, :requisition_status_id, :requisition_category_id, :requisition_type, :status, :status_description, :note)
+      params.require(:requisition).permit(:title, :description, :requisition_status_id, :requisition_category_id, :requisition_type, :status, :status_description, :note, files:[])
     end
 
     def load_status_actions()     

@@ -23,7 +23,7 @@
       <%= form.select(:requisition_status_id, @status_options.collect{ |u| [u.name, u.id] }) %>
     </div>
     <div class='actions'>
-      <%= form.submit %>
+      <%= form.submit "Atualizar", class:"btn"  %>
     </div>
   <% end %>
 </div>

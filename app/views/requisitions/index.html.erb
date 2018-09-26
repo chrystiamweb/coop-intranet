@@ -2,11 +2,15 @@
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
   <%= hidden_field_tag :filter, params[:filter] %>
-  <p>
+  <!--
+    <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Pesquisar", name: nil, class:"btn"  %>
-  </p>  
+    </p> 
+  --> 
 <% end %>
+
+<h4>Análise de crédito</h4>
 
 <div class='container-requisitions'>
 <div id='remote_container'><div>
@@ -18,12 +22,12 @@
               <thead>
                 <tr>
                   <th><%= sortable "id" %></th>
-                  <th><%= sortable "title" %></th>
-                  <th><%= sortable "requisition_status_id" %></th>
-                  <th><%= sortable "requisition_category_id" %></th>                  
-                  <th><%= sortable "requester_id" %></th>
-                  <th><%= sortable "flag" %></th>
-                  <th><%= sortable "site_location" %></th>
+                  <th><%= sortable "title", "Nome do associado" %></th>
+                  <th><%= sortable "requisition_status_id", "Status" %></th>
+                  <th><%= sortable "requisition_category_id", "Categoria" %></th>                  
+                  <th><%= sortable "requester_id", "Solicitante" %></th>                  
+                  <th><%= sortable "created_at", "Solicitado em " %></th>                  
+                  <th><%= sortable "site_location", "Local" %></th>
                   <th>
                     <ul id="dropdown2" class="dropdown-content">
                       <div class='dropdown-sort-options'>                        
@@ -42,8 +46,8 @@
                   <td><%= link_to requisition.title, requisition %></td>
                   <td><%= requisition.requisition_status.name %></td>
                   <td><%= requisition.requisition_category.name %></td>        
-                  <td><%= requisition.requester.login %></td>
-                  <td><%= requisition.flag %></td>
+                  <td><%= requisition.requester.login %></td>                 
+                  <td><%= requisition.created_at.strftime("%d/%m/%Y") %></td>                 
                   <td><%= requisition.site_location %></td>                  
                 </tr>
               <% end %>

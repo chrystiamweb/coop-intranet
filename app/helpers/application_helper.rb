@@ -27,6 +27,11 @@ module ApplicationHelper
         link_to title,request.query_parameters.merge({ filter: filter })
     end
 
-
-
+    def same_location(user,location)
+        if user.site_location = location
+            true
+        else
+            false
+        end
+    end
 end

@@ -12,12 +12,12 @@
     <% end %>
 
     <div class='field'>
-      <%= form.label :title %>
-      <%= form.text_field :title %>
+      <%= form.label "Nome do associado" %>
+      <%= form.text_field :title, required: true %>
     </div>
 
     <div class='field'>
-      <%= form.label :description %>
+      <%= form.label "Descrição da proposta" %>
       <%= form.text_area :description, required: true %>
     </div>
     <% if controller.action_name == 'edit' %>    
@@ -28,12 +28,19 @@
     <% end %>
 
     <div class='field'>
-      <%= form.label :requisition_category_id %>
+      <%= form.label "Categoria" %>
       <%= collection_select(:requisition, :requisition_category_id, RequisitionCategory.all, :id, :name) %>
     </div>
 
-    <div class='actions'>
-      <%= form.submit %>
+    <div class='field'>
+      <%= form.file_field :files ,direct_upload: true, multiple: true %> </br>
     </div>
+
+    <div class="action">
+     <br> <%= form.submit "Criar proposta", class:"btn" %>
+    </div>
+    
+
+    
   <% end %>
 </div>

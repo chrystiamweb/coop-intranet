@@ -7,5 +7,8 @@ $(document).on('turbolinks:load', function() {
      $('.dropdown-trigger').dropdown({
         constrainWidth: false
      });
-  });
-  
+});
+
+function checkFile() {
+    $("#docFilesUpload").removeClass("disabled");  
+}
