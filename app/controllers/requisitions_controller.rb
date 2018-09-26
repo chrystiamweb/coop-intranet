@@ -9,7 +9,7 @@ class RequisitionsController < ApplicationController
     if current_user.admin? || current_user.supervisor?
       @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).open_or_closed(params[:filter]).paginate(page: params[:page], per_page:12)
     else
-      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).where(site_location: current_user.site_location).order(sort_column + " " + sort_direction).open_or_closed(params[:filter]).paginate(page: params[:page], per_page:5)
+      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).where(site_location: current_user.site_location).order(sort_column + " " + sort_direction).open_or_closed(params[:filter]).paginate(page: params[:page], per_page:12)
     end
 
     @custom_paginate_renderer = custom_paginate_renderer

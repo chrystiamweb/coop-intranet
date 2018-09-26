@@ -8,7 +8,7 @@
 			<img class='circle' src='https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg'>
 		<% end %>
 		<a href='#name'><span class='white-text name text-shadow'><%= current_user.full_name %></span></a>		
-		<a href='#email'><span class='white-text email text-shadow'><%= current_user.role %></span></a>
+		<a href='#email'><span class='white-text text-shadow email'><%= current_user.role %></span></a>
 	</div>
 	</li>	
 	<li>
@@ -31,13 +31,14 @@
 					<ul>						
 						<li>
 							<% if can? :read, @events %>
-								<%= link_to  'Simulador de taxas - PF', simulation_index_url(client_type: 0)  %>
+								<%= link_to  'Simulador de taxas - PF', simulation_index_url(client_type: 0) %>
 							<% end %>
 							<% if can? :read, @events %>
 								<%= link_to  'Simulador de taxas - PJ', simulation_index_url(client_type: 1) %>
 							<% end %>
 							<%= link_to 'Taxas',  taxes_path%>
-							<%= link_to  'Análise de crédito', requisitions_path %>
+							<%= link_to 'Análise de crédito', requisitions_path %>
+							<%= link_to 'Análise de cadastro', 'http://172.19.27.150/intranetcredicope', target:'_blank' %>
 						</li>						
 					</ul>
 				</div>
@@ -79,9 +80,11 @@
 				<div class='collapsible-header'><i class='material-icons'>settings</i>Configurações</div>
 				<div class='collapsible-body'>
 					<ul>					
-							<li>
+						<li>
+							
 								<%= link_to  'Usuários', users_index_path  %>
-							</li>							
+							
+						</li>							
 					</ul>
 				</div>
 			</li>
