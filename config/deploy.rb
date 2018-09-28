@@ -1,6 +1,6 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
-
+require 'capistrano/rails'
 set :application, "Intranet"
 set :repo_url, "https://github.com/chrystiamweb/intranet"
 set :deploy_to, '/home/deploy/intranet'
