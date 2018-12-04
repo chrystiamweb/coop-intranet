@@ -969,21 +969,22 @@ puts 'cadastrando criterios de avaliação'
 criterios = [{ name: 'Reciprocidade de Pedras', value: 30},
              { name: 'Nota de Risco CRL',value: 20},
              { name: 'Score de Crédito',value: 30},
-             { name: 'Garantias', value: 30}]              
+             { name: 'Garantias', value: 30},
+             { name: 'IAP', value: 30}]              
 
- csetups = [{name: 'Topazio',                 value: 0   ,fth: 'Reciprocidade de Pedras'},
-            {name: 'Safira',                  value: 15  ,fth: 'Reciprocidade de Pedras'},
+ csetups = [{ name: 'Topazio',                 value: 0   ,fth: 'Reciprocidade de Pedras'},
+            { name: 'Safira',                  value: 15  ,fth: 'Reciprocidade de Pedras'},
             { name: 'Rubi',                    value: 20  ,fth: 'Reciprocidade de Pedras'},
             { name: 'Esmeralda',               value: 40  ,fth: 'Reciprocidade de Pedras'},
             { name: 'Diamante',                value: 100 ,fth: 'Reciprocidade de Pedras'},
-            { name: 'R13 - R15',               value: 0   ,fth: 'Nota de Risco CRL'},
-            { name: 'R12 - R10',               value: 30  ,fth: 'Nota de Risco CRL'},
-            { name: 'R9 - R7',                 value: 70  ,fth: 'Nota de Risco CRL'},
-            { name: 'Menor que R6',            value: 100  ,fth: 'Nota de Risco CRL'},
-            { name: '351 à 450',               value: 20   ,fth: 'Score de Crédito'},
+            { name: '> R8',                    value: 0   ,fth: 'Nota de Risco CRL'},
+            { name: 'R5 - R7',                 value: 30  ,fth: 'Nota de Risco CRL'},
+            { name: 'R4',                      value: 70  ,fth: 'Nota de Risco CRL'},
+            { name: 'Menor que R3',            value: 100 ,fth: 'Nota de Risco CRL'},
+            { name: '351 à 450',               value: 20  ,fth: 'Score de Crédito'},
             { name: '451 à 600',               value: 60  ,fth: 'Score de Crédito'},
             { name: '601 à 750',               value: 80  ,fth: 'Score de Crédito'},
-            { name: '>751',                    value: 100  ,fth: 'Score de Crédito'},
+            { name: '>751',                    value: 100 ,fth: 'Score de Crédito'},
             { name: 'Sem garantia',            value: 0   ,fth: 'Garantias'},
             { name: 'Aval de Terceiros',       value: 10  ,fth: 'Garantias'},
             { name: 'Cobrança',                value: 10  ,fth: 'Garantias'},
@@ -991,7 +992,11 @@ criterios = [{ name: 'Reciprocidade de Pedras', value: 30},
             { name: 'Alienação de Otros bens', value: 20  ,fth: 'Garantias'},
             { name: 'Hipoteca',                value: 15  ,fth: 'Garantias'},
             { name: 'Aplicação Financeira',    value: 20  ,fth: 'Garantias'},
-            { name: 'Seguro',                  value: 10  ,fth: 'Garantias'}]
+            { name: 'Seguro',                  value: 10  ,fth: 'Garantias'},
+            { name: '< 2 Produtos',            value: 0   ,fth: 'IAP'},
+            { name: 'entre 3 e 4 produtos',    value: 25  ,fth: 'IAP'},
+            { name: 'entre 5 e 7 produtos',    value: 50  ,fth: 'IAP'},
+            { name: '> 7 produtos',            value: 100 ,fth: 'IAP'}]
 
 criterios.each do |criterio|
   cdata = Criterium.new

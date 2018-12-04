@@ -1,4 +1,5 @@
 $('#simulation-form').remove();
+$('#aviso').remove();
 $('#simulation').parent().append('<%= j render 'form' %>');
 $('select').formSelect();
 var scoreArrayCollection = $('#simulation').data('score-options');
@@ -57,7 +58,7 @@ function setGarantia3(arrayCollections){
 };
 
 function updtadeTax(taxValue){
- $('#discount-tax').text('');
+  $('#discount-tax').text('');
   $('#discount-tax').text(taxValue + '%');
 
 };

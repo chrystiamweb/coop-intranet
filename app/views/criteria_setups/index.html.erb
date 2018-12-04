@@ -17,7 +17,7 @@
   <tbody>
     <% @criteria_setups.each do |criteria_setup| %>
       <tr>
-        <td><%= criteria_setup.criterium %></td>
+        <td><%= criteria_setup.criterium.name %></td>
         <td><%= criteria_setup.criteria_name %></td>
         <td><%= criteria_setup.description %></td>
         <td><%= criteria_setup.value %></td>

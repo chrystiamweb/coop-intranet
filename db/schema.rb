@@ -125,8 +125,6 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "start_time"
-    t.string "end_time"
   end
 
   create_table "file_types", force: :cascade do |t|
@@ -148,7 +146,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.text "body"
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -217,11 +215,10 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "last_name"
     t.string "login"
-    t.integer "role"
+    t.string "role"
     t.date "birthday"
-    t.integer "site_location"
+    t.string "site_location"
     t.integer "kind"
     t.string "full_name"
     t.index ["email"], name: "index_users_on_email", unique: true
