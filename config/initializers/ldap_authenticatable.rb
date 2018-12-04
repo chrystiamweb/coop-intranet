@@ -20,9 +20,35 @@ module Devise
               search_filter = Net::LDAP::Filter.eq("sAMAccountName", login)
               # Execute search
               ldap.search(filter: search_filter, attributes: result_attrs) { |item|                 
-                puts "#{item.sAMAccountName.first}: #{item.displayName.first} (#{item.mail.first})" 
                 user.email = item.mail.first
                 user.full_name = item.displayName.first
+                
+                case "PA" + login.last(2)                  
+                when "PA00", "PA01"
+                  user.site_location = 0
+                when "PA03"
+                  user.site_location = 2                
+                when "PA14"
+                  user.site_location = 3
+                when "PA19"
+                  user.site_location = 4
+                when "PA25"
+                  user.site_location = 5
+                when "PA28"
+                  user.site_location = 6
+                when "PA30"
+                  user.site_location = 7
+                when "PA31"
+                  user.site_location = 8
+                when "PA32"
+                  user.site_location = 9
+                when "PA34"
+                  user.site_location = 10
+                when "PA35"
+                  user.site_location = 11                
+                else
+                  user.site_location = 1
+                end                 
               }
               user.password = password
               user.password_confirmation = password
