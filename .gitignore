@@ -30,4 +30,5 @@
 /config/master.key
 
 #ignore database.yml
-config/database.ymlconfig/database.yml\nconfig/secrets.yml
+config/database.yml
+config/secrets.yml
