@@ -78,14 +78,12 @@ function getTaxValue(){
 function setCurrentTax(tax){
     var minimunPercent = parseFloat($('.minimun-percent').text());
     var maxPercent = parseFloat($('.max-percent').text());
-    var result = ((((maxPercent - minimunPercent) / 100 ) * tax ));
-   
+    var result = ((((maxPercent - minimunPercent) / 100 ) * tax ));   
     return result.toFixed(2);
 };
 
 function setTotalDiscount(){
      var maxPercent = parseFloat($('.max-percent').text());
-     var discountTax = parseFloat($('#discount-tax').text());
-    
+     var discountTax = parseFloat($('#discount-tax').text());    
      $('#total-discount-tax h4').text(maxPercent - discountTax + '%');
 };
