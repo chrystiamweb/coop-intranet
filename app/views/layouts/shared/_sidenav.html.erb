@@ -1,11 +1,11 @@
 <ul id='slide-out' class='sidenav'>
 	<li>
 	<div class='user-view'>
-		<div class='background'>
-			<img src='https://i0.wp.com/pedromiguellaw.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg' class='responsive-img'>
+		<div class='background bgcolortest'>
+			<%= image_tag  "/img/gb.png", class:'responsive-img' %>
 		</div>
 		<%= link_to   user_path(current_user) do%>       
-			<img class='circle' src='https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg'>
+			<%= image_tag  "/img/Blank-Avatar.jpg", class:'circle' %>
 		<% end %>
 		<a href='#name'><span class='white-text name text-shadow'><%= current_user.full_name %></span></a>		
 		<a href='#email'><span class='white-text text-shadow email'><%= current_user.role %></span></a>
