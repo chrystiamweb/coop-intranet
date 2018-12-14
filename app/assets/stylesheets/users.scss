@@ -2,9 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .background-user{
-    max-height: 25rem;
+    min-height: 25rem;
+   
 }
 .user-avatar{
     max-height: 20rem;
     max-width: 10rem;
+}
+.userbg{
+    width: auto !important;
+   
 }

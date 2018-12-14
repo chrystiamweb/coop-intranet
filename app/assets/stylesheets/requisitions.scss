@@ -19,8 +19,8 @@ table > tbody > tr > td > a {
 }
 
 .container-requisitions{
-    margin-left: 5em;
-    margin-right:5em;
+    margin-left: 0.5em;
+    margin-right:0.5em;
 }
 
 .message-details{
@@ -50,4 +50,13 @@ th .desc::after {
 
 .pagination li.active{
     background-color: #006573 !important;
+}
+td, th {
+    padding: 5px !important;
+}
+
+thead>td,th {
+    background-color: lavender;
+    padding: 15px 5px!important;
+    border-radius: 0px !important;
 }
