@@ -5,7 +5,7 @@ set :application, "Intranet"
 set :repo_url, "https://github.com/chrystiamweb/intranet"
 set :deploy_to, '/home/deploy/intranet'
 append :linked_files, "config/database.yml", "config/secrets.yml"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads", "storage"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads", "storage", "public/ckeditor_assets"
 
 
 
