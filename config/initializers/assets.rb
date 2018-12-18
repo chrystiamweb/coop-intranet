@@ -10,7 +10,6 @@ Rails.application.config.assets.precompile += %w( /public/img/*)
 Rails.application.config.assets.precompile += %w( ckeditor/*)
 Rails.application.config.assets.precompile += %w( /vendor/assets/javascript/*)
 Rails.application.config.assets.precompile += Ckeditor.assets
-Rails.application.config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
