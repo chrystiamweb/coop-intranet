@@ -4,15 +4,12 @@ class RequisitionsController < ApplicationController
   before_action :set_requisition, only: [:show, :edit, :update, :destroy, :change_status]
   before_action :load_status_actions, only: [:show, :edit ]
 
-  def index
-    
+  def index    
     if current_user.admin? || current_user.supervisor?
-      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).open_or_closed(params[:filter]).paginate(page: params[:page], per_page:12)
+      @requisitions = Requisition.search(params[:search])
     else
-      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).where(site_location: current_user.site_location).order(sort_column + " " + sort_direction).open_or_closed(params[:filter]).paginate(page: params[:page], per_page:12)
+      @requisitions = Requisition.search(params[:search])
     end
-
-    @custom_paginate_renderer = custom_paginate_renderer
   end
 
   def show
