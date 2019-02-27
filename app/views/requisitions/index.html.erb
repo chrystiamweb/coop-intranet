@@ -8,36 +8,36 @@
           <thead>
             <tr>
               <th>Id</th>
-              <th>Numero Proposta</th>
-              <th>CPF/CNPJ</th>
-              <th>Proponente</th>
-              <th>Modalidade</th>                  
-              <th>Submodalidade</th>                  
-              <th>Status</th>                  
+              <th>Titulo</th>
+              <th>Status</th>
+              <th>Categoria</th>
+              <th>Solicitante</th>                  
+              <th>PA</th>                  
+              <th>Proponente</th>                  
+              <th>CPF/CNPJ</th>                  
+              <th>Modalidade</th>
+              <th>Submodalidade</th>
               <th>Setor</th>
-              <th>
-                <ul id="dropdown2" class="dropdown-content">
-                  <div class='dropdown-sort-options'>                        
-                    <li><%= show_all_items "Abertas" %></li>
-                    <li><%= show_all_items "closed", "Fechadas" %></li>
-                  </div>
-                </ul>
-                <a class="dropdown-trigger" href="#!" data-target="dropdown2">&#8230</a>
-              </th>
+              <th>Valor</th>
+              <th>Numero Requisição</th>
             </tr>
           </thead>
         <tbody>
           <% @requisitions.each do |requisition| %>
             <tr>
-              <td><%= requisition.id %></td>
-              <td><%= link_to requisition.requisition_number, requisition %></td>
-              <td><%= requisition.client.cpfcnpj %></td>
+              <td><%= link_to requisition.id, requisition %></td>
+              <td><%= link_to requisition.title, requisition %></td>
+              <td><%= requisition.requisition_status.name %></td> 
+              <td><%= requisition.requisition_category.name %></td> 
+              <td><%= requisition.requester.full_name %></td> 
+              <td><%= requisition.location.name %></td> 
               <td><%= requisition.client.name %></td>
-              <td><%= requisition.submodality.title %></td>        
-              <td><%= requisition.submodality.modality.title %></td>                 
-              <td><%= requisition.requisition_status.name %></td>                 
+              <td><%= requisition.client.cpfcnpj %></td>
+              <td><%= requisition.submodality.modality.title %></td>  
+              <td><%= requisition.submodality.title %></td>  
               <td><%= requisition.sector.name %></td>                  
-              <td></td>                  
+              <td><%= requisition.value %></td>                  
+              <td><%= requisition.requisition_number %></td>                  
             </tr>
           <% end %>
         </tbody>

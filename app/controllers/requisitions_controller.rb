@@ -34,7 +34,8 @@ class RequisitionsController < ApplicationController
     @requisition = Requisition.new(requisition_params)
     @requisition.requester = current_user
     @requisition.requisition_status_id = 1
-    @requisition.site_location = current_user.site_location
+    @requisition.location = current_user.location
+    @requisition.sector  = Sector.first
     respond_to do |format|
       if @requisition.save
         create_new_status(@requisition)
@@ -74,7 +75,10 @@ class RequisitionsController < ApplicationController
     end
 
     def requisition_params
-      params.require(:requisition).permit(:title, :description, :requisition_status_id, :requisition_category_id, :requisition_type, :status, :status_description, :note, files:[])
+      params.require(:requisition).permit(:title, :description, :requisition_status_id, 
+                                          :requisition_category_id, :requisition_type, 
+                                          :status, :status_description, :note,:modality_id,
+                                          :submodality_id, :value, :requisition_number,:sector,:client_id, files:[])
     end
 
     def load_status_actions()     
