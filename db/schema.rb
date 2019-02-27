@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_151154) do
+ActiveRecord::Schema.define(version: 2019_02_26_192012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,18 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.integer "cpfcnpj"
+    t.string "income_type"
+    t.string "category"
+    t.string "rating"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_clients_on_location_id"
   end
 
   create_table "credit_line_settings", force: :cascade do |t|
@@ -134,6 +146,20 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "modalities", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "normatives", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -184,9 +210,27 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.datetime "updated_at", null: false
     t.integer "requester_id"
     t.integer "flag"
-    t.string "site_location"
+    t.bigint "location_id"
+    t.bigint "client_id"
+    t.bigint "modality_id"
+    t.bigint "submodality_id"
+    t.bigint "sector_id"
+    t.float "value"
+    t.integer "requisition_number"
+    t.index ["client_id"], name: "index_requisitions_on_client_id"
+    t.index ["location_id"], name: "index_requisitions_on_location_id"
+    t.index ["modality_id"], name: "index_requisitions_on_modality_id"
     t.index ["requisition_category_id"], name: "index_requisitions_on_requisition_category_id"
     t.index ["requisition_status_id"], name: "index_requisitions_on_requisition_status_id"
+    t.index ["sector_id"], name: "index_requisitions_on_sector_id"
+    t.index ["submodality_id"], name: "index_requisitions_on_submodality_id"
+  end
+
+  create_table "sectors", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "status_actions", force: :cascade do |t|
@@ -200,6 +244,15 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.datetime "updated_at", null: false
     t.index ["requisition_id"], name: "index_status_actions_on_requisition_id"
     t.index ["requisition_status_id"], name: "index_status_actions_on_requisition_status_id"
+  end
+
+  create_table "submodalities", force: :cascade do |t|
+    t.string "title"
+    t.text "despcription"
+    t.bigint "modality_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["modality_id"], name: "index_submodalities_on_modality_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -218,21 +271,33 @@ ActiveRecord::Schema.define(version: 2018_09_05_151154) do
     t.string "login"
     t.string "role"
     t.date "birthday"
-    t.string "site_location"
     t.integer "kind"
     t.string "full_name"
+    t.bigint "sector_id"
+    t.bigint "location_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["sector_id"], name: "index_users_on_sector_id"
   end
 
+  add_foreign_key "clients", "locations"
   add_foreign_key "credit_line_settings", "credit_lines"
   add_foreign_key "credit_lines", "credit_types"
   add_foreign_key "criteria_impact_definitions", "criteria"
   add_foreign_key "criteria_setups", "criteria"
   add_foreign_key "docfiles", "file_types"
   add_foreign_key "requisition_notes", "requisitions"
+  add_foreign_key "requisitions", "clients"
+  add_foreign_key "requisitions", "locations"
+  add_foreign_key "requisitions", "modalities"
   add_foreign_key "requisitions", "requisition_categories"
   add_foreign_key "requisitions", "requisition_statuses"
+  add_foreign_key "requisitions", "sectors"
+  add_foreign_key "requisitions", "submodalities"
   add_foreign_key "status_actions", "requisition_statuses"
   add_foreign_key "status_actions", "requisitions"
+  add_foreign_key "submodalities", "modalities"
+  add_foreign_key "users", "locations"
+  add_foreign_key "users", "sectors"
 end

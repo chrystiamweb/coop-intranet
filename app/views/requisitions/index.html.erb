@@ -7,13 +7,14 @@
       <table id='myTable'class='card stripe hover row-border'>
           <thead>
             <tr>
-              <th>id</th>
-              <th>Nome do associado</th>
-              <th>Status</th>
-              <th>requisition_category_id</th>                  
-              <th>Solicitante</th>                  
-              <th>Solicitado</th>                  
-              <th>Local</th>
+              <th>Id</th>
+              <th>Numero Proposta</th>
+              <th>CPF/CNPJ</th>
+              <th>Proponente</th>
+              <th>Modalidade</th>                  
+              <th>Submodalidade</th>                  
+              <th>Status</th>                  
+              <th>Setor</th>
               <th>
                 <ul id="dropdown2" class="dropdown-content">
                   <div class='dropdown-sort-options'>                        
@@ -29,12 +30,13 @@
           <% @requisitions.each do |requisition| %>
             <tr>
               <td><%= requisition.id %></td>
-              <td><%= link_to requisition.title, requisition %></td>
-              <td><%= requisition.requisition_status.name %></td>
-              <td><%= requisition.requisition_category.name %></td>        
-              <td><%= requisition.requester.login %></td>                 
-              <td><%= requisition.created_at.strftime("%d/%m/%Y") %></td>                 
-              <td><%= requisition.site_location %></td>                  
+              <td><%= link_to requisition.requisition_number, requisition %></td>
+              <td><%= requisition.client.cpfcnpj %></td>
+              <td><%= requisition.client.name %></td>
+              <td><%= requisition.submodality.title %></td>        
+              <td><%= requisition.submodality.modality.title %></td>                 
+              <td><%= requisition.requisition_status.name %></td>                 
+              <td><%= requisition.sector.name %></td>                  
               <td></td>                  
             </tr>
           <% end %>

@@ -1,11 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  belongs_to :location
+  belongs_to :sector
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   enum kind: [ :admin, :supervisor, :user ]
-  enum site_location: [ :SEDE, :CAD, :PA03, :PA14, :PA19, :PA25, :PA28, :PA30, :PA31, :PA32, :PA34, :PA35 ]
+  
   enum role: [ :'AGENTE DE CONTROLES INTERNOS',
                :'AGENTE_ADMINISTRATIVO_CENTRALIZADO_II_III',
                :'AGENTE_DE_ATENDIMENTO_I',

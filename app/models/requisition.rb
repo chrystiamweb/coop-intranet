@@ -2,6 +2,11 @@ class Requisition < ApplicationRecord
   belongs_to :requester, class_name: :User
   belongs_to :requisition_status
   belongs_to :requisition_category
+  belongs_to :client
+  belongs_to :modality
+  belongs_to :submodality
+  belongs_to :sector
+  belongs_to :location
   has_many_attached :files
 
   enum flag: [ :open, :closed, :inprogress, :canceled ]
