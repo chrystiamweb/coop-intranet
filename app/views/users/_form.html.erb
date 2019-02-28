@@ -29,8 +29,8 @@
       <%= form.text_field :birthday %>
     </div> 
     <div class="field">
-      <%= form.label :site_location %>
-      <%= form.select :site_location, User.site_locations.keys.map { |w| [w.humanize, w] }%>
+      <%= form.label :location %>
+      <%= form.select :location, Location.all.keys.map { |w| [w.humanize, w] }%>
     </div> 
     <div class='field'>
       <%= form.label :kind %><br />  

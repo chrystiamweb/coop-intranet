@@ -12,12 +12,12 @@
         <strong>Status:</strong>
         <%= @requisition.requisition_status.name %> </br>
         <strong>Local:</strong>
-        <%= @requisition.site_location %> </br>
+        <%= @requisition.location.name %> </br>
         <strong>Solicitante:</strong>
         <%= @requisition.requester.full_name %> </br>
         <strong>Última Atualização realizada por:</strong>
         <%=@status_actions.last.action_by %> </br>
-          <a id='asdfasf' class="waves-effect waves-light btn <%= "#{user_can_edit_requisition(current_user,@requisition.site_location, @requisition.requisition_status.id)}" %>"> Atender</a>
+          <a id='asdfasf' class="waves-effect waves-light btn <%= "#{user_can_edit_requisition(current_user,@requisition.location, @requisition.requisition_status.id)}" %>"> Atender</a>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
       <% @requisition.files.each do |file| %>
         <li class="collection-item">
           <%= link_to file.filename, url_for(file), download:"" %>   
-          <%if same_location(current_user, @requisition.site_location)%>
+          <%if same_location(current_user, @requisition.location)%>
             <%= link_to(requisition_path(@requisition,file), method: :delete, data: { confirm: "Comfirma exclusão do documento?" }) do %> 
               <i class="material-icons secondary-content">delete_forever</i>
             <% end %>
@@ -36,7 +36,7 @@
         </li>        
         <!--<li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>-->
       <% end %>
-      <% if same_location(current_user, @requisition.site_location)  %>
+      <% if same_location(current_user, @requisition.location)  %>
         <li class="collection-item">
           <%= form_with(model: @requisition, local: true) do |form| %>                   
             <li class="collection-item">
