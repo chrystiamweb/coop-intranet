@@ -220,6 +220,11 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
     rake (12.3.2)
+    ransack (2.1.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -323,6 +328,7 @@ DEPENDENCIES
   rails-assets-momentjs!
   rails-erd
   rails-i18n
+  ransack
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

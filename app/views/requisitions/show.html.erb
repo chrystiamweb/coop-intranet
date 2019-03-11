@@ -1,24 +1,21 @@
 <div class='row'>
   <div class="col s12 m6 offset-m1">
     <div class="card">
-      <div class="card-content">
-        <span class="card-title"><h4><%= @requisition.title %></h4></span>
-          <strong>Descrição:</strong>
-        <p><%= @requisition.description %></p>
-      </div>
-      <div class="card-action">
-        <strong>Categoria:</strong>
-        <%= @requisition.requisition_category.name %> </br>
-        <strong>Status:</strong>
-        <%= @requisition.requisition_status.name %> </br>
-        <strong>Local:</strong>
-        <%= @requisition.location.name %> </br>
-        <strong>Solicitante:</strong>
-        <%= @requisition.requester.full_name %> </br>
-        <strong>Última Atualização realizada por:</strong>
-        <%=@status_actions.last.action_by %> </br>
-          <a id='asdfasf' class="waves-effect waves-light btn <%= "#{user_can_edit_requisition(current_user,@requisition.location, @requisition.requisition_status.id)}" %>"> Atender</a>
-      </div>
+        <table class="striped">    
+        <tbody>
+          <tr><td><strong>N° Proposta: </strong></td><td><%= @requisition.requisition_number %></td></tr>
+          <tr><td><strong>PA: </strong></td><td><%= @requisition.location.name %></td></tr>
+          <tr><td><strong>Categoria: </strong></td><td><%= @requisition.requisition_category.name %></td></tr>
+          <tr><td><strong>Proponente: </strong></td><td><%= @requisition.client.name %></td></tr>
+          <tr><td><strong>Modalidade :</strong></td><td><%= @requisition.modality.title %></td></tr>
+          <tr><td><strong>Status: </strong></td><td><%= @requisition.requisition_status.name %> </td></tr>
+          <tr><td><strong>Valor: </strong></td><td><%= @requisition.value %></td></tr>
+          <tr><td><strong>Solicitante: </strong></td><td><%= @requisition.requester.full_name %></td></tr>
+          <tr><td><strong>Setor: </strong></td><td><%= @requisition.sector.name %></td></tr>
+          <tr><td><strong>Última Atualização realizada por: </strong></td><td><%=@status_actions.last.action_by %></td></tr>
+          <tr><td><strong>Observação: </strong></td><td><%= @requisition.description %></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -49,14 +46,18 @@
         </li>
       <% end %>
     </ul>
+    <%= render 'requisitions/shared/actions'%>
   </div>
 </div>
-<%= render 'requisitions/shared/actions'%>
 <div class='row'>
   <div class="col s12 m6 offset-m1" >
     <%= link_to 'Voltar', requisitions_path, class:'waves-effect waves-light btn' %>
   </div>
+   <div class="offset-m11">
+      <a id='asdfasf' class="waves-effect waves-light btn <%= "#{user_can_edit_requisition(current_user,@requisition.location, @requisition.requisition_status.id)}" %>"> Atender</a>
+  </div>
 </div>
+
 
 <div id='remote_container'></div>
 

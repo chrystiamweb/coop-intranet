@@ -1,6 +1,6 @@
-<div class='row'>
-  <div class="col s12 m12">
-    <div class="card padding-card">
+<div class='row testast'>
+  <div class="col s12 m12">  
+    <div class="padding-card">
       <%= form_with(model: requisition, local: true) do |form| %>
         <% if requisition.errors.any? %>
           <div id='error_explanation'>
@@ -12,61 +12,74 @@
             </ul>
           </div>
         <% end %>
-
-        <div class='field'>
-          <%= form.label "Numero proposta" %>
-          <%= form.text_field :requisition_number, required: true %>
+        <div class="row">       
+          <div class="col s12 m8">
+            <div class="card blue-grey darken-1">
+              <div class="card-content">
+                <span class="card-title">Dados do Associado</span>
+                <div class="input-field">
+                  <%= form.text_field :q, placeholder: "Pesquisar Associado", data: { behavior: "autocomplete" } %>
+                </div>
+                <div class="field">
+                  <%= form.label "Nome do associado" %>
+                  <%= form.text_field :client_id, required: true, id:"namesearch", disabled: true %>
+                </div>
+                <div class="field">
+                  <%= form.label "CPF/CNPJ" %>
+                  <%= form.text_field :cpfcnjp, id:"cpfcnjp", disabled: true%>
+                </div>
+              </div>
+            </div>
+             
+            <div class="card blue-grey darken-1">
+              <div class="card-content">
+                <span class="card-title">Dados da Proposta</span>
+                <div class="field">
+                  <%= form.label "Numero proposta" %>
+                  <%= form.text_field :requisition_number, maxlength: 9, required: true %>
+                </div>
+                <div class="field">
+                  <%= form.label "Valor proposta" %>
+                  <%= form.text_field :value, required: true %>
+                </div>
+                <div class="field">
+                  <%= form.label "Categoria" %>
+                  <%= collection_select(:requisition, :requisition_category_id, RequisitionCategory.all, :id, :name) %>
+                </div>
+                <div class="field">
+                  <%= form.label "Modalidade" %>
+                  <%= collection_select(:requisition, :modality_id, Modality.all, :id, :title) %>
+                </div>
+              </div>
+            </div>
+            
+          </div>             
+          <div class="col s12 m4">
+            <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Informações Complementares</span>
+                <div class="field">
+                  <%= form.label "Observação" %>
+                  <%= form.text_area :description %>
+                </div>
+                <div class="field">
+                  <%= form.label "Anexos" %>
+                  <%= form.file_field :files ,direct_upload: true, multiple: true %>
+                </div>
+              </div>             
+            </div>
+          </div>
         </div>
 
-        <div class='field'>
-          <%= form.label "CPF/CNPJ" %>
-          <%= collection_select(:requisition, :client_id, Client.all, :id, :cpfcnpj) %>
-        </div>
-
-        <div class='field'>
-          <%= form.label "Nome do associado" %>
-          <%= collection_select(:requisition, :client_id, Client.all, :id, :name) %>
-        </div>
-
-        <div class='field'>
-          <%= form.label "Modalidade" %>
-          <%= collection_select(:requisition, :modality_id, Modality.all, :id, :title) %>
-        </div>
-
-        <div class='field'>
-          <%= form.label "Submodalidade" %>
-          <%= collection_select(:requisition, :submodality_id, Submodality.all, :id, :title) %>
-        </div>
-
-        <div class='field'>
-          <%= form.label "Categoria" %>
-          <%= collection_select(:requisition, :requisition_category_id, RequisitionCategory.all, :id, :name) %>
-        </div>
-
-        <div class='field'>
-          <%= form.label "Valor proposta" %>
-          <%= form.text_field :value, required: true %>
-        </div>
-
-        <div class='field'>
-          <%= form.label "Observação"  %>
-          <%= form.text_area :description, required: true %>
-        </div>
-
-        <% if controller.action_name == 'edit' %>    
-          <div class='field'>
+        
+          
+        
+        <% if controller.action_name == 'edit' %>
             <%= form.label :requisition_status_id %>    
             <%= collection_select(:requisition, :requisition_status_id, RequisitionStatus.all[1..20], :id, :name) %>
-          </div>
-        <% end %>
-
-        <div class='field'>
-          <%= form.file_field :files ,direct_upload: true, multiple: true %> </br>
-        </div>
-
-        <div class="action">
-        <br> <%= form.submit "Criar proposta", class:"btn" %>
-        </div>
+        <% end %>       
+        <%= form.hidden_field(:client_id, :value => params[:client_id])%>       
+        <br> <%= form.submit "Criar proposta", class:"btn" %>       
       <% end %>
     </div>
   </div>

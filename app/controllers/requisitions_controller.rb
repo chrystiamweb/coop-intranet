@@ -3,6 +3,7 @@ class RequisitionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_requisition, only: [:show, :edit, :update, :destroy, :change_status]
   before_action :load_status_actions, only: [:show, :edit ]
+  before_action :force_json, only: :search
 
   def index    
     if current_user.admin? || current_user.supervisor?
@@ -67,6 +68,10 @@ class RequisitionsController < ApplicationController
     redirect_to requisition_path(@requisition)
   end
 
+  def search
+    @clients = Client.ransack(name_or_cpfcnpj_cont: params[:q]).result(distinct: true).limit(5)
+  end
+
   private
 
     def set_requisition     
@@ -78,7 +83,7 @@ class RequisitionsController < ApplicationController
       params.require(:requisition).permit(:title, :description, :requisition_status_id, 
                                           :requisition_category_id, :requisition_type, 
                                           :status, :status_description, :note,:modality_id,
-                                          :submodality_id, :value, :requisition_number,:sector,:client_id, files:[])
+                                          :value, :requisition_number,:sector,:client_id, files:[])
     end
 
     def load_status_actions()     
@@ -143,6 +148,9 @@ class RequisitionsController < ApplicationController
 
     def sort_closed_items
       %w[closed].include?(params[:filter]) ? params[:filter] : "closed"
+    end
+    def force_json
+      request.format = :json
     end
   
 end

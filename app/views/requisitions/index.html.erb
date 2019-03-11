@@ -8,36 +8,30 @@
           <thead>
             <tr>
               <th>Id</th>
-              <th>Titulo</th>
-              <th>Status</th>
-              <th>Categoria</th>
-              <th>Solicitante</th>                  
-              <th>PA</th>                  
-              <th>Proponente</th>                  
-              <th>CPF/CNPJ</th>                  
+              <th>N° Proposta</th>
+              <th>PA</th>  
+              <th>Categoria</th>              
+              <th>Proponente</th>   
               <th>Modalidade</th>
-              <th>Submodalidade</th>
+              <th>Status</th>
+               <th>Valor</th>
+              <th>Solicitante</th>   
               <th>Setor</th>
-              <th>Valor</th>
-              <th>Numero Requisição</th>
             </tr>
           </thead>
         <tbody>
           <% @requisitions.each do |requisition| %>
             <tr>
               <td><%= link_to requisition.id, requisition %></td>
-              <td><%= link_to requisition.title, requisition %></td>
-              <td><%= requisition.requisition_status.name %></td> 
-              <td><%= requisition.requisition_category.name %></td> 
-              <td><%= requisition.requester.full_name %></td> 
+              <td><%= link_to  requisition.requisition_number, requisition  %></td>
               <td><%= requisition.location.name %></td> 
+              <td><%= requisition.requisition_category.name %></td>                 
               <td><%= requisition.client.name %></td>
-              <td><%= requisition.client.cpfcnpj %></td>
-              <td><%= requisition.submodality.modality.title %></td>  
-              <td><%= requisition.submodality.title %></td>  
-              <td><%= requisition.sector.name %></td>                  
-              <td><%= requisition.value %></td>                  
-              <td><%= requisition.requisition_number %></td>                  
+              <td><%= requisition.modality.title %></td>             
+              <td><%= requisition.requisition_status.name %></td> 
+              <td><%= requisition.value %></td>  
+              <td><%= requisition.requester.full_name %></td> 
+              <td><%= requisition.sector.name %></td>      
             </tr>
           <% end %>
         </tbody>

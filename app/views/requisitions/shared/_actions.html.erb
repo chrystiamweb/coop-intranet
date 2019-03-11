@@ -1,23 +1,13 @@
-<div class='row'>
-  <div class="col s12 m6 offset-m1" >
-    <div class='card'>
-     <div class="row">
+
+  <div class="" >
+    <ul class="collapsible">
       <% @status_actions.each do |status|%>
-        <div class="col s10 m10 offset-m1">
-          <div class="card-panel">
-            <span class=""><%= status.description %></span></br>
-            <div class='message-details'>
-              <span class="">Status: <%= status.requisition_status.name %></span>
-              <!--<span class=""><%= status.start.strftime("Postado %m/%d/%Y às %I:%M%p") %></span>
-              <% if status.finish %>
-                <span class=""><%= status.finish.strftime("Finalizado %m/%d/%Y às %I:%M%p")%></span>
-              <% end %>   -->
-              <span class=""> por <%= status.action_by %></span>
-            </div>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">assignment</i><%= status.description %></div>
+          <div class="collapsible-body">
+            Status: <%= status.requisition_status.name %> <span> por <%= status.action_by %></span>
           </div>
-        </div>
+        </li>
       <% end %>
-    </div>
-    </div>  
+    </ul>
   </div>
-</div>
