@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_192319) do
+ActiveRecord::Schema.define(version: 2019_03_12_125446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_192319) do
     t.bigint "submodality_id"
     t.bigint "sector_id"
     t.float "value"
-    t.integer "requisition_number"
+    t.string "requisition_number"
     t.index ["client_id"], name: "index_requisitions_on_client_id"
     t.index ["location_id"], name: "index_requisitions_on_location_id"
     t.index ["modality_id"], name: "index_requisitions_on_modality_id"
