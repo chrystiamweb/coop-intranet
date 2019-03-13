@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_125446) do
+ActiveRecord::Schema.define(version: 2019_03_13_121012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,16 +217,19 @@ ActiveRecord::Schema.define(version: 2019_03_12_125446) do
     t.bigint "sector_id"
     t.float "value"
     t.string "requisition_number"
+    t.bigint "sector_flow_id"
     t.index ["client_id"], name: "index_requisitions_on_client_id"
     t.index ["location_id"], name: "index_requisitions_on_location_id"
     t.index ["modality_id"], name: "index_requisitions_on_modality_id"
     t.index ["requisition_category_id"], name: "index_requisitions_on_requisition_category_id"
     t.index ["requisition_status_id"], name: "index_requisitions_on_requisition_status_id"
+    t.index ["sector_flow_id"], name: "index_requisitions_on_sector_flow_id"
     t.index ["sector_id"], name: "index_requisitions_on_sector_id"
     t.index ["submodality_id"], name: "index_requisitions_on_submodality_id"
   end
 
   create_table "sector_flows", force: :cascade do |t|
+    t.string "name"
     t.integer "position"
     t.bigint "sector_id"
     t.datetime "created_at", null: false
@@ -301,6 +304,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_125446) do
   add_foreign_key "requisitions", "modalities"
   add_foreign_key "requisitions", "requisition_categories"
   add_foreign_key "requisitions", "requisition_statuses"
+  add_foreign_key "requisitions", "sector_flows"
   add_foreign_key "requisitions", "sectors"
   add_foreign_key "requisitions", "submodalities"
   add_foreign_key "sector_flows", "sectors"
