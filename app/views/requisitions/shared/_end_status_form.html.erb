@@ -1,0 +1,29 @@
+<div class='container'>
+ <%= form_with(model: requisition, local: true) do |form| %>
+    <% if requisition.errors.any? %>
+      <div id='error_explanation'>
+        <h2><%= pluralize(requisition.errors.count, 'error') %> prohibited this requisition from being saved:</h2>
+        <ul>
+        <% requisition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class='field'>
+      <%= form.label 'descrição alteração' %>
+      <%= form.text_area :status_description, required: true %>
+    </div>
+       
+    
+    <div class='field'>
+      <%= form.label 'Ação:' %>   
+      <%= form.select(:sector_flow_id, @status_options.collect{ |u| [u.name, u.id] }) %>
+    </div>
+      <%= form.hidden_field(:requisition_status_id, :value => 1) %>
+    <div class='actions'>
+      <%= form.submit "Atualizar", class:"btn"  %>
+    </div>
+  <% end %>
+</div>

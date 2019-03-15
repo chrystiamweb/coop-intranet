@@ -3,7 +3,7 @@
     <ul class="collapsible">
       <% @status_actions.each do |status|%>
         <li>
-          <div class="collapsible-header"><i class="material-icons">assignment</i><%= status.description %></div>
+          <div class="collapsible-header"><i class="material-icons">assignment</i><%= status.sector_flow.name %></div>
           <div class="collapsible-body">
             Status: <%= status.requisition_status.name %> <span> por <%= status.action_by %></span>
           </div>

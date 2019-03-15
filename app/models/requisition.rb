@@ -4,11 +4,17 @@ class Requisition < ApplicationRecord
   belongs_to :requisition_category
   belongs_to :client
   belongs_to :modality
-  belongs_to :sector
+  belongs_to :sector_flow
   belongs_to :location
   has_many_attached :files
+  
 
   enum flag: [ :open, :closed, :inprogress, :canceled ]
+
+  before_create do 
+    self.sector_flow_id = SectorFlow.where(position: 2).first.id
+    self.requisition_status_id = 1
+  end
 
   def self.search(search)
     if search

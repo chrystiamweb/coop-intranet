@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_121012) do
+ActiveRecord::Schema.define(version: 2019_03_14_161120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -214,7 +214,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_121012) do
     t.bigint "client_id"
     t.bigint "modality_id"
     t.bigint "submodality_id"
-    t.bigint "sector_id"
     t.float "value"
     t.string "requisition_number"
     t.bigint "sector_flow_id"
@@ -224,7 +223,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_121012) do
     t.index ["requisition_category_id"], name: "index_requisitions_on_requisition_category_id"
     t.index ["requisition_status_id"], name: "index_requisitions_on_requisition_status_id"
     t.index ["sector_flow_id"], name: "index_requisitions_on_sector_flow_id"
-    t.index ["sector_id"], name: "index_requisitions_on_sector_id"
     t.index ["submodality_id"], name: "index_requisitions_on_submodality_id"
   end
 
@@ -253,8 +251,10 @@ ActiveRecord::Schema.define(version: 2019_03_13_121012) do
     t.string "action_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "sector_flow_id"
     t.index ["requisition_id"], name: "index_status_actions_on_requisition_id"
     t.index ["requisition_status_id"], name: "index_status_actions_on_requisition_status_id"
+    t.index ["sector_flow_id"], name: "index_status_actions_on_sector_flow_id"
   end
 
   create_table "submodalities", force: :cascade do |t|
@@ -305,11 +305,11 @@ ActiveRecord::Schema.define(version: 2019_03_13_121012) do
   add_foreign_key "requisitions", "requisition_categories"
   add_foreign_key "requisitions", "requisition_statuses"
   add_foreign_key "requisitions", "sector_flows"
-  add_foreign_key "requisitions", "sectors"
   add_foreign_key "requisitions", "submodalities"
   add_foreign_key "sector_flows", "sectors"
   add_foreign_key "status_actions", "requisition_statuses"
   add_foreign_key "status_actions", "requisitions"
+  add_foreign_key "status_actions", "sector_flows"
   add_foreign_key "submodalities", "modalities"
   add_foreign_key "users", "locations"
   add_foreign_key "users", "sectors"

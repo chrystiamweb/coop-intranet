@@ -16,7 +16,8 @@
               <th>Status</th>
                <th>Valor</th>
               <th>Solicitante</th>   
-              <th>Setor</th>
+              <th>Flow</th>
+              <th>Setor Responsável</th>
             </tr>
           </thead>
         <tbody>
@@ -31,7 +32,8 @@
               <td><%= requisition.requisition_status.name %></td> 
               <td><%= requisition.value %></td>  
               <td><%= requisition.requester.full_name %></td> 
-              <td><%= requisition.sector.name %></td>      
+              <td><%= requisition.sector_flow.name %></td>       
+              <td><%= requisition.sector_flow.sector.name %></td>       
             </tr>
           <% end %>
         </tbody>

@@ -13,7 +13,8 @@
           <tr><td><strong>Status: </strong></td><td><%= @requisition.requisition_status.name %> </td></tr>
           <tr><td><strong>Valor: </strong></td><td><%= @requisition.value %></td></tr>
           <tr><td><strong>Solicitante: </strong></td><td><%= @requisition.requester.full_name %></td></tr>
-          <tr><td><strong>Setor: </strong></td><td><%= @requisition.sector.name %></td></tr>
+          <tr><td><strong>Setor Responsável: </strong></td><td><%= @requisition.sector_flow.sector.name %></td></tr> 
+          <tr><td><strong>Fluxo: </strong></td><td><%= @requisition.sector_flow.name %></td></tr> 
           <tr><td><strong>Última Atualização realizada por: </strong></td><td><%=@status_actions.last.action_by %></td></tr>
           <tr><td><strong>Observação: </strong></td><td><%= @requisition.description %></td></tr>
         </tbody>
