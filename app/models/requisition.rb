@@ -7,15 +7,9 @@ class Requisition < ApplicationRecord
   belongs_to :sector_flow
   belongs_to :location
   has_many_attached :files
-  
-
+  before_validation :set_status, on: :create
   enum flag: [ :open, :closed, :inprogress, :canceled ]
-
-  before_create do 
-    self.sector_flow_id = SectorFlow.where(position: 2).first.id
-    self.requisition_status_id = 1
-  end
-
+  
   def self.search(search)
     if search
       where('title LIKE ?', "%#{search}%")
@@ -29,7 +23,13 @@ class Requisition < ApplicationRecord
       where(requisition_status_id: 7)
     else
       where.not(requisition_status_id: 7)
-   end
+    end
+  end
+
+  private
+  def set_status
+    self.sector_flow_id = SectorFlow.where(position: 2).first.id
+    self.requisition_status_id = 1
   end
 
   

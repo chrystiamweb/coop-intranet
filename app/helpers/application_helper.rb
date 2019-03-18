@@ -28,10 +28,13 @@ module ApplicationHelper
     end
 
     def same_location(user,location)
-        if user.location = location
+        if user.location == location
             true
         else
             false
         end
     end
+
+    
+
 end

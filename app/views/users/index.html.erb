@@ -9,6 +9,8 @@
           <th>PA</th>
           <th>Acesso</th>
           <th>Cargo</th>
+          <th>Setor</th> 
+          <th>location</th>
           <th></th>
           <th></th>
           
@@ -24,6 +26,8 @@
           <td><%= user.location.name %></td>
           <td><%= user.kind %></td>
           <td><%= user.role %></td>
+          <td><%= user.sector.name %></td>
+          <td><%= user.location.name %></td>
           <% if can? :update, @user %>     
             <td><%= link_to 'Editar', edit_user_path(user) %></td>
             <td><%= link_to 'Excluir', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

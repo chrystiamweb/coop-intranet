@@ -56,9 +56,11 @@
   <div class="col s12 m6 offset-m1" >
     <%= link_to 'Voltar', requisitions_path, class:'waves-effect waves-light btn' %>
   </div>
-   <div class="offset-m11">
-      <a id='asdfasf' class="waves-effect waves-light btn <%= "#{user_can_edit_requisition(current_user,@requisition.location, @requisition.requisition_status.id)}" %>"> Atender</a>
-  </div>
+  <% if can? :manage, @requisition %>
+    <div class="offset-m11">
+      <a id='asdfasf' class="waves-effect waves-light btn">Atender</a>
+    </div>
+  <% end %>
 </div>
 
 

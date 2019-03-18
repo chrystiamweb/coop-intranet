@@ -6,8 +6,11 @@ class Ability
     #
       user ||= User.new # guest user (not logged in)
       if user.admin?
-        can :manage, :all
+        #can :manage, :all
       else 
+        can :manage, Requisition do |requisition|
+          requisition.sector_flow.sector_id == user.sector_id
+        end
         can :read, :all
       end
     #
