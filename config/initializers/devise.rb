@@ -1,7 +1,9 @@
 Devise.setup do |config|
-  #config.warden do |manager|
-  #  manager.default_strategies(:scope => :user).unshift :ldap_authenticatable
-  #end
+  Rails.env.production?  do
+    config.warden do |manager|
+      manager.default_strategies(:scope => :user).unshift :ldap_authenticatable
+    end
+  end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
