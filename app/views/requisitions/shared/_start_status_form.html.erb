@@ -1,10 +1,9 @@
 <div class='container'>
-<h3>Confirma iniciar atendimento ?</h3>
+<h5>Deseja iniciar atendimento ?</h5>
  <%= form_with(model: requisition, local: true) do |form| %>
     <% if requisition.errors.any? %>
       <div id='error_explanation'>
         <h2><%= pluralize(requisition.errors.count, 'error') %> prohibited this requisition from being saved:</h2>
-
         <ul>
         <% requisition.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -15,7 +14,7 @@
       <%= form.hidden_field(:status_description, :value => "Iniciando Atendimento") %> 
       <%= form.hidden_field(:requisition_status_id, :value => 2) %> 
     <div class='actions'>
-      <%= form.submit "Iniciar Atendimento", class:"btn"  %>
+      <%= form.submit "Confirmar", class:"btn"  %>
     </div>
   <% end %>
 </div>
