@@ -17,6 +17,11 @@
  @import "materialize";
  @import "fullcalendar";
  @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+ @import "easy-autocomplete.min";
+.card textarea{
+    width: 100%;
+    height: 10rem;
+}
 
 
 .bgcolortest{

@@ -34,3 +34,4 @@ config/database.yml
 config/secrets.yml
 /db/seeds.rb
 erd.pdf
+clients.csv

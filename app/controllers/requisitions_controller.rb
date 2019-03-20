@@ -3,20 +3,18 @@ class RequisitionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_requisition, only: [:show, :edit, :update, :destroy, :change_status]
   before_action :load_status_actions, only: [:show, :edit ]
+  before_action :force_json, only: :search
 
-  def index
-    
-    if current_user.admin? || current_user.supervisor?
-      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).open_or_closed(params[:filter]).paginate(page: params[:page], per_page:12)
+  def index    
+    if current_user.admin? || current_user.sector_id == 2
+      @requisitions = Requisition.search(params[:search])
     else
-      @requisitions = Requisition.search(params[:search]).order(sort_column + " " + sort_direction).where(site_location: current_user.site_location).order(sort_column + " " + sort_direction).open_or_closed(params[:filter]).paginate(page: params[:page], per_page:12)
+      @requisitions = Requisition.search(params[:search]).where(location_id: current_user.location.id)
     end
-
-    @custom_paginate_renderer = custom_paginate_renderer
   end
 
   def show
-    set_status_options(@requisition.requisition_status_id)
+    set_status_options(@requisition.sector_flow_id)
   end
 
   def new
@@ -24,7 +22,7 @@ class RequisitionsController < ApplicationController
   end
 
   def edit    
-    set_status_options(@requisition.requisition_status_id)
+    set_status_options(@requisition.sector_flow_id)
   end
 
   def change_status 
@@ -35,9 +33,8 @@ class RequisitionsController < ApplicationController
   
   def create
     @requisition = Requisition.new(requisition_params)
-    @requisition.requester = current_user
-    @requisition.requisition_status_id = 1
-    @requisition.site_location = current_user.site_location
+    @requisition.requester = current_user    
+    @requisition.location = current_user.location    
     respond_to do |format|
       if @requisition.save
         create_new_status(@requisition)
@@ -50,8 +47,7 @@ class RequisitionsController < ApplicationController
     end
   end
 
-  def update   
-     
+  def update        
     respond_to do |format|
       if @requisition.update(requisition_params.except(:status_description))
         check_if_status_has_changed(@requisition)
@@ -69,6 +65,10 @@ class RequisitionsController < ApplicationController
     redirect_to requisition_path(@requisition)
   end
 
+  def search
+    @clients = Client.ransack(name_or_cpfcnpj_cont: params[:q]).result(distinct: true).limit(5)
+  end
+
   private
 
     def set_requisition     
@@ -77,7 +77,10 @@ class RequisitionsController < ApplicationController
     end
 
     def requisition_params
-      params.require(:requisition).permit(:title, :description, :requisition_status_id, :requisition_category_id, :requisition_type, :status, :status_description, :note, files:[])
+      params.require(:requisition).permit(:title, :description, :requisition_status_id, 
+                                          :requisition_category_id, :requisition_type, 
+                                          :status, :status_description, :note,:modality_id,
+                                          :value, :requisition_number,:sector_flow_id,:client_id, files:[])
     end
 
     def load_status_actions()     
@@ -87,15 +90,20 @@ class RequisitionsController < ApplicationController
     def create_new_status(requisition)
       @status = StatusAction.new
       @status.requisition_id = requisition.id
+      @status.requisition_status = requisition.requisition_status
       @status.start = Time.now
-      @status.requisition_status_id = requisition.requisition_status_id
       @status.action_by = current_user.full_name
+      @status.sector_flow_id = requisition.sector_flow_id
       if params[:requisition][:status_description].blank?
         @status.description = "Solicitação criada"
       else
         @status.description = params[:requisition][:status_description]
       end
-      @status.save
+      if @status.save
+        puts 'Requisition was successfully updated.' 
+      else
+        byebug
+      end
     end
     
     def check_if_status_has_changed(requisition)
@@ -111,27 +119,10 @@ class RequisitionsController < ApplicationController
       finished_status.save
     end
 
-    def set_status_options(current_status)
-      #if status = new the only option available will be start attendance 
-      if current_status == 1 
-        @status_options =  RequisitionStatus.where({ id: [1, 2]})
-        #if status = in-progress the options available will be: send to approval, pending
-      elsif current_status == 2
-        @status_options =  RequisitionStatus.where({ id: [3, 5]})
-        #if status = pending the only option will be send do analist
-      elsif current_status == 4
-        @status_options =  RequisitionStatus.where({ id: [4, 2]})
-        #if status = pending the only option will be send do analist
-      elsif current_status == 3
-        @status_options =  RequisitionStatus.where({ id: [3, 4]})
-      elsif current_status == 5
-        @status_options =  RequisitionStatus.where({ id: [5, 6]})                
-      elsif current_status == 6
-        @status_options =  RequisitionStatus.where({ id: [6, 7]})
-      elsif current_status == 7
-        @status_options =  RequisitionStatus.where(id: 7)
-      end          
+    def set_status_options(current_status)    
+        @status_options =  SectorFlow.where.not(id: current_status)      
     end
+
     def sort_column
       Requisition.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
@@ -142,6 +133,9 @@ class RequisitionsController < ApplicationController
 
     def sort_closed_items
       %w[closed].include?(params[:filter]) ? params[:filter] : "closed"
+    end
+    def force_json
+      request.format = :json
     end
   
 end

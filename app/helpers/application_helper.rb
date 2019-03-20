@@ -1,16 +1,16 @@
 module ApplicationHelper
-    def check_access(user,site_location,status)
+    def check_access(user,location,status)
         if (user.admin? || user.supervisor?) && [1,2,4,5].include?(status)
             true
-        elsif (user.site_location == site_location) && [3,6].include?(status)
+        elsif (user.location == location) && [3,6].include?(status)
             true
         else 
             false
         end        
     end
 
-    def user_can_edit_requisition(user,site_location,status)
-        unless check_access(user,site_location,status)            
+    def user_can_edit_requisition(user,location,status)
+        unless check_access(user,location,status)            
             'disabled'
         end
     end
@@ -28,10 +28,13 @@ module ApplicationHelper
     end
 
     def same_location(user,location)
-        if user.site_location = location
+        if user.location == location
             true
         else
             false
         end
     end
+
+    
+
 end

@@ -1,4 +1,6 @@
 $(document).on('turbolinks:load', function() {
+
+    console.log('ãshiuhdoaiudhoiaudhaioud');
     $('#asdfasf').click(function(){ 
         startModal();
         $('select').formSelect();

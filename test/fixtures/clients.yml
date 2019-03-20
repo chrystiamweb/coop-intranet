@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cpfcnpj: 1
+  income_type: MyString
+  category: MyString
+  rating: MyString
+  location: one
+
+two:
+  name: MyString
+  cpfcnpj: 1
+  income_type: MyString
+  category: MyString
+  rating: MyString
+  location: two

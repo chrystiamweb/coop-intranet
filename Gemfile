@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-ruby '2.5.1'
+ruby '2.6.1'
 
 gem 'rails', '~> 5.2.0'
 gem 'rails-i18n'
@@ -31,6 +31,7 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'net-ldap'
 gem 'will_paginate', '~> 3.1.0'
+gem 'ransack'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

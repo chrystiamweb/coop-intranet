@@ -2,7 +2,7 @@
 
 <h1>Credit Lines</h1>
 
-<table>
+<table  id="static-table">
   <thead>
     <tr>
       <th>Name</th>
@@ -19,7 +19,7 @@
         <td><%= credit_line.name %></td>
         <td><%= credit_line.description %></td>
         <td><%= credit_line.client_type %></td>
-        <td><%= credit_line.credit_type %></td>
+        <td><%= credit_line.credit_type.name %></td>
         <td><%= link_to 'Show', credit_line %></td>
         <td><%= link_to 'Edit', edit_credit_line_path(credit_line) %></td>
         <td><%= link_to 'Destroy', credit_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>

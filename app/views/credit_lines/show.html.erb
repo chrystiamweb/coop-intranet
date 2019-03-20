@@ -17,7 +17,7 @@
 
 <p>
   <strong>Credit type:</strong>
-  <%= @credit_line.credit_type %>
+  <%= @credit_line.credit_type.name %>
 </p>
 
 <%= link_to 'Edit', edit_credit_line_path(@credit_line) %> |

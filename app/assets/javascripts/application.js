@@ -10,6 +10,7 @@
 //= require activestorage
 //= require turbolinks
 //= require materialize-sprockets
+//= require jquery.easy-autocomplete
 //= require_tree .
 //= require_self
 
