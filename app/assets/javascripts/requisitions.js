@@ -9,6 +9,9 @@ $(document).on('turbolinks:load', function() {
      $('.dropdown-trigger').dropdown({
         constrainWidth: false
      });
+
+     $(".value-input").maskMoney({showSymbol:true, symbol:"", decimal:".", thousands:""});   
+     
 });
 
 function checkFile() {

@@ -11,6 +11,8 @@
 //= require turbolinks
 //= require materialize-sprockets
 //= require jquery.easy-autocomplete
+//= require jquery.mask.min
+//= require jquery.maskMoney
 //= require_tree .
 //= require_self
 
