@@ -3,14 +3,17 @@ class Ability
 
   def initialize(user)
     # Define abilities for the passed in user here. For example:
-    #
       user ||= User.new # guest user (not logged in)
       if user.admin?
         can :manage, :all
-      else 
+       
+      elsif user.sector_id == 10
+        can :manage, Event
+        can :manage, Post
+      else
         can :manage, Requisition do |requisition|
           requisition.sector_flow.sector_id == user.sector_id
-        end
+        end        
         can :read, :all
       end
     #
