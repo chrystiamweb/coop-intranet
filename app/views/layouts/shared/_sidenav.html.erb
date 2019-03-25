@@ -8,7 +8,7 @@
 			<%= image_tag  "/img/Blank-Avatar.jpg", class:'circle' %>
 		<% end %>
 		<a href='#name'><span class='white-text name text-shadow'><%= current_user.full_name %></span></a>		
-		<a href='#email'><span class='white-text text-shadow email'><%= current_user.role %></span></a>
+		<a href='#email'><span class='white-text text-shadow email'><%= current_user.sector.name %></span></a>
 	</div>
 	</li>	
 	<li>
