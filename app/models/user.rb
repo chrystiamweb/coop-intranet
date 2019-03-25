@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   belongs_to :location
   belongs_to :sector
+  after_initialize :set_defaults
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -31,4 +32,10 @@ class User < ApplicationRecord
                :'SUP_INFOR/ARRECAD/COMPE',
                :'SUP_TESOURARIA',
                :'SUPERINTENDENTE']
+
+       private
+       def set_defaults
+              self.kind = :user if self.kind.blank?
+       end
+       
 end
