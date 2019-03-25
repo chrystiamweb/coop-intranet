@@ -9,7 +9,7 @@ require 'capistrano/rvm'
 
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.5.1'
+set :rvm_ruby_version, '2.6.1'
 
 # Load the SCM plugin appropriate to your project:
 #
