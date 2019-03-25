@@ -7,11 +7,11 @@
           <div class="row">
             <div class="input-field col s12">
               <%= f.label :login %><br/>
-              <%= f.text_field :login %>
+              <%= f.text_field :login, required: true %>
             </div>
             <div class="input-field col s12">
               <%= f.label :password %><br/>
-              <%= f.password_field :password, autocomplete: "off" %>
+              <%= f.password_field :password, autocomplete: "off", required: true  %>
             </div>
             <%= render "devise/shared/links" %>
           </div>
