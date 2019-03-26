@@ -11,6 +11,7 @@ Rails.application.config.assets.precompile += %w( /public/ckeditor_assets/*)
 Rails.application.config.assets.precompile += %w( ckeditor/*)
 Rails.application.config.assets.precompile += %w( /vendor/assets/javascript/*)
 Rails.application.config.assets.precompile += %w( /vendor/assets/fonts/*)
+Rails.application.config.assets.precompile += %w( /vendor/assets/images/*)
 Rails.application.config.assets.precompile += Ckeditor.assets
 Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 

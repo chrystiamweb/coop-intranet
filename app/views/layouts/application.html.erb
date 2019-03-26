@@ -7,14 +7,10 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all','data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application','data-turbolinks-track': 'reload' %>    
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/> 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+    <%= javascript_include_tag 'application','data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  
-    
     <%= render 'layouts/shared/nav' %>
       <% flash.each do |message_type, message| %>       
         <%= javascript_tag "M.toast({html:'#{message}'})" %>

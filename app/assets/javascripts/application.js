@@ -12,6 +12,7 @@
 //= require materialize-sprockets
 //= require jquery.easy-autocomplete
 //= require jquery.mask.min
+//= require datatables.min
 //= require jquery.maskMoney
 //= require_tree .
 //= require_self
