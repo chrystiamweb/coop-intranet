@@ -23,8 +23,8 @@
         <tbody>
           <% @requisitions.each do |requisition| %>
             <tr>
-              <td><%= link_to requisition.id, requisition %></td>
-              <td><%= link_to  requisition.requisition_number, requisition  %></td>
+              <td><%= link_to requisition.id %></td>
+              <td><%= link_to  requisition.requisition_number  %></td>
               <td><%= requisition.location.name %></td> 
               <td><%= requisition.requisition_category.name %></td>                 
               <td><%= requisition.client.name %></td>
@@ -48,8 +48,8 @@
 </div>
 
 <script>
-$(document).ready(function(){ 
-    var table = $('#myTable').DataTable({
+$(document).ready(function() {
+    $('#myTable').DataTable( {
       fixedHeader: true,
       "language": {            
         "sEmptyTable": "Nenhum registro encontrado",
@@ -73,9 +73,29 @@ $(document).ready(function(){
             "sSortAscending": ": Ordenar colunas de forma ascendente",
             "sSortDescending": ": Ordenar colunas de forma descendente"
         }            
-      },       
-    });  
-      $('select').formSelect();
-});
+      },
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.header()) )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        ); 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+    $('select').formSelect();
+} );
 
 </script>
+
