@@ -1,0 +1,19 @@
+<h1>STATUS GERAL</h1>
+<%= column_chart  StatusAction.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
+
+<h1>Quantidade de chamados por solicitante</h1>
+<%= column_chart  Requisition.group(:requester_id).count.collect {|b| [User.where(id:b[0]).first.full_name , b[1]]} %>
+<h1>Chamados por Status</h1>
+<%= column_chart  Requisition.group(:requisition_status_id).count.collect {|b| [RequisitionStatus.where(id:b[0]).first.name , b[1]]} %>
+<h1>Chamados por PA</h1>
+<%= column_chart  Requisition.group(:location_id).count.collect {|b| [Location.where(id:b[0]).first.name , b[1]]} %>
+<h1>Chamados por Modalidade</h1>
+<%= column_chart  Requisition.group(:modality_id).count.collect {|b| [Modality.where(id:b[0]).first.title , b[1]]} %>
+<h1>Chamados por Setor de atendimento</h1>
+<%= column_chart  Requisition.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
+<h1>Chamados por Associados</h1>
+<%= column_chart  Requisition.group(:client_id).count.collect {|b| [Client.where(id:b[0]).first.name , b[1]]} %>
+<h1>Quantidade de chamados por dia</h1>
+<%= line_chart Requisition.group_by_day(:created_at).count %>
+<h1>Quantidade de chamados mensal</h1>
+<%= line_chart Requisition.group_by_month(:created_at).count %>

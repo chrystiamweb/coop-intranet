@@ -6,11 +6,14 @@ class RequisitionsController < ApplicationController
   before_action :force_json, only: :search
 
   def index    
-    if current_user.admin? || current_user.sector_id == 2
+    if current_user.admin? || current_user.sector_id == 2 || current_user.supervisor?
       @requisitions = Requisition.search(params[:search])
     else
       @requisitions = Requisition.search(params[:search]).where(location_id: current_user.location.id)
     end
+  end
+  
+  def report
   end
 
   def show

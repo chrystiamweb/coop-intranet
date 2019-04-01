@@ -23,8 +23,8 @@
         <tbody>
           <% @requisitions.each do |requisition| %>
             <tr>
-              <td><%= link_to requisition.id %></td>
-              <td><%= link_to  requisition.requisition_number  %></td>
+              <td><%= link_to requisition.id, requisition %></td>
+              <td><%= link_to  requisition.requisition_number, requisition  %></td>
               <td><%= requisition.location.name %></td> 
               <td><%= requisition.requisition_category.name %></td>                 
               <td><%= requisition.client.name %></td>
@@ -98,4 +98,3 @@ $(document).ready(function() {
 } );
 
 </script>
-

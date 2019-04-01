@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'users/index'
   get 'requisitions/:id/change_status', to: 'requisitions#change_status'
   get 'requisitions/:id/update_requisition_status', to: 'requisitions#update_requisition_status'
+  get 'report', to: 'requisitions#report'
   resources :events
   resources :docfiles
   resources :normatives

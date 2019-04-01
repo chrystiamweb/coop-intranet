@@ -14,6 +14,8 @@
 //= require jquery.mask.min
 //= require datatables.min
 //= require jquery.maskMoney
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 //= require_self
 
