@@ -9,14 +9,15 @@
             <tr>
               <th>Id</th>
               <th>N° Proposta</th>
-              <th>PA</th>  
+              <th>PA</th> 
               <th>Categoria</th>              
               <th>Proponente</th>   
               <th>Modalidade</th>
               <th>Status</th>
                <th>Valor</th>
-              <th>Solicitante</th>   
-              <th>Flow</th>
+              <th>Solicitante</th>
+              <th>Data de solicitação</th>
+              <th>Fluxo</th>
               <th>Setor Responsável</th>
             </tr>
           </thead>
@@ -32,6 +33,7 @@
               <td><%= requisition.requisition_status.name %></td> 
               <td><%= requisition.value %></td>  
               <td><%= requisition.requester.full_name %></td> 
+              <td><%= requisition.created_at.strftime("%d/%m/%Y") %></td> 
               <td><%= requisition.sector_flow.name %></td>       
               <td><%= requisition.sector_flow.sector.name %></td>       
             </tr>
