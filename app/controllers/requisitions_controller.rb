@@ -14,7 +14,7 @@ class RequisitionsController < ApplicationController
   end
 
   def show
-    set_status_options(@requisition.sector_flow_id)
+    set_status_options(@requisition.sector_flow_id, @requisition.requisition_category_id)
   end
 
   def new
@@ -22,7 +22,7 @@ class RequisitionsController < ApplicationController
   end
 
   def edit    
-    set_status_options(@requisition.sector_flow_id)
+    set_status_options(@requisition.sector_flow_id, @requisition.requisition_category_id)
   end
 
   def change_status 
@@ -119,8 +119,12 @@ class RequisitionsController < ApplicationController
       finished_status.save
     end
 
-    def set_status_options(current_status)    
-        @status_options =  SectorFlow.where.not(id: current_status)      
+    def set_status_options(current_status, type)
+      if type == 2
+        @status_options =  SectorFlow.where.not(id: current_status).where("id <= ?", 4)
+      else
+        @status_options =  SectorFlow.where.not(id: current_status)
+      end
     end
 
     def sort_column
