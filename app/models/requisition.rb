@@ -28,7 +28,7 @@ class Requisition < ApplicationRecord
 
   private
   def set_status
-    self.sector_flow_id = SectorFlow.where(position: 2).first.id
+    self.sector_flow_id = SectorFlow.where(position: 1).first.id
     self.requisition_status_id = 1
   end
 
