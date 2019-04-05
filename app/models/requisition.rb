@@ -11,9 +11,9 @@ class Requisition < ApplicationRecord
   before_save :end_game, on: :update
   enum flag: [ :open, :closed, :inprogress, :canceled ]
 
-  scope :final_steps, -> { where "(sector_flow_id = ? and requisition_category_id = ?)or(sector_flow_id = ? and requisition_category_id = ?)", 4,2,8,1}
-  scope :closed, -> { where "sector_flow_id > ? or sector_flow_id < ?", 8,1}
-  scope :opened, -> { where "sector_flow_id < ? and sector_flow_id > ?", 8,1}
+  scope :final_steps, -> { where "(sector_flow_id = ? and requisition_category_id = ?)or(sector_flow_id = ? and requisition_category_id = ?)", 4,2,9,1}
+  scope :closed, -> { where "sector_flow_id > ? or sector_flow_id < ?", 9,1}
+  scope :opened, -> { where "sector_flow_id < ? and sector_flow_id > ?", 9,1}
   
   
   def self.search(search)
@@ -39,13 +39,13 @@ class Requisition < ApplicationRecord
   def can_archive
     if self.crl && self.sector_flow_id == 4
       true
-    elsif self.sector_flow_id == 8
+    elsif self.sector_flow_id == 9
       true
     end
   end
 
   def closed
-    if self.sector_flow_id > 8 || self.sector_flow_id < 1
+    if self.sector_flow_id > 9 || self.sector_flow_id < 1
       true
     else
       false
