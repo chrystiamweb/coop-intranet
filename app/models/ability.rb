@@ -12,7 +12,7 @@ class Ability
         can :manage, Post
       else
         can :manage, Requisition do |requisition|
-          requisition.sector_flow.sector_id == user.sector_id
+          requisition.sector_flow.sector_id == user.sector_id && requisition.unclosed
         end        
         can :read, :all
       end

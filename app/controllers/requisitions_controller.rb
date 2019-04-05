@@ -7,14 +7,14 @@ class RequisitionsController < ApplicationController
 
   def index    
     if current_user.admin? || current_user.sector_id == 2
-      @requisitions = Requisition.search(params[:search])
+      @requisitions = Requisition.search(params[:search]).open_or_closed(params[:filter])
     else
-      @requisitions = Requisition.search(params[:search]).where(location_id: current_user.location.id)
+      @requisitions = Requisition.search(params[:search]).where(location_id: current_user.location.id).open_or_closed(params[:filter])
     end
   end
 
   def show
-    set_status_options(@requisition.sector_flow_id, @requisition.requisition_category_id)
+    set_status_options(@requisition)
   end
 
   def new
@@ -22,7 +22,7 @@ class RequisitionsController < ApplicationController
   end
 
   def edit    
-    set_status_options(@requisition.sector_flow_id, @requisition.requisition_category_id)
+    set_status_options(@requisition)
   end
 
   def change_status 
@@ -119,25 +119,22 @@ class RequisitionsController < ApplicationController
       finished_status.save
     end
 
-    def set_status_options(current_status, type)
-      if type == 2
-        @status_options =  SectorFlow.where.not(id: current_status).where("id <= ?", 4)
+    def set_status_options(requisition)
+      @status_options = ''
+      if requisition.crl
+        @status_options =  SectorFlow.by_status(requisition.sector_flow_id).crl_flow
       else
-        @status_options =  SectorFlow.where.not(id: current_status)
+        @status_options =  SectorFlow.by_status(requisition.sector_flow_id).default_flow
+      end 
+      if requisition.can_approve
+        @status_options += SectorFlow.by_status(requisition.sector_flow_id).deny_option
       end
+      if requisition.can_archive
+        @status_options += SectorFlow.by_status(requisition.sector_flow_id).archive_option
+      end
+
     end
 
-    def sort_column
-      Requisition.column_names.include?(params[:sort]) ? params[:sort] : "id"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
-
-    def sort_closed_items
-      %w[closed].include?(params[:filter]) ? params[:filter] : "closed"
-    end
     def force_json
       request.format = :json
     end

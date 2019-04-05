@@ -8,7 +8,13 @@ class Requisition < ApplicationRecord
   belongs_to :location
   has_many_attached :files
   before_validation :set_status, on: :create
+  before_save :end_game, on: :update
   enum flag: [ :open, :closed, :inprogress, :canceled ]
+
+  scope :final_steps, -> { where "(sector_flow_id = ? and requisition_category_id = ?)or(sector_flow_id = ? and requisition_category_id = ?)", 4,2,8,1}
+  scope :closed, -> { where "sector_flow_id > ? or sector_flow_id < ?", 8,1}
+  scope :opened, -> { where "sector_flow_id < ? and sector_flow_id > ?", 8,1}
+  
   
   def self.search(search)
     if search
@@ -18,18 +24,63 @@ class Requisition < ApplicationRecord
     end
   end
 
+  def crl
+    if self.requisition_category_id == 2 
+      true
+    end
+  end
+
+  def can_approve
+   if self.sector_flow_id == 4
+      true
+   end
+  end
+
+  def can_archive
+    if self.crl && self.sector_flow_id == 4
+      true
+    elsif self.sector_flow_id == 8
+      true
+    end
+  end
+
+  def closed
+    if self.sector_flow_id > 8 || self.sector_flow_id < 1
+      true
+    else
+      false
+    end
+  end
+
+  def unclosed 
+    if self.closed
+      false
+    else
+      true
+    end
+  end
+
   def self.open_or_closed(filter)
     if filter=="closed"
-      where(requisition_status_id: 7)
+      self.closed
     else
-      where.not(requisition_status_id: 7)
-    end
+      self.opened
+   end
   end
 
   private
   def set_status
     self.sector_flow_id = SectorFlow.where(position: 1).first.id
     self.requisition_status_id = 1
+  end
+
+  def end_game
+    if self.closed 
+      puts self.sector_flow.name
+      puts self
+      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+      self.requisition_status_id = RequisitionStatus.where(name: self.sector_flow.name).first.id
+    end
   end
 
   
