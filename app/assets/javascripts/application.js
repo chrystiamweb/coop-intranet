@@ -8,12 +8,12 @@
 //= require fullcalendar
 //= require fullcalendar/locale-all
 //= require activestorage
-//= require turbolinks
 //= require materialize-sprockets
 //= require jquery.easy-autocomplete
 //= require jquery.mask.min
 //= require datatables.min
 //= require jquery.maskMoney
+//= require turbolinks
 //= require_tree .
 //= require_self
 
