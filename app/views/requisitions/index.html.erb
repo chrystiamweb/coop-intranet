@@ -1,22 +1,37 @@
 
-<h4>Análise de crédito</h4>
+<div class="row">
+<h4>Análise de crédito </h4> 
+<div class="col"><div class="dropdown-trigger waves-effect waves-light btn" href="#!" data-target="dropdown2"> Visualizar <i class="material-icons">arrow_drop_down</i></div></div>
+
+
+</div>
+
+
 
 <div class='row'>
-  <div id='remote_container'><div> 
-   <div class="col s12 m12">  
+  <div id='remote_container'><div>
+   <div class="col s12 m12">
       <table id='myTable'class='card stripe hover row-border'>
           <thead>
             <tr>
+             <ul id="dropdown2" class="dropdown-content">
+                <div class='dropdown-sort-options'>                        
+                  <li><%= show_all_items  "","Visualizar chamados Abertos" %></li>
+                  <li><%= show_all_items "closed", "Visualizar chamados finalizados" %></li>
+                </div>
+              </ul>
+             
               <th>Id</th>
               <th>N° Proposta</th>
-              <th>PA</th>  
-              <th>Categoria</th>              
-              <th>Proponente</th>   
+              <th>PA</th>
+              <th>Categoria</th>
+              <th>Proponente</th>
               <th>Modalidade</th>
               <th>Status</th>
-               <th>Valor</th>
-              <th>Solicitante</th>   
-              <th>Flow</th>
+              <th>Valor</th>
+              <th>Solicitante</th>
+              <th>Data de solicitação</th>
+              <th>Fluxo</th>
               <th>Setor Responsável</th>
             </tr>
           </thead>
@@ -24,20 +39,22 @@
           <% @requisitions.each do |requisition| %>
             <tr>
               <td><%= link_to requisition.id, requisition %></td>
-              <td><%= link_to  requisition.requisition_number, requisition  %></td>
-              <td><%= requisition.location.name %></td> 
-              <td><%= requisition.requisition_category.name %></td>                 
+              <td><%= link_to  requisition.requisition_number, requisition %></td>
+              <td><%= requisition.location.name %></td>
+              <td><%= requisition.requisition_category.name %></td>
               <td><%= requisition.client.name %></td>
-              <td><%= requisition.modality.title %></td>             
-              <td><%= requisition.requisition_status.name %></td> 
-              <td><%= requisition.value %></td>  
-              <td><%= requisition.requester.full_name %></td> 
-              <td><%= requisition.sector_flow.name %></td>       
-              <td><%= requisition.sector_flow.sector.name %></td>       
+              <td><%= requisition.modality.title %></td>
+              <td><%= requisition.requisition_status.name %></span></td>
+              <td><%= requisition.value %></td>
+              <td><%= requisition.requester.full_name %></td>
+              <td><%= requisition.created_at.strftime("%d/%m/%Y") %></td>
+              <td><%= requisition.sector_flow.name %></td>
+              <td colspan='2'><%= requisition.sector_flow.sector.name %></td>
+              
             </tr>
           <% end %>
         </tbody>
-      </table> 
+      </table>
     </div>
 </div>
 
@@ -51,7 +68,7 @@
 $(document).ready(function() {
     $('#myTable').DataTable( {
       fixedHeader: true,
-      "language": {            
+      "language": {
         "sEmptyTable": "Nenhum registro encontrado",
         "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
         "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
@@ -72,8 +89,9 @@ $(document).ready(function() {
         "oAria": {
             "sSortAscending": ": Ordenar colunas de forma ascendente",
             "sSortDescending": ": Ordenar colunas de forma descendente"
-        }            
+        }
       },
+      
         initComplete: function () {
             this.api().columns().every( function () {
                 var column = this;

@@ -16,8 +16,8 @@
       <%= form.text_area :status_description, required: true %>
     </div>
     <div class='field'>
-      <%= form.label 'Encaminhar para:' %>   
-      <%= form.select(:sector_flow_id, @status_options.collect{ |u| [u.name, u.id] }) %>
+      <%= form.label 'Encaminhar para:' %>
+      <%= form.select(:sector_flow_id, @status_options.collect{ |u| [u.name, u.id] },{ :class => 'browser-default' }) %>
     </div>
       <%= form.hidden_field(:requisition_status_id, :value => 1) %>
     <div class='actions'>
