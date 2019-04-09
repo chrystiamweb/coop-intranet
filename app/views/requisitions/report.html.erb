@@ -1,6 +1,8 @@
 <h1>STATUS GERAL</h1>
 <%= column_chart  StatusAction.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
-<%= column_chart  time_req_calc %>
+
+<h1>Tempo médio de atendimento por setor</h1>
+<%= pie_chart   time_req_calc %>
 
 <h1>Quantidade de chamados por solicitante</h1>
 <%= column_chart  Requisition.group(:requester_id).count.collect {|b| [User.where(id:b[0]).first.full_name , b[1]]} %>
