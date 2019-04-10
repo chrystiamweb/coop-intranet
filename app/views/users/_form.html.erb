@@ -30,7 +30,7 @@
     </div> 
     <div class="field">
       <%= form.label :location %>
-      <%= form.select :location, Location.all.keys.map { |w| [w.humanize, w] }%>
+      <%= select_tag 'crl', options_for_select(@locations.collect{ |u| [u.name, u.id] }), class:'custom-select' %> 
     </div> 
     <div class='field'>
       <%= form.label :kind %><br />  
