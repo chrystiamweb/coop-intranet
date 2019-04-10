@@ -13,7 +13,7 @@ class Requisition < ApplicationRecord
 
   scope :final_steps, -> { where "(sector_flow_id = ? and requisition_category_id = ?)or(sector_flow_id = ? and requisition_category_id = ?)", 4,2,9,1}
   scope :closed, -> { where "sector_flow_id > ? or sector_flow_id < ?", 9,1}
-  scope :opened, -> { where "sector_flow_id < ? and sector_flow_id > ?", 9,1}
+  scope :opened, -> { where "sector_flow_id <= ? and sector_flow_id >= ?", 9,1}
   
   
   def self.search(search)
