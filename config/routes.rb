@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :requisitions
   get :search, controller: :requisitions
   get 'simulation/index'
-  get '/sim', to: 'simulation#new_sim'
+  get '/sim', to: 'simulation#new_sim' 
   get '/taxes', to: 'simulation#sim'
+  get '/goals', to: 'home#goals'
   resources :criteria_setups
   resources :criteria_impact_definitions
   resources :criteria
