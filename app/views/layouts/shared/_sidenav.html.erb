@@ -46,22 +46,22 @@
 			<li>
 				<div class='collapsible-header'><i class='material-icons'>insert_chart</i>Relatórios diversos</div>
 				<div class='collapsible-body'>
-					<ul>						
-						<li>						
-							<%= link_to 'Acompanhamento de metas', report_path %>
-						</li>						
+					<ul>
+						<li>
+							<%= link_to 'Carteira Diária', goals_path %>
+						</li>
 					</ul>
 				</div>
 			</li>
 			<li>
 				<div class='collapsible-header'><i class='material-icons'>cloud_download</i>Downloads</div>
 				<div class='collapsible-body'>
-					<ul>					
+					<ul>
 						<li>
 							<%= link_to  'Documentos', docfiles_path %>					
 						</li>			
 						<li>								
-							<%= link_to  'Normativos', normatives_path  %>								
+							<%= link_to  'Normativos', normatives_path  %> 								
 						</li>			
 					</ul>
 				</div>
@@ -91,6 +91,9 @@
 					<ul>					
 						<li>
 							<%= link_to  'Usuários', users_index_path  %>
+						</li>							
+						<li>
+							<%= link_to  'Importação de dados', config_path  %>
 						</li>							
 					</ul>
 				</div>
