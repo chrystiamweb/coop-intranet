@@ -5,9 +5,7 @@ class Client < ApplicationRecord
   validates :cpfcnpj, presence: true, length: { maximum: 14 }
 
   def self.import(file)
-    csv_text = File.read(file)
-    byebug
-    csv_text.foreach(file.path, :headers => true) do |p|
+    CSV.foreach(file.path, :headers => true) do |p|
       Client.where(cpfcnpj: p["Número CPF/CNPJ"]).first_or_create do |client|
         client.name = p["Nome Cliente"]
         client.cpfcnpj = p["Número CPF/CNPJ"]

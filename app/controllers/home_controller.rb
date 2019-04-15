@@ -6,7 +6,8 @@ class HomeController < ApplicationController
 		@birth_days_by_day = @birth_days_by_month.where("EXTRACT(DAY FROM birthday)= ?", Time.zone.now.day).order(:birthday)
 	end
 
-	def goals        
+	def goals   
+		@reports = GoalsReport.last(3)     
 	end
 
 	def import
