@@ -1,7 +1,18 @@
 <div class="container">
-    <h3>Import Data</h3>
-    <%= form_tag import_home_index_path, multpart: true do%>
-        <%= file_field_tag :file%>
-        <%= submit_tag "Importar CSV"%>
-    <% end %>
+
+  <h3>Import Data</h3>
+  <%= form_tag(import_home_index_path, multpart: true) do%>
+    <%= file_field_tag 'file' %>
+    <%= submit_tag "Importar CSV"%>
+  <% end %>
+
+  <h1>Importar relatórios</h1>
+  <%= form_tag report_home_index_path, multpart: true do%>
+    <%= file_field_tag :files, multiple: true %>
+    <%= submit_tag "Importar CSV"%>
+  <% end %>
+
+  
+
+
 </div>

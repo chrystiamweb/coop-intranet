@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :goals_reports
   resources :requisitions
   get :search, controller: :requisitions
   resources :home
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   resources :docfiles
   resources :normatives
   resources :posts
+  resources :goals_report
 
   get 'simulation/index'
   get '/sim', to: 'simulation#new_sim' 
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   get '/config', to: 'home#config'
  resources :home do 
   collection { post :import }
+  collection { post :report }
  end
  
 

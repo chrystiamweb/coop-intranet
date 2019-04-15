@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_161120) do
+ActiveRecord::Schema.define(version: 2019_04_12_160936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,24 @@ ActiveRecord::Schema.define(version: 2019_03_14_161120) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "goal_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "goals_reports", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "goal_category_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_category_id"], name: "index_goals_reports_on_goal_category_id"
+    t.index ["location_id"], name: "index_goals_reports_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -298,6 +316,8 @@ ActiveRecord::Schema.define(version: 2019_03_14_161120) do
   add_foreign_key "criteria_impact_definitions", "criteria"
   add_foreign_key "criteria_setups", "criteria"
   add_foreign_key "docfiles", "file_types"
+  add_foreign_key "goals_reports", "goal_categories"
+  add_foreign_key "goals_reports", "locations"
   add_foreign_key "requisition_notes", "requisitions"
   add_foreign_key "requisitions", "clients"
   add_foreign_key "requisitions", "locations"

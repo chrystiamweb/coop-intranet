@@ -14,6 +14,12 @@ class HomeController < ApplicationController
 		redirect_to root_url, notice: "Usuários importador com sucesso!"
 	end
 
+	def report		
+		GoalsReport.import(params[:files])
+		
+		redirect_to root_url, notice: "Usuários importador com sucesso!"
+	end
+
 	def configs
 	end
     

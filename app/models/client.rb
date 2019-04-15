@@ -6,8 +6,8 @@ class Client < ApplicationRecord
 
   def self.import(file)
     csv_text = File.read(file)
-    csv = CSV.parse(csv_text, :headers => true)
-    csv.each do |p|
+    byebug
+    csv_text.foreach(file.path, :headers => true) do |p|
       Client.where(cpfcnpj: p["Número CPF/CNPJ"]).first_or_create do |client|
         client.name = p["Nome Cliente"]
         client.cpfcnpj = p["Número CPF/CNPJ"]

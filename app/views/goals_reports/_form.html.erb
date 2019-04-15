@@ -1,0 +1,42 @@
+<%= form_with(model: goals_report, local: true) do |form| %>
+  <% if goals_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(goals_report.errors.count, "error") %> prohibited this goals_report from being saved:</h2>
+
+      <ul>
+      <% goals_report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :goal_category_id %>
+    <%= collection_select(:goals_report, :goal_category_id, GoalCategory.all, :id, :name) %>    
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= collection_select(:goals_report, :location_id, Location.all, :id, :name) %>    
+  </div>
+
+  <div class="field">
+    <%= form.label 'Selecionar arquivo' %></br>
+    <%= form.file_field :report_img %></br>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
