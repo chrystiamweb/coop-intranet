@@ -84,7 +84,7 @@
 					</ul>
 				</div>
 			</li>						
-			
+			<% if current_user.admin? %>
 			<li>				
 				<div class='collapsible-header'><i class='material-icons'>settings</i>Configurações</div>
 				<div class='collapsible-body'>
@@ -94,11 +94,15 @@
 						</li>							
 						<li>
 							<%= link_to  'Importação de dados', config_path  %>
+						</li>
+						<li>
 							<%= link_to  'Teste', goals_reports_path  %>
 						</li>							
 					</ul>
 				</div>
 			</li>
+			<% end %>
+
 		</ul>	
 	</li>
 	<li><div class='divider'></div></li>
