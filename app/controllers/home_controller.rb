@@ -4,10 +4,11 @@ class HomeController < ApplicationController
 		@lastnormatives = Normative.first(5)     
 		@birth_days_by_month = User.where("EXTRACT(MONTH FROM birthday) = ?", Time.zone.now.month).order("extract(day from birthday) ASC")
 		@birth_days_by_day = @birth_days_by_month.where("EXTRACT(DAY FROM birthday)= ?", Time.zone.now.day).order(:birthday)
+		user_signed_in? ? @report = GoalsReport.same_location(current_user.location) : @report = GoalsReport.by_last_location
 	end
 
 	def goals   
-		@reports = GoalsReport.last(3)     
+		@reports = GoalsReport.last(10)     
 	end
 
 	def import
