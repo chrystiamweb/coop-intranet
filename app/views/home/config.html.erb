@@ -1,0 +1,15 @@
+<div class="container">
+
+  <h3>Importar clientes</h3>
+  <%= form_tag import_home_index_path, multipart: true do%>
+    <%= file_field_tag :file, required: :true %>
+    <%= submit_tag "Importar CSV"%>
+  <% end %>
+
+  <h3>Importar relatórios</h3>
+  <%= form_tag report_home_index_path, multipart: true do%>
+    <%= file_field_tag 'files[]', multiple: true, required: :true %>
+    <%= submit_tag "Importar Imagens "%>
+  <% end %>
+  
+</div>

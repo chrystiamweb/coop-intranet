@@ -1,0 +1,2 @@
+module GoalsReportsHelper
+end

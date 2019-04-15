@@ -13,6 +13,8 @@
 //= require jquery.mask.min
 //= require datatables.min
 //= require jquery.maskMoney
+//= require Chart.bundle
+//= require chartkick
 //= require turbolinks
 //= require_tree .
 //= require_self

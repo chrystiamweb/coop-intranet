@@ -7,6 +7,7 @@ $(document).on('turbolinks:load', function() {
   $('.collapsible').collapsible();
   $('select').formSelect();
   $('.fixed-action-btn').floatingActionButton();
+  $('.materialboxed').materialbox();
 });
 
 document.addEventListener("turbolinks:before-cache", function() {

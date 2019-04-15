@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @goals_report.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @goals_report.description %>
+</p>
+
+<p>
+  <strong>Goal category:</strong>
+  <%= @goals_report.goal_category %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @goals_report.location %>
+</p>
+
+<%= link_to 'Edit', edit_goals_report_path(@goals_report) %> |
+<%= link_to 'Back', goals_reports_path %>

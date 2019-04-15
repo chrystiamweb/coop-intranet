@@ -12,6 +12,9 @@ class RequisitionsController < ApplicationController
       @requisitions = Requisition.search(params[:search]).where(location_id: current_user.location.id).open_or_closed(params[:filter])
     end
   end
+  
+  def report
+  end
 
   def show
     set_status_options(@requisition)

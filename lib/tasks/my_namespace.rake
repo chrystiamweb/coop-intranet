@@ -40,8 +40,45 @@ namespace :my_namespace do
 
   end
 
-  desc "TODO"
-  task my_task2: :environment do
+  desc "create requisitions for test"
+  task create_requisitions: :environment do
+    puts "Cadastrando requisições"
+    100.times do |days|
+      reqs = rand(50)
+      reqs.times do |n|
+        testuser = User.all.sample
+        mod = Modality.all.sample
+        Requisition.create!(
+          title: Faker::Lorem.sentence,    
+          description: Faker::Lorem.paragraph(5),
+          requisition_status_id: 1,
+          requisition_category_id: RequisitionCategory.all.sample.id,
+          requester_id: testuser.id,
+          location_id: testuser.location.id,
+          client_id: Client.all.sample.id, 
+          modality_id: mod.id,
+          sector_flow_id: 1,
+          value: 9999.99,
+          requisition_number: rand(9999999),
+          flag: 0, 
+          created_at: days.day.from_now
+        )
+       end
+
+        puts "Requisições Cadastradas"
+        puts "Atualizando requisições"
+        Requisition.last(reqs).each do |req|
+        StatusAction.create!(
+          requisition_id: req.id,
+          start: Time.now,
+          requisition_status_id: req.requisition_status_id,                             
+          action_by:  User.all.sample.login,
+          sector_flow_id: req.sector_flow_id
+        )
+        end
+    end
+
+    
   end
 
 end
