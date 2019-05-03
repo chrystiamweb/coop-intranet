@@ -94,7 +94,7 @@ class RequisitionsController < ApplicationController
       @status = StatusAction.new
       @status.requisition_id = requisition.id
       @status.requisition_status = requisition.requisition_status
-      @status.start = Time.now
+      @status.start = Time.current
       @status.action_by = current_user.full_name
       @status.sector_flow_id = requisition.sector_flow_id
       if params[:requisition][:status_description].blank?
@@ -118,7 +118,7 @@ class RequisitionsController < ApplicationController
   
     def finish_status_from_requisition(requisition_id)
       finished_status = StatusAction.where(requisition_id: requisition_id).last
-      finished_status.finish = Time.now
+      finished_status.finish = Time.current
       finished_status.save
     end
 

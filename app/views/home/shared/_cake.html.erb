@@ -16,7 +16,7 @@
           <div class="">
             <img src="https://bgcburbank.org/wp-content/uploads/2017/09/Blank-Avatar.jpg" alt="Contact Person">
             <span class='span-text'><%= a.full_name %></span> 
-              <% if a.birthday.strftime("%d/%m") == Time.now.strftime("%d/%m") %>
+              <% if a.birthday.strftime("%d/%m") == Time.current.strftime("%d/%m") %>
                 <%= content_tag(:div,"Hoje",  class: "left") %>
               <% else %>
                 <%= content_tag(:div, a.birthday.strftime("%d/%m"),  class: "left") %>

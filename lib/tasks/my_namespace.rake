@@ -70,7 +70,7 @@ namespace :my_namespace do
         Requisition.last(reqs).each do |req|
         StatusAction.create!(
           requisition_id: req.id,
-          start: Time.now,
+          start: Time.current,
           requisition_status_id: req.requisition_status_id,                             
           action_by:  User.all.sample.login,
           sector_flow_id: req.sector_flow_id
