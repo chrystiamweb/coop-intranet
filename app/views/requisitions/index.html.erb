@@ -31,6 +31,7 @@
               <th>Valor</th>
               <th>Solicitante</th>
               <th>Data de solicitação</th>
+              <th>Última atualização</th>
               <th>Fluxo</th>
               <th>Setor Responsável</th>
             </tr>
@@ -47,7 +48,8 @@
               <td><%= requisition.requisition_status.name %></span></td>
               <td><%= requisition.value %></td>
               <td><%= requisition.requester.full_name %></td>
-              <td><%= requisition.created_at.strftime("%d/%m/%Y") %></td>
+              <td><%= requisition.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+              <td><%= requisition.updated_at.strftime("%d/%m/%Y %H:%M") %></td>
               <td><%= requisition.sector_flow.name %></td>
               <td colspan='2'><%= requisition.sector_flow.sector.name %></td>
               
