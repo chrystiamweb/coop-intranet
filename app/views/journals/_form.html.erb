@@ -12,9 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-    <%= form.file_field :img_news, accept: 'image/*', direct_upload: true, multiple: true %><br/><br/>
+    <%= form.label 'Título' %>
+    <%= form.text_field :title, required: true %>
+    <%= form.file_field :img_news, accept: 'image/*', direct_upload: true, multiple: true, required: true %><br/><br/>
   </div>
 
   <div class="actions">

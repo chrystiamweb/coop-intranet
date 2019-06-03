@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Journals</h1>
+<h1>Jornal Mural</h1>
 
 <table>
   <thead>
@@ -14,9 +12,11 @@
     <% @journals.each do |journal| %>
       <tr>
         <td><%= journal.title %></td>
-        <td><%= link_to 'Show', journal %></td>
-        <td><%= link_to 'Edit', edit_journal_path(journal) %></td>
-        <td><%= link_to 'Destroy', journal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Visualizar', journal %></td>
+        <% if can? :update, @posts %> 
+          <td><%= link_to 'Editar', edit_journal_path(journal) %></td>
+          <td><%= link_to 'Excluir', journal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,8 @@
 
 <br>
 
-<%= link_to 'New Journal', new_journal_path %>
+<div class='fixed-action-btn'>
+  <%= link_to new_journal_path, class:'btn-floating btn-large waves-effect waves-light bgcolortest' do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>

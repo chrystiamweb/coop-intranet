@@ -47,7 +47,14 @@
 
 .slider{
     margin-top: 8px;
-    height: 31rem;
+    //min-height: 31rem;
+}
+
+.slider .slides li img {
+   
+    padding: 0px;
+    margin: 0px;
+    border: 5px;
 }
 
 .colapsible-remove-margin{
