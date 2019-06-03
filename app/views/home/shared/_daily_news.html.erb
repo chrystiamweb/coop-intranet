@@ -1,0 +1,21 @@
+<ul class="collapsible ">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">local_library</i>Jornal Mural</div>
+    <div class="collapsible-body colapsible-remove-margin">
+			<div class="container">
+				<div class='slider'>
+          <ul class='slides'>
+            <% @daily_news.img_news.each do |img| %>
+              <li class=''>				 
+                <%= link_to(@daily_news) do %>	
+                  <%= image_tag  img , class: 'img-fluid'%> 
+                <%end%>				
+              </li>				
+            <%end%>
+          </ul>
+        </div>
+			</div>
+    </div>
+  </li>
+</ul>
+

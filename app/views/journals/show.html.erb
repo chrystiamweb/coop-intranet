@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+
+  <div class="container">
+    <h1><%= @journal.title %></H1> 
+    <% @journal.img_news.each do |img| %>
+      <div class="card">
+        <%= image_tag  img, class:'materialboxed responsive-img'  %>
+      </div>
+    <%end%>
+  </div>
+
+<%= link_to 'Edit', edit_journal_path(@journal) %> |
+<%= link_to 'Back', journals_path %>

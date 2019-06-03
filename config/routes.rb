@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :journals
   resources :goals_reports
   resources :requisitions
   get :search, controller: :requisitions
