@@ -1,0 +1,20 @@
+<%if @daily_news %>
+<ul class="collapsible ">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">local_library</i>Jornal Mural</div>
+    <div class="collapsible-body colapsible-remove-margin">
+      <div class='slider'>
+        <ul class="slides">
+          <% @daily_news.img_news.each_with_index do |img, i| %>
+            <li class=''>				 
+              <%= link_to(@daily_news) do %>	
+                <%= image_tag  img %>
+              <%end%>				
+            </li>	
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
+<%end%>

@@ -39,15 +39,13 @@
     max-height: 100px;
 }
 
-
 .slider .indicators .indicator-item.active {
-    background-color: #003641;
-    
+    background-color: #003641;    
 }
 
 .slider{
     margin-top: 8px;
-    height: 31rem;
+    min-height: 31rem;
 }
 
 .colapsible-remove-margin{

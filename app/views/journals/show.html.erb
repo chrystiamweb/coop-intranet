@@ -1,0 +1,14 @@
+<div class="container">
+  <h1><%= @journal.title %></H1> 
+  <% @journal.img_news.each do |img| %>
+    <div class="card">
+      <%= image_tag  img, class:'materialboxed responsive-img'  %>
+    </div>
+  <%end%>
+  <% if can? :update, @posts %>
+    <%= link_to 'Editar', edit_journal_path(@journal), class:'btn' %>
+  <% end %>
+  <%= link_to 'Voltar', root_path, class:'btn' %><br>
+</div>
+
+
