@@ -8,6 +8,7 @@ $(document).on('turbolinks:load', function() {
   $('select').formSelect();
   $('.fixed-action-btn').floatingActionButton();
   $('.materialboxed').materialbox();
+  $('.modal').modal();
 });
 
 document.addEventListener("turbolinks:before-cache", function() {

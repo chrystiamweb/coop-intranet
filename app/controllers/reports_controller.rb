@@ -15,8 +15,15 @@ class ReportsController < ApplicationController
   def edit
   end
 
+  def new_type    
+    ReportType.create(
+      name: params[:report_type]
+    )
+    @types = ReportType.all
+  end
+
   def create
-    @report = Report.new(report_params.except(:images))
+    @report = Report.new(report_params.except(:images,:report_type))
     @report.action_by = current_user.full_name
     respond_to do |format|
       if @report.save
@@ -32,7 +39,7 @@ class ReportsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @report.update(report_params.except(:images))
+      if @report.update(report_params.except(:images,:report_type))
         format.html { redirect_to @report, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
@@ -56,6 +63,6 @@ class ReportsController < ApplicationController
     end
 
     def report_params
-      params.require(:report).permit(:name, :report_type_id, :action_by, :file, images:[])
+      params.require(:report).permit(:name, :report_type_id, :action_by, :file,:report_type, images:[])
     end
 end

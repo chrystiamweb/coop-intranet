@@ -202,16 +202,6 @@ ActiveRecord::Schema.define(version: 2019_06_06_121429) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "report_data", force: :cascade do |t|
-    t.string "name"
-    t.bigint "location_id"
-    t.bigint "report_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_report_data_on_location_id"
-    t.index ["report_id"], name: "index_report_data_on_report_id"
-  end
-
   create_table "report_image_data", force: :cascade do |t|
     t.string "name"
     t.bigint "location_id"
@@ -360,8 +350,6 @@ ActiveRecord::Schema.define(version: 2019_06_06_121429) do
   add_foreign_key "docfiles", "file_types"
   add_foreign_key "goals_reports", "goal_categories"
   add_foreign_key "goals_reports", "locations"
-  add_foreign_key "report_data", "locations"
-  add_foreign_key "report_data", "reports"
   add_foreign_key "report_image_data", "locations"
   add_foreign_key "report_image_data", "reports"
   add_foreign_key "reports", "report_types"

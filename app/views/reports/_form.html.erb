@@ -16,9 +16,12 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="col">
     <%= form.label 'Selecionar Relatório' %>
-    <%= collection_select(:report, :report_type_id, ReportType.all, :id, :name) %>
+    <div class="row">
+      <div  class="col s6"><%= collection_select(:report, :report_type_id, ReportType.all, :id, :name, id:'report-type') %></div>
+      <div class="col"><a href='#modal1' class="waves-effect modal-trigger"  title='Criar novo relatório'><i class="material-icons">add</i></a></div>
+    </div>
   </div>
 
   <div class="field">

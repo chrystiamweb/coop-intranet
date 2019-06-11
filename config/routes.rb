@@ -22,9 +22,13 @@ Rails.application.routes.draw do
   get '/taxes', to: 'simulation#sim'
   get '/goals', to: 'home#goals'
   get '/config', to: 'home#config'
+
  resources :home do 
   collection { post :import }
   collection { post :report }
+ end
+ resources :reports do 
+  collection { post :new_type }
  end
  
 
