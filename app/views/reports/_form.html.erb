@@ -1,4 +1,4 @@
-<%= form_with(model: report, local: true) do |form| %>
+<%= form_with(model: report, multipart: true) do |form| %>
   <% if report.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
@@ -17,13 +17,19 @@
   </div>
 
   <div class="field">
-    <%= form.label :report_type_id %>
-    <%= form.text_field :report_type_id %>
+    <%= form.label 'Selecionar Relatório' %>
+    <%= collection_select(:report, :report_type_id, ReportType.all, :id, :name) %>
   </div>
 
   <div class="field">
-    <%= form.label :action_by %>
-    <%= form.text_field :action_by %>
+    <%= form.label 'Selecionar Imagens' %>
+    <%= form.file_field :images, accept: 'image/*',  multiple: true %><br/><br/>
+    
+  </div>
+  
+  <div class="field">
+    <%= form.label 'Anexar Arquivos' %>
+    <%= form.file_field :file, direct_upload: true%><br/><br/>
   </div>
 
   <div class="actions">

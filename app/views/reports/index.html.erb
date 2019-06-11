@@ -16,7 +16,7 @@
     <% @reports.each do |report| %>
       <tr>
         <td><%= report.name %></td>
-        <td><%= report.report_type %></td>
+        <td><%= report.report_type.name %></td>
         <td><%= report.action_by %></td>
         <td><%= link_to 'Show', report %></td>
         <td><%= link_to 'Edit', edit_report_path(report) %></td>

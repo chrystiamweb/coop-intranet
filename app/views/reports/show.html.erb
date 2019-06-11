@@ -1,19 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+ <p>
+    <strong>Name:</strong>
+    <%= @report.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @report.name %>
-</p>
+  <p>
+    <strong>Report type:</strong>
+    <%= @report.report_type.name %>
+  </p>
 
-<p>
-  <strong>Report type:</strong>
-  <%= @report.report_type %>
-</p>
+  
+  <%if @report.report_image_data %>
+    <% @report.report_image_data.each do |data|%>
+      <p> <%= image_tag data.image, class:'materialboxed responsive-img'%> </p>
+    <% end %>
+  <% end %>
+  
+  <p>
+  <%if @report.file.attached? %>
+    <h5>Baixar relatório</h5>
+    <%= link_to url_for(@report.file), download:'',class:"btn waves-effect waves-light" do %>
+      Download
+    <%end%>
+    </p>
+  <% end %>
+    
 
-<p>
-  <strong>Action by:</strong>
-  <%= @report.action_by %>
-</p>
+<%= link_to 'Voltar', reports_path, class:'btn' %>
 
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %>
+</div>
+ 

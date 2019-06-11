@@ -22,9 +22,8 @@
       <%= form.text_field :description %>
     </div>
 
-    <div class="input-field">      
+    <div class="field">
       <%= collection_select(:docfile, :file_type_id, FileType.all, :id, :name) %>
-      
     </div>
 
     <div class="field">

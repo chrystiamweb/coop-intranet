@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_190309) do
+ActiveRecord::Schema.define(version: 2019_06_06_121429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,42 @@ ActiveRecord::Schema.define(version: 2019_05_28_190309) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "report_data", force: :cascade do |t|
+    t.string "name"
+    t.bigint "location_id"
+    t.bigint "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_report_data_on_location_id"
+    t.index ["report_id"], name: "index_report_data_on_report_id"
+  end
+
+  create_table "report_image_data", force: :cascade do |t|
+    t.string "name"
+    t.bigint "location_id"
+    t.bigint "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_report_image_data_on_location_id"
+    t.index ["report_id"], name: "index_report_image_data_on_report_id"
+  end
+
+  create_table "report_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "name"
+    t.bigint "report_type_id"
+    t.string "action_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_type_id"], name: "index_reports_on_report_type_id"
+  end
+
   create_table "requisition_categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -324,6 +360,11 @@ ActiveRecord::Schema.define(version: 2019_05_28_190309) do
   add_foreign_key "docfiles", "file_types"
   add_foreign_key "goals_reports", "goal_categories"
   add_foreign_key "goals_reports", "locations"
+  add_foreign_key "report_data", "locations"
+  add_foreign_key "report_data", "reports"
+  add_foreign_key "report_image_data", "locations"
+  add_foreign_key "report_image_data", "reports"
+  add_foreign_key "reports", "report_types"
   add_foreign_key "requisition_notes", "requisitions"
   add_foreign_key "requisitions", "clients"
   add_foreign_key "requisitions", "locations"
