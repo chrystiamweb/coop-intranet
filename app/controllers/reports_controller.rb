@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     @reports = Report.all
@@ -19,9 +20,11 @@ class ReportsController < ApplicationController
     ReportType.create(
       name: params[:report_type]
     )
-    @types = ReportType.all
   end
 
+  def report_types
+   render json: ReportType.last
+  end
   def create
     @report = Report.new(report_params.except(:images,:report_type))
     @report.action_by = current_user.full_name
