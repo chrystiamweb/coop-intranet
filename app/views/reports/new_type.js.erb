@@ -1,2 +1,13 @@
-console.log('<%=  @types.to_json %>')
-$('dropdown-content select-dropdown').append('<li>NewOption</li>')
+$.ajax({
+    url:  "/report_types",
+    dataType: "json",
+    success: function(data){ 
+      var $newOpt = $("<option>").attr("value",data.id).text(data.name)
+      $("#report_report_type_id").append($newOpt);
+      $("#report_report_type_id").val(data.id);
+      $('select').formSelect();      
+    },   
+    error : function(data){
+      console.log("error:" + data)
+    }
+});
