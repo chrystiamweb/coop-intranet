@@ -32,7 +32,7 @@ gem 'wicked_pdf'
 gem 'net-ldap'
 gem 'will_paginate', '~> 3.1.0'
 gem 'ransack'
-gem "chartkick"
+gem "chartkick", ">= 3.2.0"
 gem 'groupdate'
 
 
