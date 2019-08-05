@@ -30,7 +30,8 @@ class Report < ApplicationRecord
     self.select(:report_type_id).distinct
   end
 
-  def self.one_type_by_location(location)
-    Report.joins(:report_image_data).where('report_image_data.location_id = ?', location).select(:report_type_id).uniq
+  def self.last_per_type()
+    ids = self.group(:report_type).maximum(:id).values
+    self.find(ids)
   end
 end
