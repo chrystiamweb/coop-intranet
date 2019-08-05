@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @reports = Report.all
+    @reports = Report.by_type(params[:type])   
   end
 
   def show
@@ -20,6 +20,10 @@ class ReportsController < ApplicationController
     ReportType.create(
       name: params[:report_type]
     )
+  end
+
+  def reports_from_location
+    @reports = Report.last_per_type
   end
 
   def report_types
@@ -66,6 +70,6 @@ class ReportsController < ApplicationController
     end
 
     def report_params
-      params.require(:report).permit(:name, :report_type_id, :action_by, :file,:report_type, images:[])
+      params.require(:report).permit(:name, :report_type_id, :action_by, :file,:report_type, :type, images:[])
     end
 end
