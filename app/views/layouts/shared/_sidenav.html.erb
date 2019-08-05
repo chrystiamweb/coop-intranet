@@ -50,6 +50,14 @@
 						<li>
 							<%= link_to 'Carteira Diária', goals_path %>
 						</li>
+						<% report_type.each do |type| %>
+						<li>
+							<%= link_to type.report_type.name, reports_index_url(type: type.report_type_id) %>
+						</li>
+						<% end %>
+							<li>
+							<%= link_to 'Resumo', reports_from_location_path %>
+						</li>
 					</ul>
 				</div>
 			</li>
