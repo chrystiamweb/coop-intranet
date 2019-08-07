@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reports, except: :show
   resources :journals
   resources :goals_reports
   resources :requisitions
@@ -17,13 +18,20 @@ Rails.application.routes.draw do
   resources :goals_report
 
   get 'simulation/index'
+  get 'reports/index'
   get '/sim', to: 'simulation#new_sim' 
+  get '/reports_from_location', to: 'reports#reports_from_location' 
   get '/taxes', to: 'simulation#sim'
   get '/goals', to: 'home#goals'
   get '/config', to: 'home#config'
+  get '/report_types', to: 'reports#report_types'
+
  resources :home do 
   collection { post :import }
   collection { post :report }
+ end
+ resources :reports do 
+  collection { post :new_type }
  end
  
 

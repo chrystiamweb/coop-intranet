@@ -1,0 +1,41 @@
+<%= form_with(model: report, multipart: true) do |form| %>
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="col">
+    <%= form.label 'Selecionar Relatório' %>
+    <div class="row">
+      <div  class="col s6"><%= collection_select(:report, :report_type_id, ReportType.all, :id, :name, id:'report-type') %></div>
+      <div class="col"><a href='#modal1' class="waves-effect modal-trigger"  title='Criar novo relatório'><i class="material-icons">add</i></a></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Selecionar Imagens' %>
+    <%= form.file_field :images, accept: 'image/*',  multiple: true %><br/><br/>
+    
+  </div>
+  
+  <div class="field">
+    <%= form.label 'Anexar Arquivos' %>
+    <%= form.file_field :file, direct_upload: true%><br/><br/>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

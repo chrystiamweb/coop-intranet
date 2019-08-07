@@ -1,0 +1,32 @@
+<div class="container">
+ <p>
+    <strong>Referência:</strong>
+    <%= @report.name %>
+  </p>
+
+  <p>
+    <strong>Relatório:</strong>
+    <%= @report.report_type.name %>
+  </p>
+
+  
+  <%if @report.report_image_data %>
+    <% @report.report_image_data.each do |data|%>
+      <p> <%= image_tag data.image, class:'materialboxed responsive-img'%> </p>
+    <% end %>
+  <% end %>
+  
+  <p>
+  <%if @report.file.attached? %>
+    <h5>Baixar relatório</h5>
+    <%= link_to url_for(@report.file), download:'',class:"btn waves-effect waves-light" do %>
+      Download
+    <%end%>
+    </p>
+  <% end %>
+    
+
+<%= link_to 'Voltar', reports_path, class:'btn' %>
+
+</div>
+ 

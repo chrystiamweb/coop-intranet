@@ -35,6 +35,10 @@ module ApplicationHelper
         end
     end
 
+    def report_type
+        Report.distinct_type
+    end
+
     
 
 end

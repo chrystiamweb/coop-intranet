@@ -1,0 +1,34 @@
+<h1>Relatórios</h1>
+<div class="container">
+
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Referência</th>
+      <th>Relatório</th>
+      <th>Criado por:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.name %></td>
+        <td><%= report.report_type.name %></td>
+        <td><%= report.action_by %></td>
+        <td><%= link_to 'Visualizar', report %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to 'Editar', edit_report_path(report) %></td>
+          <td><%= link_to 'Apagar', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user.admin? %>
+<%= link_to 'Incluir relatório', new_report_path %>
+<% end %>
