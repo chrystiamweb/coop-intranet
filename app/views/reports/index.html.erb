@@ -1,13 +1,13 @@
-<p id="notice"><%= notice %></p>
+<h1>Relatórios</h1>
+<div class="container">
 
-<h1>Reports</h1>
-
+</div>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Report type</th>
-      <th>Action by</th>
+      <th>Referência</th>
+      <th>Relatório</th>
+      <th>Criado por:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,14 +18,17 @@
         <td><%= report.name %></td>
         <td><%= report.report_type.name %></td>
         <td><%= report.action_by %></td>
-        <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Edit', edit_report_path(report) %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Visualizar', report %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to 'Editar', edit_report_path(report) %></td>
+          <td><%= link_to 'Apagar', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Report', new_report_path %>
+<% if current_user.admin? %>
+<%= link_to 'Incluir relatório', new_report_path %>
+<% end %>
