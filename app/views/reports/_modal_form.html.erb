@@ -1,15 +1,13 @@
- 
 <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Incluir Novo relatorio</h4>
-      <%= form_tag new_type_reports_path, remote: true do %>
-        <%= text_field_tag :report_type %>
-      <%= submit_tag "Incluir" , class:"modal-close btn" %> 
-        
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-    </div>
-    <% end %>   
+  <div class="modal-content">
+    <h4>Incluir Novo relatorio</h4>
+    <%= form_tag new_type_reports_path, remote: true do %>
+      <%= text_field_tag :report_type %>
+    <%= submit_tag "Incluir" , class:"modal-close btn" %>       
   </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+  </div>
+  <% end %>   
+</div>
 
