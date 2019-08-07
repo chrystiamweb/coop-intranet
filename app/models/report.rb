@@ -1,7 +1,7 @@
 class Report < ApplicationRecord
   belongs_to :report_type
   has_one_attached :file
-  has_many :report_image_data
+  has_many :report_image_data, dependent: :destroy
 
   def add_images_to_report(params)    
     params[:images].each do |image|
@@ -22,7 +22,7 @@ class Report < ApplicationRecord
     self.where(report_type_id: type).last
   end
 
-  def self.by_type(type)
+  def self.by_type(type)        
     self.where(report_type_id: type)
   end
 
