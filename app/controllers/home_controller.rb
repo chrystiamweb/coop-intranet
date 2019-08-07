@@ -9,7 +9,7 @@ class HomeController < ApplicationController
 	end
 
 	def goals   
-		@reports = GoalsReport.last(10)     
+		@reports = GoalsReport.last(12)     
 	end
 
 	def import
