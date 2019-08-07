@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @reports = Report.by_type(params[:type])   
+    @reports = Report.by_type(params[:type]).order(created_at: :desc) 
   end
 
   def show
@@ -24,6 +24,7 @@ class ReportsController < ApplicationController
 
   def reports_from_location
     @reports = Report.last_per_type
+    @lastlocation = Location.last.id
   end
 
   def report_types
