@@ -27,11 +27,14 @@ class Report < ApplicationRecord
   end
 
   def self.distinct_type
-    self.select(:report_type_id).distinct
+    self.select(:report_type_id).order(report_type_id: :desc).distinct
   end
 
-  def self.last_per_type()
+  def self.last_per_type
     ids = self.group(:report_type).maximum(:id).values
     self.find(ids)
+  end
+  def self.order_by_img
+    joins(:report => :report_image_datum).order("report_image_datum.location_id")
   end
 end
