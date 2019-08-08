@@ -20,7 +20,6 @@
         <td><%= report.action_by %></td>
         <td><%= link_to 'Visualizar', report %></td>
         <% if current_user.admin? %>
-          <td><%= link_to 'Editar', edit_report_path(report) %></td>
           <td><%= link_to 'Apagar', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
