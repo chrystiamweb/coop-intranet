@@ -1,4 +1,5 @@
-<div class="container">
+<div class="row">
+<div class="col s12">
  <p>
     <strong>Referência:</strong>
     <%= @report.name %>
@@ -8,11 +9,13 @@
     <strong>Relatório:</strong>
     <%= @report.report_type.name %>
   </p>
+</div>
+
 
   
   <%if @report.report_image_data %>
     <% @report.report_image_data.each do |data|%>
-      <p> <%= image_tag data.image, class:'materialboxed responsive-img'%> </p>
+      <p> <%= image_tag data.image, class:'responsive-img col s12'%> </p>
     <% end %>
   <% end %>
   
@@ -25,8 +28,10 @@
     </p>
   <% end %>
     
+<div class="col s12">
+  <p><%= link_to 'Voltar', reports_path, class:'btn' %></p>
+</div>
 
-<%= link_to 'Voltar', reports_path, class:'btn' %>
 
 </div>
  

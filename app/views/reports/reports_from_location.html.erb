@@ -1,16 +1,15 @@
 <%  title = params[:filter]  %>
 
-<div class="container">
-  <div class="row">
-  <center><h3>Resumo Relatórios <%= title %></h3></center>
-    <% @reports.each do |report|%>
-      <% report.report_image_data.each do |image|%>
-        <% params[:filter] == 'consolidado' ? filter = @lastlocation : filter = current_user.location_id %>
-        <%if  image.location_id == filter %>
-          <p> <%= image_tag image.image, class:'materialboxed responsive-img col s12' %> </p>
-        <% end %>
+<div class="row">
+<center><h3>Resumo Relatórios <%= title %></h3></center>
+  <% @reports.each do |report|%>
+    <% report.report_image_data.each do |image|%>
+      <% params[:filter] == 'consolidado' ? filter = @lastlocation : filter = current_user.location_id %>
+      <% if  image.location_id == filter %>
+        <p> <%= image_tag image.image, class:'responsive-img col s12' %> </p>
       <% end %>
     <% end %>
-  </div>
+  <% end %>
 </div>
+
 
