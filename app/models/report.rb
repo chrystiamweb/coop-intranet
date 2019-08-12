@@ -31,7 +31,7 @@ class Report < ApplicationRecord
   end
 
   def self.last_per_type
-    ids = self.group(:report_type).maximum(:id).values
+    ids = self.group(:report_type).order(report_type_id: :desc).maximum(:id).values
     self.find(ids)
   end
   def self.order_by_img
