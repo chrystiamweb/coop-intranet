@@ -14,7 +14,7 @@
 
   
   <%if @report.report_image_data %>
-    <% @report.report_image_data.each do |data|%>
+    <% @report.report_image_data.order(:location_id).each do |data|%>
       <p> <%= image_tag data.image, class:'responsive-img col s12'%> </p>
     <% end %>
   <% end %>
