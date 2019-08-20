@@ -35,7 +35,9 @@ class ReportsController < ApplicationController
     @report.action_by = current_user.full_name
     respond_to do |format|
       if @report.save
-        @report.add_images_to_report(report_params)
+        if report_params[:images]
+          @report.add_images_to_report(report_params)
+        end
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
         format.json { render :show, status: :created, location: @report }
       else
