@@ -1,6 +1,6 @@
 class Report < ApplicationRecord
   belongs_to :report_type
-  has_one_attached :file
+  has_one_attached :file, dependent: :destroy
   has_many :report_image_data, dependent: :destroy
 
   def add_images_to_report(params)    
