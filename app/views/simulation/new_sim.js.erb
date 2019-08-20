@@ -6,6 +6,8 @@ var scoreArrayCollection = $('#simulation').data('score-options');
 var crlArrayCollection = $('#simulation').data('crl-options');
 var garantiaArrayCollection = $('#simulation').data('garantia-options');
 var iapArrayCollection = $('#simulation').data('iap-options');
+var minimunPercent = parseFloat($('.minimun-percent').text());
+var maxPercent = parseFloat($('.max-percent').text());
 setDiscoutValues();
 
 
@@ -18,7 +20,6 @@ function setDiscoutValues(){
     setCrl(crlArrayCollection);
     setIap(iapArrayCollection);
     setGarantia(garantiaArrayCollection);
-    setGarantia2(garantiaArrayCollection);
     getTaxValue();
     setTotalDiscount();
 };
@@ -44,23 +45,17 @@ function setIap(arrayCollections){
 function setGarantia(arrayCollections){
     var selectIndex = $('#garantia-info :selected').index();       
     $('#discount-garantia').text('');
-    $('#discount-garantia').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
-};
-function setGarantia2(arrayCollections){
-    var selectIndex = $('#garantia2-info :selected').index();       
-    $('#discount-garantia2').text('');
-    $('#discount-garantia2').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
-};
-function setGarantia3(arrayCollections){
-    var selectIndex = $('#garantia3-info :selected').index();       
-    $('#discount-garantia3').text('');
-    $('#discount-garantia3').text(setCurrentTax(arrayCollections[selectIndex].real_value) + '%');
+    var garantia = arrayCollections[selectIndex].real_value;
+    if (seguro.checked){
+        garantia += 10;
+        garantia > 20 ? garantia = 20 : ''
+    }
+    $('#discount-garantia').text(setCurrentTax(garantia) + '%');
 };
 
 function updtadeTax(taxValue){
   $('#discount-tax').text('');
-  $('#discount-tax').text(taxValue + '%');
-
+  $('#discount-tax').text(taxValue.toFixed(2) + '%');
 };
 
 function getTaxValue(){    
@@ -68,22 +63,20 @@ function getTaxValue(){
     var setCrl = parseFloat($('#discount-crl').text());
     var setIap =  parseFloat($('#discount-iap').text());
     var setGarantia = parseFloat($('#discount-garantia').text());
-    var setGarantia2 =  parseFloat($('#discount-garantia2').text());
-    var setGarantia3 =  parseFloat($('#discount-garantia3').text());
-    var maxPercent = parseFloat($('.max-percent').text());
-    var taxValue = setScore + setCrl + setIap +  setGarantia + setGarantia2 ;
+    var taxValue = setScore + setCrl + setIap +  setGarantia ;
     updtadeTax((taxValue));
 };
 
-function setCurrentTax(tax){
-    var minimunPercent = parseFloat($('.minimun-percent').text());
-    var maxPercent = parseFloat($('.max-percent').text());
+function setCurrentTax(tax){    
     var result = ((((maxPercent - minimunPercent) / 100 ) * tax ));   
     return result.toFixed(2);
 };
 
 function setTotalDiscount(){
-     var maxPercent = parseFloat($('.max-percent').text());
-     var discountTax = parseFloat($('#discount-tax').text());    
-     $('#total-discount-tax h4').text(maxPercent - discountTax + '%');
+    var discountTax = parseFloat($('#discount-tax').text());
+    var totalDiscount = (maxPercent - discountTax).toFixed(2);
+    if (totalDiscount < minimunPercent){
+        totalDiscount = minimunPercent;
+    }
+    $('#total-discount-tax h4').text( totalDiscount + '%');
 };

@@ -1,6 +1,4 @@
 $(document).on('turbolinks:load', function() {
-
-    console.log('ãshiuhdoaiudhoiaudhaioud');
     $('#asdfasf').click(function(){ 
         startModal();
         $('select').formSelect();
@@ -10,8 +8,7 @@ $(document).on('turbolinks:load', function() {
         constrainWidth: false
      });
 
-     $(".value-input").maskMoney({showSymbol:true, symbol:"", decimal:".", thousands:""});   
-     
+     $(".value-input").maskMoney({showSymbol:true, symbol:"", decimal:".", thousands:""});       
 });
 
 function checkFile() {
