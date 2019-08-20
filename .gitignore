@@ -29,9 +29,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-#ignore database.yml
-config/database.yml
+#ignore files
 config/secrets.yml
-/db/seeds.rb
 erd.pdf
 clients.csv

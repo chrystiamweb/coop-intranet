@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: postgres
+  user: postgres
+
+development:
+  <<: *default
+  database: intranet_docker_development
+
+test:
+  <<: *default
+  database: intranet_docker_test
+
+production:
+  <<: *default
+  database: intranet_docker_production
