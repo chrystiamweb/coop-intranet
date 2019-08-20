@@ -39,7 +39,7 @@
 </div>
 
 <div class='row'>
-    <label class='col s2 '>Garantia 1:</label>
+    <label class='col s2 '>Garantia:</label>
     <div class='col s3'>            
         <%= select_tag 'garantia', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'garantia-info' %>    
     </div>
@@ -51,17 +51,6 @@
 </div>
 
 <div class='row'>
-    <label class='col s2 '>Garantia 2:</label>
-    <div class='col s3'>            
-        <%= select_tag 'garantia2', options_for_select(@garantia.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'garantia2-info' %>    
-    </div>
-    <div class='col s2 offset-s2'>           
-         Desconto:         
-    </div>
-    <div class='col s2 left' id='discount-garantia2'>  
-    </div>
-</div>
-<div class='row'>
     <label class='col s2 '>IAP</label>
     <div class='col s3'>            
         <%= select_tag 'iap', options_for_select(@iap.collect{ |u| [u.criteria_name, u.id] }), class:'custom-select', id:'iap-info' %>    
@@ -72,3 +61,11 @@
     <div class='col s2 left' id='discount-iap'>  
     </div>
 </div>
+<div class='row'>
+    <label class='col s2 '>Possui Seguro ?</label>
+    <label class='col s3'>
+        <input type="checkbox" id='seguro' onclick="setDiscoutValues();" />
+        <span></span>
+    </label>
+</div>
+     
