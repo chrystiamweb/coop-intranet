@@ -313,7 +313,7 @@ DEPENDENCIES
   capybara (>= 2.15, < 4.0)
   chartkick (>= 3.2.0)
   chromedriver-helper
-  ckeditor
+  ckeditor (~> 4.3)
   coffee-rails (~> 4.2)
   devise
   devise-i18n
@@ -328,7 +328,7 @@ DEPENDENCIES
   paperclip
   pg
   puma (~> 3.11)
-  rails (~> 5.2.0)
+  rails
   rails-assets-fullcalendar!
   rails-assets-momentjs!
   rails-erd
