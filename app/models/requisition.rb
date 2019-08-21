@@ -8,7 +8,7 @@ class Requisition < ApplicationRecord
   belongs_to :location
   has_many_attached :files
   before_validation :set_status, on: :create
-  before_save :end_game, on: :update
+  before_save :end_game
   enum flag: [ :open, :closed, :inprogress, :canceled ]
 
   scope :final_steps, -> { where "(sector_flow_id = ? and requisition_category_id = ?)or(sector_flow_id = ? and requisition_category_id = ?)", 4,2,9,1}
@@ -76,9 +76,6 @@ class Requisition < ApplicationRecord
 
   def end_game
     if self.closed 
-      puts self.sector_flow.name
-      puts self
-      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
       self.requisition_status_id = RequisitionStatus.where(name: self.sector_flow.name).first.id
     end
   end
