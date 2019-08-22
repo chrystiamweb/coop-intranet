@@ -13,7 +13,7 @@ fotoname = [ 'hero.jpg', 'loop.jpg', 'nat-1.jpg', 'nat-2.jpg',
 fotoname.each do |i|
   temp = Post.new(
     title: Faker::Lorem.sentence,
-    body: Faker::Lorem.paragraph(5)
+    body: Faker::Lorem.paragraph
   )   
   temp.image.attach(
     io: File.open("public/img/#{i}"), 
@@ -65,7 +65,7 @@ puts 'Criando usuário padrão'
 User.create(  
     full_name: 'Administrador Padrão',
     login: 'admin',
-    birthday: Faker::Date.birthday(18, 65),
+    birthday: Faker::Date.birthday,
     role: 0,
     location: Location.first,
     sector_id: Sector.last.id,
@@ -81,7 +81,7 @@ puts 'Cirando usuários de teste'
   User.create(
     full_name: Faker::Name.name,
     login: Faker::Internet.user_name,
-    birthday: Faker::Date.birthday(18, 65),
+    birthday: Faker::Date.birthday,
     role: [0,1,2,4,5,6,7,8,9,10].sample,
     location: Location.all.sample,
     email:Faker::Internet.email, 
@@ -273,7 +273,7 @@ puts "Cadastrando requisições"
   mod = Modality.all.sample
   Requisition.create!(
     title: Faker::Lorem.sentence,    
-    description: Faker::Lorem.paragraph(5),
+    description: Faker::Lorem.paragraph,
     requisition_status_id: 1,
     requisition_category_id: RequisitionCategory.all.sample.id,
     requester_id: testuser.id,
