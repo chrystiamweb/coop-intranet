@@ -33,9 +33,13 @@ class User < ApplicationRecord
                :'SUP_TESOURARIA',
                :'SUPERINTENDENTE']
 
-       private
-       def set_defaults
-              self.kind = :user if self.kind.blank?
-       end
+  def self.analysts
+    User.where(location: 1).group(:id).maximum(:full_name).values
+  end
+
+  private
+  def set_defaults
+        self.kind = :user if self.kind.blank?
+  end
        
 end

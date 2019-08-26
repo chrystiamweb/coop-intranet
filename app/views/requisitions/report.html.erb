@@ -14,9 +14,8 @@
 <%= column_chart  Requisition.group(:modality_id).count.collect {|b| [Modality.where(id:b[0]).first.title , b[1]]} %>
 <h1>Chamados por Setor de atendimento</h1>
 <%= column_chart  Requisition.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
-<h1>Chamados por Associados</h1>
-<%= column_chart  Requisition.group(:client_id).count.collect {|b| [Client.where(id:b[0]).first.name , b[1]]} %>
-<h1>Quantidade de chamados por dia</h1>
-<%= line_chart Requisition.group_by_day(:created_at).count %>
 <h1>Quantidade de chamados mensal</h1>
 <%= line_chart Requisition.group_by_month(:created_at).count %>
+<h1>Chamados processados por analistas</h1>
+<%= column_<h1>Quantidade de chamados mensal</h1>
+<%= line_chart Requisition.group_by_month(:created_at).count %>chart StatusAction.actions_by_analists %>
