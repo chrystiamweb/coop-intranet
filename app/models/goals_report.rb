@@ -11,7 +11,7 @@ class GoalsReport < ApplicationRecord
     end
   end
   def self.by_last_location
-    self.where(location: Location.last).last
+    self.where(location: Location.last_location)
   end
 
   def self.import(files)

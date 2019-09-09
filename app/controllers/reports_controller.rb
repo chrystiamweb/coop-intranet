@@ -24,7 +24,7 @@ class ReportsController < ApplicationController
 
   def reports_from_location
     @reports = Report.last_per_type
-    @lastlocation = Location.last.id
+    @lastlocation = Location.last_location
   end
 
   def report_types
