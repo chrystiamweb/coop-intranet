@@ -7,11 +7,11 @@ class GoalsReport < ApplicationRecord
     if location.name == 'PA00'
       self.by_last_location
     else 
-    self.where(location: location).last
+      self.where(location: location).last
     end
   end
   def self.by_last_location
-    self.where(location: Location.last_location)
+    self.where(location: Location.last_location).last
   end
 
   def self.import(files)
