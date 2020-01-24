@@ -1,0 +1,56 @@
+<div class='collapsible-header'><i class='material-icons'>insert_chart</i>Relatórios diversos</div>
+<div class='collapsible-body'>
+  <ul>
+    <li>
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header">Report 01</div>
+          <div class="collapsible-body">
+              <ul>
+                <% report_type.each do |type| %>
+                  <li>
+                    <%= link_to type.report_type.name, reports_index_url(type: type.report_type_id) %>
+                  </li>
+                <% end %>
+              </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">Report 02</div>
+          <div class="collapsible-body">
+              <ul>
+                  <% 5.times do %>
+                    <li><%= link_to 'Carteira Diária', goals_path %></li>
+                  <% end %>
+              </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">Report 03</div>
+          <div class="collapsible-body">
+              <ul>
+                  <% 5.times do %>
+                    <li><%= link_to  'Eventos', events_path  %></li>
+                  <% end %>
+              </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">Consolidado</div>
+          <div class="collapsible-body">
+            <ul>
+             <% if current_user.location.name != "PA00"%>
+							<li>
+								<%= link_to 'Resumo', reports_from_location_path %>
+							</li>
+						<%end%>
+						<li>
+							<%= link_to 'Resumo Consolidado', reports_from_location_url(filter: 'consolidado') %>
+						</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      </li>
+  </ul>
+</div>
