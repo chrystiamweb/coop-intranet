@@ -4,34 +4,27 @@ This is a simple intranet created with rails and materialize
 
 ### Prerequisites
 
-* ImageMagick (https://www.imagemagick.org)
+>You just need have docker-compose installed in your machine.
+
+### Getting Started
+>To get the app running, run the following commands:
 
 ```
-sudo apt-get update
-sudo apt-get install imagemagick libmagickwand-dev
-```
-
-### Installing
-
-This project use postgres as database, first you need to change the database config on file config/database.yml.example
-
-```
-vim config/database.yml.example (make the changes and save the file)
-
-cp config/database.yml.example config/database.yml (create the database.yml config file)
-```
-
-Create database and migrations
-
-```
-rails db:create
-rails db:migrate
-rails db:seed (this will create some example posts)
+docker-compose build
+docker-compose up
+docker-compose exec web bundle exec rails db:create
+docker-compose exec web bundle exec rails db:migrate
+docker-compose exec web bundle exec rails db:seed  
 ```
 ### Usage
 
-* After start you app, you need to create an user to get access to the posts area, then log on and the menu will be available.
+* Log in and menu will be available
 
+>Default User 
+```
+Login: Admin
+Password: 123456
+```
 
 ## Built With
 * [Devise](https://github.com/plataformatec/devise)
