@@ -25,7 +25,7 @@ end
 puts 'Criando localidades padrões'
 100.times do |p|
   Location.create(
-    name: p < 9 ? "PA0#{p}" : "PA#{p}" ,
+    name: p <= 9 ? "PA0#{p}" : "PA#{p}" ,
     description: Faker::Lorem.sentence
   )
 end
@@ -127,23 +127,23 @@ lines = [{
             type: 'Linhas de crédito pessoa física',
             config: 0,
             prazo_min: 1,
-            prazo_max: 1,
-            tax_max: 1,
-            tax_min: 4
+            prazo_max: 12,
+            tax_max: 4,
+            tax_min: 1
           },
           { name: 'Linha de credito pessoa física 02',
             type: 'Linhas de crédito pessoa física',
             config: 0,
             prazo_min: 1,
-            prazo_max: 1,
-            tax_max: 2.9,
-            tax_min: 6.9
+            prazo_max: 12,
+            tax_max: 6.9,
+            tax_min: 2.9
           },
           { name: 'Linha de crédito 03',
             type: 'Linhas de crédito pessoa física',
             config: 0,
             prazo_min: 1,
-            prazo_max: 1,
+            prazo_max: 12,
             tax_max: 4.45,
             tax_min: 4.45
           },
@@ -299,15 +299,61 @@ Requisition.all.each do |req|
 end
 GoalCategory.create!(
   name: 'Carteira Diária',
-  description: 'Acompanhamento de metas da carteira geradas di�riamente'
+  description: 'Acompanhamento de metas da carteira'
 )
 
 puts 'requisições atualizadas'
 
 
 ReportType.create!(
-  name: 'Carteira Diária',
-  description: 'Acompanhamento de metas da carteira geradas di�riamente'
+  name: 'Report 01',
+  description: 'Acompanhamento de metas do report 01'
+)
+ReportType.create!(
+  name: 'Report 02',
+  description: 'Acompanhamento de metas do report 02'
 )
 
 puts 'requisições atualizadas'
+
+puts 'criando relatórios de exemplo'
+
+
+
+goal_reports = Dir["public/reports/cart/*"]
+
+goal_reports.each do |i|
+  temp = GoalsReport.new(
+    name:  i,
+    goal_category_id: 1,
+    location_id: Location.find_by_number(i.split('/')[3].split('-')[0]).first.id,
+  )   
+  temp.report_img.attach(
+    io: File.open(i), 
+    filename: i.split('/')[3], content_type: 'image/jpg'
+    )
+  temp.save!
+end
+
+puts 'criando report'
+
+reportDirs = [Dir["public/reports/report01/*"],Dir["public/reports/report02/*"]]
+
+reportDirs.each_with_index do |reports, index|
+  Report.create!(
+      name: 'Janeiro',
+      report_type_id: (index + 1)
+    )
+  reports.each do |report|    
+    report_data =  ReportImageDatum.new(   
+      name:  report.split('/')[3],       
+      report_id: index + 1,
+      location_id: Location.find_by_number(report.split('/')[3].split('-')[0]).first.id
+    )
+    report_data.image.attach(
+      io: File.open(report), 
+      filename: report.split('/')[3], content_type: 'image/jpg'
+    )
+    report_data.save!
+  end
+end   
