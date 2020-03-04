@@ -44,27 +44,7 @@
 				</div>
 			</li>
 			<li>
-				<div class='collapsible-header'><i class='material-icons'>insert_chart</i>Relatórios diversos</div>
-				<div class='collapsible-body'>
-					<ul>
-						<li>
-							<%= link_to 'Carteira Diária', goals_path %>
-						</li>
-						<% report_type.each do |type| %>
-						<li>
-							<%= link_to type.report_type.name, reports_index_url(type: type.report_type_id) %>
-						</li>
-						<% end %>
-						<% if current_user.location.name != "PA00"%>
-							<li>
-								<%= link_to 'Resumo', reports_from_location_path %>
-							</li>
-						<%end%>
-						<li>
-							<%= link_to 'Resumo Consolidado', reports_from_location_url(filter: 'consolidado') %>
-						</li>
-					</ul>
-				</div>
+				 <%= render  "layouts/shared/reports" %>
 			</li>
 			<li>
 				<div class='collapsible-header'><i class='material-icons'>cloud_download</i>Downloads</div>
