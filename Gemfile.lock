@@ -180,7 +180,7 @@ GEM
       terrapin (~> 0.6.0)
     pg (1.1.4)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.4)
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -327,7 +327,7 @@ DEPENDENCIES
   net-ldap
   paperclip
   pg
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.0)
   rails-assets-fullcalendar!
   rails-assets-momentjs!
