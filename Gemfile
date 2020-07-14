@@ -34,6 +34,8 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'ransack'
 gem "chartkick", ">= 3.2.0"
 gem 'groupdate'
+gem 'pdf-reader'
+gem 'combine_pdf'
 
 
 group :development, :test do
