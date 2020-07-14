@@ -7,9 +7,17 @@ class RequisitionsController < ApplicationController
 
   def index    
     if current_user.admin? || current_user.sector_id == 2
-      @requisitions = Requisition.search(params[:search]).open_or_closed(params[:filter])
-    else
-      @requisitions = Requisition.search(params[:search]).where(location_id: current_user.location.id).open_or_closed(params[:filter])
+      if current_user.admin? || current_user.sector_id == 2
+        @requisitions = Requisition.search(params[:search]).open_or_closed(params[:filter]).includes(
+          :location, :requisition_category, :client, :modality,
+          :requisition_status, :requester, :sector_flow
+          )
+      else   
+      @requisitions = Requisition.search(params[:search]).where(location_id: current_user.location.id).open_or_closed(params[:filter]).includes(
+        :location, :requisition_category, :client, :modality,
+        :requisition_status, :requester, :sector_flow
+        )
+      end
     end
   end
   
