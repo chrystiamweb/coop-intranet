@@ -1,21 +1,123 @@
-<h1>STATUS GERAL</h1>
-<%= column_chart  StatusAction.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
+<div class='container'>
 
-<h1>Tempo médio de atendimento por setor</h1>
-<%= pie_chart   time_req_calc %>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Status Geral</span>
+            <%= column_chart  StatusAction.not_closed.opened.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
+        </div>        
+      </div>
+    </div>
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Distribuição de etapas finalizadas (total de etapas:<%=StatusAction.closed.last_month_data.count %>)</span>
+            <%= column_chart  StatusAction.closed.last_month_data.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
+        </div>        
+      </div>
+    </div>
+  </div>
 
-<h1>Quantidade de chamados por solicitante</h1>
-<%= column_chart  Requisition.group(:requester_id).count.collect {|b| [User.where(id:b[0]).first.full_name , b[1]]} %>
-<h1>Chamados por Status</h1>
-<%= column_chart  Requisition.group(:requisition_status_id).count.collect {|b| [RequisitionStatus.where(id:b[0]).first.name , b[1]]} %>
-<h1>Chamados por PA</h1>
-<%= column_chart  Requisition.group(:location_id).count.collect {|b| [Location.where(id:b[0]).first.name , b[1]]} %>
-<h1>Chamados por Modalidade</h1>
-<%= column_chart  Requisition.group(:modality_id).count.collect {|b| [Modality.where(id:b[0]).first.title , b[1]]} %>
-<h1>Chamados por Setor de atendimento</h1>
-<%= column_chart  Requisition.group(:sector_flow_id).count.collect {|b| [SectorFlow.where(id:b[0]).first.name , b[1]]} %>
-<h1>Quantidade de chamados mensal</h1>
-<%= line_chart Requisition.group_by_month(:created_at).count %>
-<h1>Chamados processados por analistas</h1>
-<%= column_<h1>Quantidade de chamados mensal</h1>
-<%= line_chart Requisition.group_by_month(:created_at).count %>chart StatusAction.actions_by_analists %>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card dash-card">
+        <div class="card-content">
+            <span class="card-title">Tempo médio de atendimento por setor CRL</span>
+            <%= pie_chart global_time_calc(2) %>
+        </div>         
+         <center><i>*Tempo médio para liberação da proposta: <%=  "#{requisiton_total_time_count(2)} Hrs corridas" %></i></center>             
+      </div>
+    </div>    
+    <div class="col s12 m6">
+      <div class="card dash-card">
+        <div class="card-content">
+            <span class="card-title">Tempo médio de atendimento por setor Proposta de crédito</span>
+            <%= pie_chart global_time_calc(1)    %>
+        </div>         
+         <center><i>*Tempo médio para liberação da proposta: <%=  "#{requisiton_total_time_count(1)} Hrs corridas" %></i></center>             
+      </div>
+    </div>    
+  </div> 
+
+
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Chamados por Status</span>
+            <%= column_chart  Requisition.opened.group(:requisition_status_id).count.collect {|b| [RequisitionStatus.where(id:b[0]).first.name , b[1]]} %>
+        </div>        
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Quantidade de chamados por solicitante</span>
+            <%= column_chart  Requisition.find_by_date.group(:requester_id).count.collect {|b| [User.where(id:b[0]).first.full_name , b[1]]} %>
+        </div>        
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Chamados por PA</span>
+            <%= column_chart  Requisition.find_by_date.group(:location_id).count.collect {|b| [Location.where(id:b[0]).first.name , b[1]]} %>,
+        </div>        
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Chamados por Modalidade</span>
+            <%= column_chart  Requisition.find_by_date.group(:modality_id).count.collect {|b| [Modality.where(id:b[0]).first.title , b[1]]} %>
+        </div>        
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Quantidade de chamados mensal</span>
+            <%= line_chart Requisition.group_by_month(:created_at).count %>
+        </div>        
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Chamados processados por analistas</span>
+            <%= column_chart StatusAction.last_month_data.actions_by_analysts %>
+        </div>        
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Volume por Categoria</span>
+           <%= column_chart  Requisition.closed.find_by_date.group(:requisition_category_id).count.collect {|b| [RequisitionCategory.where(id:b[0]).first.name , b[1]]} %>
+        </div>        
+      </div>
+    </div>
+
+    <div class="col s12 m6">
+      <div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">Volume Solicitações Finalizadas</span>
+            <%= column_chart  Requisition.find_by_date.volum_by_type, prefix: "R$", round: 2 %>
+        </div>        
+      </div>
+    </div>
+  </div>    
+</div>
