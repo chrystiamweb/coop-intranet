@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 2019_08_21_134619) do
     t.text "body"
     t.string "image_file_name"
     t.string "image_content_type"
-    t.bigint "image_file_size"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -329,8 +329,9 @@ ActiveRecord::Schema.define(version: 2019_08_21_134619) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "last_name"
     t.string "login"
-    t.string "role"
+    t.integer "role"
     t.date "birthday"
     t.integer "kind"
     t.string "full_name"
