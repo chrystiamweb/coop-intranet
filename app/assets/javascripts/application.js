@@ -12,6 +12,7 @@
 //= require jquery.easy-autocomplete
 //= require jquery.mask.min
 //= require datatables.min
+//= require datetime-moment
 //= require jquery.maskMoney
 //= require Chart.bundle
 //= require chartkick

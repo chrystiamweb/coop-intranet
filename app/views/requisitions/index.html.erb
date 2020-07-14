@@ -51,8 +51,7 @@
               <td><%= requisition.created_at.strftime("%d/%m/%Y %H:%M") %></td>
               <td><%= requisition.updated_at.strftime("%d/%m/%Y %H:%M") %></td>
               <td><%= requisition.sector_flow.name %></td>
-              <td colspan='2'><%= requisition.sector_flow.sector.name %></td>
-              
+              <td colspan='2'><%= requisition.sector_flow.sector.name %></td>              
             </tr>
           <% end %>
         </tbody>
@@ -68,6 +67,7 @@
 
 <script>
 $(document).ready(function() {
+    $.fn.dataTable.moment( 'DD/MM/YYYY HH:mm' )
     $('#myTable').DataTable( {
       fixedHeader: true,
       "language": {
@@ -93,8 +93,8 @@ $(document).ready(function() {
             "sSortDescending": ": Ordenar colunas de forma descendente"
         }
       },
-      
-        initComplete: function () {
+            
+      initComplete: function () {
             this.api().columns().every( function () {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
