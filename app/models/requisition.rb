@@ -24,6 +24,10 @@ class Requisition < ApplicationRecord
     end
   end
 
+  def self.find_by_date
+    self.where(updated_at: 1.month.ago .. Date.today)
+  end
+
   def crl
     if self.requisition_category_id == 2 
       true
@@ -68,6 +72,15 @@ class Requisition < ApplicationRecord
    end
   end
 
+  def self.volum_by_type    
+    RequisitionCategory.select(:id,:name).distinct.map do |category|
+      value = 0.0
+      Requisition.select(:value, :requisition_category_id).where(requisition_category_id: category.id).each {|item| value += item.value}
+      [category.name, value.round(2)]
+    end
+  end
+
+
   private
   def set_status
     self.sector_flow_id = SectorFlow.where(position: 1).first.id
@@ -79,6 +92,5 @@ class Requisition < ApplicationRecord
       self.requisition_status_id = RequisitionStatus.where(name: self.sector_flow.name).first.id
     end
   end
-
   
 end
