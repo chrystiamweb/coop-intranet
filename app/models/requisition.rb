@@ -75,7 +75,7 @@ class Requisition < ApplicationRecord
   def self.volum_by_type    
     RequisitionCategory.select(:id,:name).distinct.map do |category|
       value = 0.0
-      Requisition.select(:value, :requisition_category_id).where(requisition_category_id: category.id).each {|item| value += item.value}
+      self.select(:value, :requisition_category_id).where(requisition_category_id: category.id).each {|item| value += item.value}
       [category.name, value.round(2)]
     end
   end
